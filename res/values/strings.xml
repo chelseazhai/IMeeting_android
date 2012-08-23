@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- iMeeting project -->
+    <string name="app_name">IMeeting</string>
+
+    <!-- iMeeting application splash description -->
+    <string name="splash_content_description">iMeeting application splash image</string>
+
+    <!-- setting activity -->
+    <string name="title_activity_setting">SettingActivity</string>
+    
+    <!-- account setting activity -->
+	<string name="title_activity_account_setting">AccountSettingActivity</string>
+
+    <!-- meeting list activity -->
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_meeting_list">MeetingListActivity</string>
+
+</resources>
