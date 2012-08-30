@@ -3,17 +3,114 @@
     <!-- iMeeting project -->
     <string name="app_name">IMeeting</string>
 
-    <!-- iMeeting application splash description -->
+    <!-- iMeeting application activity -->
     <string name="splash_content_description">iMeeting application splash image</string>
+
+    <!-- account setting activity -->
+    <string name="title_activity_account_setting">AccountSettingActivity</string>
+    <string name="normal_background_image_description">normal background image</string>
+    <string name="account_setting_nav_title_text">Account Setting</string>
+    <string name="register_nav_btn_title">Register</string>
+    <string name="login_name_editText_hint">Please input your registered phone number</string>
+    <string name="login_pwd_editText_hint">Please input the account password</string>
+    <string name="remember_pwd_textView_text">RememberPwd</string>
+    <string name="remeber_pwd_toggleBtn_on">On</string>
+    <string name="remeber_pwd_toggleBtn_off">Off</string>
+    <string name="login_confirm_btn_title">Login</string>
+
+    <!-- account register activity -->
+    <string name="title_activity_account_register">AccountRegisterActivity</string>
+    <string name="account_register_nav_title_text">Account Register</string>
+    <!-- step 1 -->
+    <string name="register_step1_textView_text">Step1</string>
+    <string name="register_step1_description">Input phone number to retrieve verification code</string>
+    <string name="verificationCode_editText_hint">Input register phone number</string>
+    <string name="get_verificationCode_btn_title">Get Verification Code</string>
+    <string name="register_step1_comment">(Your phone number is used for authentication only, we assure that we won\'t send junk message to you.)</string>
+    <!-- step 2 -->
+    <string name="register_step2_textView_text">Step2</string>
+    <string name="register_step2_description">Input verification code and press \'Next\' to verify</string>
+    <string name="verificationCode_verify_editText_hint">Input verification code</string>
+    <string name="verify_verificationCode_btn_title">Next</string>
+    <!-- step3 -->
+    <string name="register_step3_textView_text">Step3</string>
+    <string name="register_step3_description">Input password and confirmation to finish the register</string>
+    <string name="pwd_editText_hint">Input password</string>
+    <string name="confirmationPwd_editText_hint">Input confirmation password</string>
+    <string name="register_finish_btn_title">Finish Register</string>
+
+    <!-- talking group history list activity -->
+    <string name="title_activity_talking_group_history_list">TalkingGroupHistoryListActivity</string>
+    <string name="menu_refresh_myTalkingGroupList">Refresh</string>
+    <string name="myTalkingGroup_history_list_nav_title_text">My Talking Group</string>
+    <string name="setting_nav_btn_title">Setting</string>
+    <string name="newTalkingGroup_btn_title">Creating New Talking Group</string>
+
+    <!-- talking group history list item -->
+    <string name="groupId_textView_textHeader">Group ID:</string>
+
+    <!-- talking group attendee -->
+    <string name="attendee_avatar_content_description">talking group attendee avatar</string>
 
     <!-- setting activity -->
     <string name="title_activity_setting">SettingActivity</string>
-    
-    <!-- account setting activity -->
-	<string name="title_activity_account_setting">AccountSettingActivity</string>
+    <string name="setting_nav_title_text">Setting</string>
+    <string name="accountSetting_btn_title">Account Setting</string>
+    <string name="support_btn_title">Support</string>
+    <string name="about_btn_title">About</string>
 
-    <!-- meeting list activity -->
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_meeting_list">MeetingListActivity</string>
+    <!-- contact select activity -->
+    <string name="title_activity_contact_select">ContactSelectActivity</string>
+    <string name="contactSelect_nav_title_text">Add Attendee</string>
+    <string name="back_nav_btn_title">Back</string>
+    <string name="openTalkingGroup_nav_btn_title">Open</string>
+    <string name="confirmAdd_nav_btn_title">OK</string>
+    <string name="contactSelect_header_imageView_content_description">contact select header image view</string>
+    <string name="addressBook_textView_text">Address Book</string>
+    <string name="in7preinTalkingGroup_textView_text">Attendees Existed</string>
+    <string name="contact_search_editText_hint">Search contacts</string>
+    <string name="contactSelect_addressbookContact_unsel6sel_imageView_content_description">contact select address book contact unselected or selected image view</string>
+    <string name="contactSelect_in7preinTalkingGroupContact_sel_imageView_content_description">contact select in and prein talking group contact selected image view</string>
+
+    <!-- talking group detail info activity -->
+    <string name="menu_audio7video_operation">Audio&amp;Video Operation</string>
+    <string name="menu_voice_callIn">Voice CallIn</string>
+    <string name="menu_voice_hangup">Voice Hangup</string>
+    <string name="menu_open_camera">Open Camera</string>
+    <string name="menu_close_camera">Close Camera</string>
+    <string name="menu_leave_talkingGroup">Leave Talking Group</string>
+    <string name="menu_add_attendee">Add Attendee</string>
+    <string name="menu_sms_invitation">SMS Invitation</string>
+    <string name="title_activity_talking_group_detail_info">TalkingGroupDetailInfoActivity</string>
+    <string name="talkingGroup_bottomToolbarItem_icon_content_description">talking group bottom toolbar item icon</string>
+    <string name="talkingGroup_fullScreenVideo_imageView_content_description">talking group fullScreen video image view</string>
+    <string name="talkingGroup_smallVideo_imageView_content_description">talking group small video image view</string>
+
+    <!-- support activity -->
+    <string name="title_activity_support">SupportActivity</string>
+    <string name="support_nav_title_text">Support</string>
+    <string name="support_loading_textView_textHeader">Loading&#8230;,</string>
+    <string name="support_loading_progressBar_max">100</string>
+
+    <!-- about activity -->
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about_nav_title_text">About</string>
+    <string name="product_small_icon_content_description">application small icon</string>
+
+    <!-- product -->
+    <string name="product_name">ZhiHui</string>
+    <string name="product_description">Intelligent Choice For Highly Efficient People</string>
+    <string name="product_version">Version:</string>
+    <!-- design -->
+    <string name="programming_design">Programming</string>
+    <string name="programming_authors">Star king\t\tChelsea Zhai</string>
+    <string name="ui_design">UI Design</string>
+    <string name="ui_designers">Li Xin</string>
+    <!-- copyright -->
+    <string name="copyright">Copyright © 2012</string>
+    <string name="copyright_ownership">Hefei Youyun Info Tech Ltd., All Rights Reserved</string>
+    <!-- acknowledgement -->
+    <string name="acknowledgement">Acknowledgement</string>
+    <string name="acknowledgement_organizations">Nanjing Futuo Network Tech Ltd.</string>
 
 </resources>

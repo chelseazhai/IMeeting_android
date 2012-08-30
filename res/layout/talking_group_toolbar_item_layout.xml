@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_groupdetailinfo_bottomtoolbaritem_bg"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/toolbarItemIcon_imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/talkingGroup_bottomToolbarItem_icon_content_description" />
+
+    <TextView
+        android:id="@+id/toolbarItemName_textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarItemIcon_imageView"
+        android:gravity="center" />
+
+</RelativeLayout>

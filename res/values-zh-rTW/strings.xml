@@ -1,0 +1,89 @@
+<resources>
+
+    <!-- account setting activity -->
+    <string name="account_setting_nav_title_text">賬戶設置</string>
+    <string name="register_nav_btn_title">註冊</string>
+    <string name="login_name_editText_hint">請輸入您已註冊了的手機號碼</string>
+    <string name="login_pwd_editText_hint">請輸入賬號密碼</string>
+    <string name="remember_pwd_textView_text">記住密碼</string>
+    <string name="remeber_pwd_toggleBtn_on">開</string>
+    <string name="remeber_pwd_toggleBtn_off">關</string>
+    <string name="login_confirm_btn_title">登錄</string>
+
+    <!-- account register activity -->
+    <string name="account_register_nav_title_text">賬戶註冊</string>
+    <!-- step 1 -->
+    <string name="register_step1_textView_text">第一步</string>
+    <string name="register_step1_description">收入手機號，獲取驗證碼</string>
+    <string name="verificationCode_editText_hint">輸入註冊手機號碼</string>
+    <string name="get_verificationCode_btn_title">獲取驗證碼</string>
+    <string name="register_step1_comment">（您的手機號碼僅用於身份驗證，我們不會向您發送拉機短信。）</string>
+    <!-- step 2 -->
+    <string name="register_step2_textView_text">第二步</string>
+    <string name="register_step2_description">輸入驗證碼，點擊下一步驗證</string>
+    <string name="verificationCode_verify_editText_hint">輸入驗證碼</string>
+    <string name="verify_verificationCode_btn_title">下一步</string>
+    <!-- step3 -->
+    <string name="register_step3_textView_text">第三步</string>
+    <string name="register_step3_description">輸入密碼和確認密碼，完成註冊</string>
+    <string name="pwd_editText_hint">輸入密碼</string>
+    <string name="confirmationPwd_editText_hint">輸入確認密碼</string>
+    <string name="register_finish_btn_title">完成註冊</string>
+
+    <!-- talking group history list activity -->
+    <string name="menu_refresh_myTalkingGroupList">刷新</string>
+    <string name="myTalkingGroup_history_list_nav_title_text">我的群聊</string>
+    <string name="setting_nav_btn_title">設置</string>
+    <string name="newTalkingGroup_btn_title">新建群聊</string>
+
+    <!-- talking group history list item -->
+    <string name="groupId_textView_textHeader">群聊號：</string>
+
+    <!-- setting activity -->
+    <string name="setting_nav_title_text">設置</string>
+    <string name="accountSetting_btn_title">賬戶設置</string>
+    <string name="support_btn_title">幫助</string>
+    <string name="about_btn_title">關於</string>
+
+    <!-- contact select activity -->
+    <string name="contactSelect_nav_title_text">添加成員</string>
+    <string name="back_nav_btn_title">返回</string>
+    <string name="openTalkingGroup_nav_btn_title">開啓</string>
+    <string name="confirmAdd_nav_btn_title">確定</string>
+    <string name="addressBook_textView_text">通訊錄</string>
+    <string name="in7preinTalkingGroup_textView_text">已添加成員</string>
+    <string name="contact_search_editText_hint">搜索聯繫人</string>
+
+    <!-- talking group detail info activity -->
+    <string name="menu_audio7video_operation">語音視頻操作</string>
+    <string name="menu_voice_callIn">語音呼入</string>
+    <string name="menu_voice_hangup">關閉語音</string>
+    <string name="menu_open_camera">打開鏡頭</string>
+    <string name="menu_close_camera">關閉鏡頭</string>
+    <string name="menu_leave_talkingGroup">離開群聊</string>
+    <string name="menu_add_attendee">添加成員</string>
+    <string name="menu_sms_invitation">短信邀請</string>
+
+    <!-- support activity -->
+    <string name="support_nav_title_text">幫助</string>
+    <string name="support_loading_textView_textHeader">正在加載&#8230;，</string>
+
+    <!-- about activity -->
+    <string name="about_nav_title_text">關於</string>
+
+    <!-- product -->
+    <string name="product_name">智會</string>
+    <string name="product_description">高效能人士的智慧選擇</string>
+    <string name="product_version">版本號:</string>
+    <!-- design -->
+    <string name="programming_design">程序設計</string>
+    <string name="programming_authors">王星\t\t翟紹虎</string>
+    <string name="ui_design">UI設計</string>
+    <string name="ui_designers">李欣</string>
+    <!-- copyright -->
+    <string name="copyright_ownership">合肥優雲信息科技有限公司 保留所有權利</string>
+    <!-- acknowledgement -->
+    <string name="acknowledgement">鳴謝</string>
+    <string name="acknowledgement_organizations">南京富拓網絡科技有限公司</string>
+
+</resources>

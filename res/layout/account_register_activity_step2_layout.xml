@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/register_step2_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/register_step2_textView_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/dim_gray" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/register_step2_textView"
+            android:layout_toRightOf="@id/register_step2_textView"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:text="@string/register_step2_description"
+            android:textColor="@color/light_dim_gray" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/verificationCode_verify_editText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:hint="@string/verificationCode_verify_editText_hint"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/verify_verificationCode_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/accountsetting7register7newtalkinggroup_btn_bg"
+        android:text="@string/verify_verificationCode_btn_title"
+        android:textColor="@color/white" />
+
+</LinearLayout>

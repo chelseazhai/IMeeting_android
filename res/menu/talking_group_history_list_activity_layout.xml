@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_refresh_myTalkingGruopList"
+        android:icon="@android:drawable/ic_menu_rotate"
+        android:title="@string/menu_refresh_myTalkingGroupList"/>
+    <item
+        android:id="@+id/menu_new_talkingGroup"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/newTalkingGroup_btn_title"/>
+
+</menu>

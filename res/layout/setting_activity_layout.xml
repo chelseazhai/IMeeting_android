@@ -1,6 +1,46 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp" >
+
+        <View
+            android:id="@+id/settingTopMarginView"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/accountSetting_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/setting_item_btn_bg"
+            android:text="@string/accountSetting_btn_title"
+            android:textColor="@color/dim_gray" />
+
+        <Button
+            android:id="@+id/help_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/setting_item_btn_bg"
+            android:text="@string/support_btn_title"
+            android:textColor="@color/dim_gray" />
+
+        <Button
+            android:id="@+id/about_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/setting_item_btn_bg"
+            android:text="@string/about_btn_title"
+            android:textColor="@color/dim_gray" />
+    </LinearLayout>
+
+</ScrollView>

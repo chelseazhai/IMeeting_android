@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- iMeeting server url -->
+    <string name="server_url">http://www.wetalking.net/imeeting</string>
+
+    <!-- support url -->
+    <string name="support_url">/help</string>
+
+</resources>

@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.richitec.imeeting.setting.AccountSettingActivity;
+import com.richitec.imeeting.account.AccountSettingActivity;
 
 public class ApplicationActivity extends Activity {
 
 	// delay 3 seconds
-	private final int SPLASH_DISPLAY_TIME = 3000;
+	private final int SPLASH_DISPLAY_TIME = 1000;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
