@@ -133,7 +133,7 @@ public class ContactSelectActivity extends NavigationActivity {
 		}
 
 		// set contacts in address book listView adapter
-		((ListView) findViewById(R.id.in7PreinTalkingGroup_listView))
+		((ListView) findViewById(R.id.contactIn7PreinTalkingGroup_listView))
 				.setAdapter(new InAB6In7PreinTalkingGroupContactAdapter(
 						this,
 						_In7PreinTalkingGroupContactsDataList,
