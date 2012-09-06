@@ -8,10 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.richitec.commontoolkit.activityextension.NavigationActivity;
 import com.richitec.imeeting.R;
+import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
-public class SupportActivity extends NavigationActivity {
+public class SupportActivity extends IMeetingNavigationActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

@@ -21,7 +21,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:text="@string/addressBook_textView_text"
-            android:textColor="@color/white" />
+            android:textColor="@android:color/white" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:text="@string/in7preinTalkingGroup_textView_text"
-            android:textColor="@color/white" />
+            android:textColor="@android:color/white" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -87,9 +87,10 @@
                     android:layout_toLeftOf="@id/add_notExistedInABContact_btn"
                     android:drawableLeft="@drawable/ic_action_search"
                     android:hint="@string/contact_search_editText_hint"
-                    android:inputType="text" />
+                    android:inputType="text" >
 
-                <requestFocus />
+                    <requestFocus />
+                </EditText>
             </RelativeLayout>
 
             <ListView

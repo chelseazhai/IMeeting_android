@@ -12,13 +12,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.richitec.commontoolkit.activityextension.NavigationActivity;
-import com.richitec.commontoolkit.customui.BarButtonItem;
+import com.richitec.commontoolkit.customui.BarButtonItem.BarButtonItemStyle;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.assistant.SettingActivity;
 import com.richitec.imeeting.contactselect.ContactSelectActivity;
+import com.richitec.imeeting.customcomponent.IMeetingBarButtonItem;
+import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
-public class TalkingGroupHistoryListActivity extends NavigationActivity {
+public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,14 +31,11 @@ public class TalkingGroupHistoryListActivity extends NavigationActivity {
 		// set title text
 		setTitle(R.string.myTalkingGroup_history_list_nav_title_text);
 
-		// init setting bar button item
-		BarButtonItem _settingBarBtnItem = new BarButtonItem(this);
-		// set attributes
-		_settingBarBtnItem.setText(R.string.setting_nav_btn_title);
-		_settingBarBtnItem.setOnClickListener(new SettingBtnOnClickListener());
 		// set setting bar button item as self activity left bar button
 		// item
-		setLeftBarButtonItem(_settingBarBtnItem);
+		setLeftBarButtonItem(new IMeetingBarButtonItem(this,
+				BarButtonItemStyle.RIGHT_GO, R.string.setting_nav_btn_title,
+				new SettingBtnOnClickListener()));
 
 		// test by ares
 		// test attendees phone numbers

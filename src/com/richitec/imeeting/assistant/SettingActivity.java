@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.richitec.commontoolkit.activityextension.NavigationActivity;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.account.AccountSettingActivity;
+import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
-public class SettingActivity extends NavigationActivity {
+public class SettingActivity extends IMeetingNavigationActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

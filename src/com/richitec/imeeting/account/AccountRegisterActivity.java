@@ -2,10 +2,10 @@ package com.richitec.imeeting.account;
 
 import android.os.Bundle;
 
-import com.richitec.commontoolkit.activityextension.NavigationActivity;
 import com.richitec.imeeting.R;
+import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
-public class AccountRegisterActivity extends NavigationActivity {
+public class AccountRegisterActivity extends IMeetingNavigationActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

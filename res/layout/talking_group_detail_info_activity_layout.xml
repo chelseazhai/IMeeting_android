@@ -26,7 +26,7 @@
         android:layout_marginTop="18dp"
         android:background="@drawable/groupid_textview_bg"
         android:hint="@string/groupId_textView_textHeader"
-        android:textColor="@color/black" />
+        android:textColor="@android:color/black" />
 
     <Button
         android:id="@+id/cameraSwitch_btn"

@@ -31,7 +31,7 @@
                 android:layout_toRightOf="@id/product_small_icon_imageView"
                 android:text="@string/product_name"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/black" />
+                android:textColor="@android:color/black" />
         </RelativeLayout>
 
         <TextView

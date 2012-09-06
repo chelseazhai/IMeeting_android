@@ -5,11 +5,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.richitec.commontoolkit.activityextension.NavigationActivity;
-import com.richitec.commontoolkit.customui.BarButtonItem;
+import com.richitec.commontoolkit.customui.BarButtonItem.BarButtonItemStyle;
 import com.richitec.imeeting.R;
+import com.richitec.imeeting.customcomponent.IMeetingBarButtonItem;
+import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
-public class AccountSettingActivity extends NavigationActivity {
+public class AccountSettingActivity extends IMeetingNavigationActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -21,15 +22,11 @@ public class AccountSettingActivity extends NavigationActivity {
 		// set title text
 		setTitle(R.string.account_setting_nav_title_text);
 
-		// init user register bar button item
-		BarButtonItem _registerBarBtnItem = new BarButtonItem(this);
-		// set attributes
-		_registerBarBtnItem.setText(R.string.register_nav_btn_title);
-		_registerBarBtnItem
-				.setOnClickListener(new RigisterBtnOnClickListener());
 		// set user register bar button item as self activity right bar button
 		// item
-		setRightBarButtonItem(_registerBarBtnItem);
+		setRightBarButtonItem(new IMeetingBarButtonItem(this,
+				BarButtonItemStyle.RIGHT_GO, R.string.register_nav_btn_title,
+				new RigisterBtnOnClickListener()));
 	}
 
 	@Override
