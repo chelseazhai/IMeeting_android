@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- common -->
+    <string name="bg_server_req_resp_result">result</string>
+
+    <!-- user login & account setting -->
+    <string name="bg_server_userLoginName">loginName</string>
+    <string name="bg_server_userLoginPwd">loginPwd</string>
+    <string name="bg_server_loginReq_resp_userkey">userkey</string>
+
+    <!-- account register -->
+    <string name="bg_server_accountRegisterPhoneNumber">phone</string>
+    <string name="bg_server_verificationCode">code</string>
+    <string name="bg_server_userRegPassword">password</string>
+    <string name="bg_server_userRegConfirmationPwd">password1</string>
+
+</resources>

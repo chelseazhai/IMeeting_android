@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- common -->
+    <string name="toast_request_exception">Server exception, please retry again later</string>
+
+    <!-- user login & account setting -->
+    <string name="toast_login_userName_null">Login user name mustn\'t null</string>
+    <string name="toast_login_password_null">Login user password mustn\'t null</string>
+    <string name="toast_login_successful">User login successful, please click creating new talking group button to enjoy simple and convenient group talking</string>
+    <string name="toast_userAccount_reset_successful">User account reset successful</string>
+    <string name="toast_login_userName6Pwd_wrong">Login user name or password is wrong</string>
+
+    <!-- account register -->
+    <string name="toast_accountRegister_phoneNumber_null">Register phone number mustn\'t null</string>
+    <string name="toast_accountRegister_phoneNumber_invalid">Register phone number is invalid</string>
+    <string name="toast_accountRegister_phoneNumber_existed">Register phone number is existed</string>
+    <string name="toast_verificationCode_null">Verification code mustn\'t null</string>
+    <string name="toast_verificationCode_wrong">Verification code is wrong</string>
+    <string name="toast_verificationCode_timeout">Verification code is timeout, please reget it again</string>
+    <string name="toast_accountRegPassword_null">Account register password mustn\'t null</string>
+    <string name="toast_accountRegConfirmationPwd_null">Account register confirmation password mustn\'t null</string>
+    <string name="toast_accountRegister_timeout">Register is timeout, please retry it again</string>
+
+</resources>

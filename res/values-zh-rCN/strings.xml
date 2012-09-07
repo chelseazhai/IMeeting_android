@@ -15,7 +15,7 @@
     <!-- step 1 -->
     <string name="register_step1_textView_text">第一步</string>
     <string name="register_step1_description">输入手机号，获取验证码</string>
-    <string name="verificationCode_editText_hint">输入注册手机号码</string>
+    <string name="registerPhone_editText_hint">输入注册手机号码</string>
     <string name="get_verificationCode_btn_title">获取验证码</string>
     <string name="register_step1_comment">（您的手机号码仅用于身份验证，我们不会向您发送垃圾短信。）</string>
     <!-- step 2 -->

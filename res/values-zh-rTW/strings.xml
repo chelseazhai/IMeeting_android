@@ -15,7 +15,7 @@
     <!-- step 1 -->
     <string name="register_step1_textView_text">第一步</string>
     <string name="register_step1_description">收入手機號，獲取驗證碼</string>
-    <string name="verificationCode_editText_hint">輸入註冊手機號碼</string>
+    <string name="registerPhone_editText_hint">輸入註冊手機號碼</string>
     <string name="get_verificationCode_btn_title">獲取驗證碼</string>
     <string name="register_step1_comment">（您的手機號碼僅用於身份驗證，我們不會向您發送拉機短信。）</string>
     <!-- step 2 -->

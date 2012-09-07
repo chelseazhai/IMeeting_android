@@ -4,6 +4,14 @@
     <!-- iMeeting server url -->
     <string name="server_url">http://www.wetalking.net/imeeting</string>
 
+    <!-- user login & account setting url -->
+    <string name="user_login7account_setting_url">/user/login</string>
+
+    <!-- account register -->
+    <string name="get_registerPhone_verification_code_url">/user/getPhoneCode</string>
+    <string name="verify_verificationCode_url">/user/checkPhoneCode</string>
+    <string name="account_register_url">/user/regUser</string>
+
     <!-- support url -->
     <string name="support_url">/help</string>
 

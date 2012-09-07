@@ -24,7 +24,7 @@
     <!-- step 1 -->
     <string name="register_step1_textView_text">Step1</string>
     <string name="register_step1_description">Input phone number to retrieve verification code</string>
-    <string name="verificationCode_editText_hint">Input register phone number</string>
+    <string name="registerPhone_editText_hint">Input register phone number</string>
     <string name="get_verificationCode_btn_title">Get Verification Code</string>
     <string name="register_step1_comment">(Your phone number is used for authentication only, we assure that we won\'t send junk message to you.)</string>
     <!-- step 2 -->

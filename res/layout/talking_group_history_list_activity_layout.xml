@@ -22,12 +22,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/newTalkingGroup_btn"
-        android:cacheColorHint="@color/clear"
-        android:divider="@color/clear"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@android:color/transparent"
         android:fadingEdge="none"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
-        android:listSelector="@color/clear"
+        android:listSelector="@android:color/transparent"
         android:scrollbars="none" >
     </ListView>
 

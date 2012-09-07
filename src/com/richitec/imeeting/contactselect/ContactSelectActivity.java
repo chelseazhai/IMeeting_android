@@ -60,7 +60,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			setRightBarButtonItem(new IMeetingBarButtonItem(this,
 					BarButtonItemStyle.RIGHT_GO,
 					R.string.confirmAdd_nav_btn_title,
-					new confirmAddAttendeeBtnOnClickListener()));
+					new ConfirmAddAttendeeBtnOnClickListener()));
 		}
 
 		// test by ares
@@ -166,7 +166,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	}
 
 	// confirm add attendee button on click listener
-	class confirmAddAttendeeBtnOnClickListener implements OnClickListener {
+	class ConfirmAddAttendeeBtnOnClickListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
