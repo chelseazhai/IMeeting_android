@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- common -->
+    <string name="toast_request_exception">連接伺服器異常，請稍後重試</string>
+
+    <!-- user login & account setting -->
+    <string name="toast_login_userName_null">登錄手機號碼不能為空</string>
+    <string name="toast_login_password_null">登錄密碼不能為空</string>
+    <string name="toast_login_successful">登錄成功，請點擊新建群聊按鈕來開啓一個簡便快捷的群聊</string>
+    <string name="toast_userAccount_reset_successful">賬戶設置成功</string>
+    <string name="toast_login_userName6Pwd_wrong">登錄手機號碼或者密碼錯誤</string>
+
+    <!-- account register -->
+    <string name="toast_accountRegister_phoneNumber_null">註冊手機號碼不能為空</string>
+    <string name="toast_accountRegister_phoneNumber_invalid">註冊的手機號碼不可用</string>
+    <string name="toast_accountRegister_phoneNumber_existed">註冊的手機號碼已存在于系統中</string>
+    <string name="toast_verificationCode_null">驗證碼不能為空</string>
+    <string name="toast_verificationCode_wrong">驗證碼錯誤</string>
+    <string name="toast_verificationCode_timeout">驗證碼超時，請重新獲取</string>
+    <string name="toast_accountRegPassword_null">註冊密碼不能為空</string>
+    <string name="toast_accountRegConfirmationPwd_null">註冊驗證密碼不能為空</string>
+    <string name="toast_accountReg_twoPwd_notMatched">註冊密碼和驗證密碼不一致</string>
+    <string name="toast_accountRegister_timeout">註冊超時，請重新註冊</string>
+    <string name="toast_accountRegister_successful">註冊成功，請及時登錄來享受群聊</string>
+
+</resources>

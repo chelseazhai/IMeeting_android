@@ -324,6 +324,15 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 				return;
 			}
 
+			// check two password
+			if (!_password.equalsIgnoreCase(_confirmationPwd)) {
+				Toast.makeText(AccountRegisterActivity.this,
+						R.string.toast_accountReg_twoPwd_notMatched,
+						Toast.LENGTH_LONG).show();
+
+				return;
+			}
+
 			// finish register
 			// generate finish register post request param
 			Map<String, String> _finishRegisterParam = new HashMap<String, String>();
@@ -366,6 +375,11 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 				switch (Integer.parseInt(_result)) {
 				case 0:
 					Log.d(LOG_TAG, "register finish successful");
+
+					Toast.makeText(AccountRegisterActivity.this,
+							R.string.toast_accountRegister_successful,
+							Toast.LENGTH_LONG).show();
+
 					// pop account setting activity
 					popActivity();
 					break;
