@@ -370,6 +370,15 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					popActivity();
 					break;
 
+				case 5:
+					Log.d(LOG_TAG,
+							"register finish failed, two password not matched");
+
+					Toast.makeText(AccountRegisterActivity.this,
+							R.string.toast_accountReg_twoPwd_notMatched,
+							Toast.LENGTH_LONG).show();
+					break;
+
 				case 6:
 					Log.d(LOG_TAG,
 							"register finish failed, register finish http request session timeout");

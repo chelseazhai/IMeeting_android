@@ -20,6 +20,7 @@
     <string name="toast_verificationCode_timeout">Verification code is timeout, please reget it again</string>
     <string name="toast_accountRegPassword_null">Account register password mustn\'t null</string>
     <string name="toast_accountRegConfirmationPwd_null">Account register confirmation password mustn\'t null</string>
+    <string name="toast_accountReg_twoPwd_notMatched">Register password not matched confirmation password</string>
     <string name="toast_accountRegister_timeout">Register is timeout, please retry it again</string>
 
 </resources>
