@@ -19,12 +19,14 @@ import android.widget.Toast;
 import com.richitec.commontoolkit.customui.BarButtonItem.BarButtonItemStyle;
 import com.richitec.commontoolkit.user.UserBean;
 import com.richitec.commontoolkit.user.UserManager;
+import com.richitec.commontoolkit.utils.DataStorageUtils;
 import com.richitec.commontoolkit.utils.HttpUtils;
 import com.richitec.commontoolkit.utils.HttpUtils.HttpRequestType;
 import com.richitec.commontoolkit.utils.HttpUtils.OnHttpRequestListener;
 import com.richitec.commontoolkit.utils.HttpUtils.PostRequestFormat;
 import com.richitec.commontoolkit.utils.JSONUtils;
 import com.richitec.commontoolkit.utils.StringUtils;
+import com.richitec.imeeting.IMeetingAppLaunchActivity;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.customcomponent.IMeetingBarButtonItem;
 import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
@@ -34,12 +36,24 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 
 	private static final String LOG_TAG = "AccountSettingActivity";
 
+	// account setting activity onCreate param key
+	public static final String ACCOUNT_SETTING_ACTIVITY_PARAM_KEY = "application account status";
+
 	// current application account status, default value is reset
 	private AppAccountStatus _mCurrentAppAccountStatus = AppAccountStatus.RESET;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// get the intent parameter data
+		Bundle _data = getIntent().getExtras();
+
+		// check the data bundle
+		if (null != _data) {
+			_mCurrentAppAccountStatus = (AppAccountStatus) _data
+					.get(ACCOUNT_SETTING_ACTIVITY_PARAM_KEY);
+		}
 
 		// set content view
 		setContentView(R.layout.account_setting_activity_layout);
@@ -171,23 +185,30 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 					if (AppAccountStatus.ESTABLISHING == _mCurrentAppAccountStatus) {
 						Log.d(LOG_TAG, "login successful");
 
-						Toast.makeText(AccountSettingActivity.this,
-								R.string.toast_login_successful,
-								Toast.LENGTH_LONG).show();
+						// update main activity class name from storage
+						DataStorageUtils
+								.putObject(
+										IMeetingAppLaunchActivity.MAINACTIVITY_STORAGE_KEY,
+										TalkingGroupHistoryListActivity.class
+												.getName());
 
 						// go to talking group history list activity
 						finish();
 						startActivity(new Intent(AccountSettingActivity.this,
 								TalkingGroupHistoryListActivity.class));
+
+						Toast.makeText(AccountSettingActivity.this,
+								R.string.toast_login_successful,
+								Toast.LENGTH_LONG).show();
 					} else {
 						Log.d(LOG_TAG, "user account reset successful");
+
+						// pop to setting activity
+						popActivity();
 
 						Toast.makeText(AccountSettingActivity.this,
 								R.string.toast_userAccount_reset_successful,
 								Toast.LENGTH_SHORT).show();
-
-						// pop to setting activity
-						popActivity();
 					}
 					break;
 

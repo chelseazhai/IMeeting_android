@@ -1,5 +1,8 @@
 <resources>
 
+    <!-- iMeeting project -->
+    <string name="app_name">智會</string>
+
     <!-- account setting activity -->
     <string name="account_setting_nav_title_text">賬戶設置</string>
     <string name="register_nav_btn_title">註冊</string>

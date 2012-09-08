@@ -255,16 +255,16 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					Log.d(LOG_TAG,
 							"verify verification code failed, verify verification code http request session timeout");
 
-					Toast.makeText(AccountRegisterActivity.this,
-							R.string.toast_verificationCode_timeout,
-							Toast.LENGTH_LONG).show();
-
 					// goto account register step 1 - get register phone
 					// verification code
 					((LinearLayout) findViewById(R.id.account_register_step2_linearLayout))
 							.setVisibility(View.GONE);
 					((LinearLayout) findViewById(R.id.account_register_step1_linearLayout))
 							.setVisibility(View.VISIBLE);
+
+					Toast.makeText(AccountRegisterActivity.this,
+							R.string.toast_verificationCode_timeout,
+							Toast.LENGTH_LONG).show();
 					break;
 
 				default:
@@ -376,12 +376,12 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 				case 0:
 					Log.d(LOG_TAG, "register finish successful");
 
+					// pop account setting activity
+					popActivity();
+
 					Toast.makeText(AccountRegisterActivity.this,
 							R.string.toast_accountRegister_successful,
 							Toast.LENGTH_LONG).show();
-
-					// pop account setting activity
-					popActivity();
 					break;
 
 				case 5:
@@ -397,16 +397,16 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					Log.d(LOG_TAG,
 							"register finish failed, register finish http request session timeout");
 
-					Toast.makeText(AccountRegisterActivity.this,
-							R.string.toast_accountRegister_timeout,
-							Toast.LENGTH_LONG).show();
-
 					// goto account register step 1 - get register phone
 					// verification code
 					((LinearLayout) findViewById(R.id.account_register_step3_linearLayout))
 							.setVisibility(View.GONE);
 					((LinearLayout) findViewById(R.id.account_register_step1_linearLayout))
 							.setVisibility(View.VISIBLE);
+
+					Toast.makeText(AccountRegisterActivity.this,
+							R.string.toast_accountRegister_timeout,
+							Toast.LENGTH_LONG).show();
 					break;
 
 				default:
