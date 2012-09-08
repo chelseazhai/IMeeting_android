@@ -3,9 +3,6 @@
     <!-- iMeeting project -->
     <string name="app_name">IMeeting</string>
 
-    <!-- iMeeting application activity -->
-    <string name="splash_content_description">iMeeting application splash image</string>
-
     <!-- account setting activity -->
     <string name="title_activity_account_setting">AccountSettingActivity</string>
     <string name="normal_background_image_description">normal background image</string>
