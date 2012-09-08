@@ -86,7 +86,7 @@
     <!-- support activity -->
     <string name="title_activity_support">SupportActivity</string>
     <string name="support_nav_title_text">Support</string>
-    <string name="support_loading_textView_textHeader">Loading&#8230;,</string>
+    <string name="support_loading_textView_textHeader">Loading&#8230;</string>
     <string name="support_loading_progressBar_max">100</string>
 
     <!-- about activity -->

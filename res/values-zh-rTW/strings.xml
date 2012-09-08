@@ -69,7 +69,7 @@
 
     <!-- support activity -->
     <string name="support_nav_title_text">幫助</string>
-    <string name="support_loading_textView_textHeader">正在加載&#8230;，</string>
+    <string name="support_loading_textView_textHeader">正在加載&#8230;</string>
 
     <!-- about activity -->
     <string name="about_nav_title_text">關於</string>

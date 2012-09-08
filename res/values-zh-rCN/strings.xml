@@ -2,7 +2,7 @@
 
     <!-- iMeeting project -->
     <string name="app_name">智会</string>
-    
+
     <!-- account setting activity -->
     <string name="account_setting_nav_title_text">账户设置</string>
     <string name="register_nav_btn_title">注册</string>
@@ -69,7 +69,7 @@
 
     <!-- support activity -->
     <string name="support_nav_title_text">帮助</string>
-    <string name="support_loading_textView_textHeader">正在加载&#8230;，</string>
+    <string name="support_loading_textView_textHeader">正在加载&#8230;</string>
 
     <!-- about activity -->
     <string name="about_nav_title_text">关于</string>

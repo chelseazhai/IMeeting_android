@@ -26,7 +26,8 @@
             android:id="@+id/support_loading_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:text="@string/support_loading_textView_textHeader" />
     </LinearLayout>
 
 </FrameLayout>

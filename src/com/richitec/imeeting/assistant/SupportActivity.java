@@ -45,7 +45,7 @@ public class SupportActivity extends IMeetingNavigationActivity {
 				((TextView) findViewById(R.id.support_loading_textView))
 						.setText(getResources().getString(
 								R.string.support_loading_textView_textHeader)
-								+ newProgress + "%");
+								+ ", " + newProgress + "%");
 
 				// check support page loading completed
 				if (Integer.parseInt(getResources().getString(
