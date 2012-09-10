@@ -12,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.richitec.commontoolkit.customui.BarButtonItem.BarButtonItemStyle;
+import com.richitec.commontoolkit.customcomponent.BarButtonItem.BarButtonItemStyle;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.assistant.SettingActivity;
 import com.richitec.imeeting.contactselect.ContactSelectActivity;

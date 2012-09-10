@@ -3,7 +3,7 @@ package com.richitec.imeeting.customcomponent;
 import android.content.Context;
 
 import com.richitec.commontoolkit.activityextension.R;
-import com.richitec.commontoolkit.customui.BarButtonItem;
+import com.richitec.commontoolkit.customcomponent.BarButtonItem;
 
 public class IMeetingBarButtonItem extends BarButtonItem {
 
@@ -13,6 +13,7 @@ public class IMeetingBarButtonItem extends BarButtonItem {
 		super(
 				context,
 				title,
+				barBtnItemStyle,
 				BarButtonItemStyle.LEFT_BACK == barBtnItemStyle ? context
 						.getResources()
 						.getDrawable(
