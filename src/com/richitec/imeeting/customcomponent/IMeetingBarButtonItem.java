@@ -26,11 +26,11 @@ public class IMeetingBarButtonItem extends BarButtonItem {
 				BarButtonItemStyle.LEFT_BACK == barBtnItemStyle ? context
 						.getResources()
 						.getDrawable(
-								R.drawable.img_imeeting_leftbarbtnitem_normal_bg)
+								R.drawable.img_imeeting_leftbarbtnitem_touchdown_bg)
 						: (BarButtonItemStyle.RIGHT_GO == barBtnItemStyle ? context
 								.getResources()
 								.getDrawable(
-										R.drawable.img_imeeting_rightbarbtnitem_normal_bg)
+										R.drawable.img_imeeting_rightbarbtnitem_touchdown_bg)
 								: null), btnClickListener);
 	}
 
