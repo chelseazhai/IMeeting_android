@@ -68,6 +68,9 @@
     <string name="contact_search_editText_hint">Search contacts</string>
     <string name="contactSelect_addressbookContact_unsel6sel_imageView_content_description">contact select address book contact unselected or selected image view</string>
     <string name="contactSelect_in7preinTalkingGroupContact_sel_imageView_content_description">contact select in and prein talking group contact selected image view</string>
+    <string name="add_notExistedInABContact_popupWindow_dismiss_btn_title">×</string>
+    <string name="add_notExistedInABContact_editText_hint">Please input phone number</string>
+    <string name="add_notExistedInABContact_confirmBtn_title">Added</string>
 
     <!-- talking group detail info activity -->
     <string name="menu_audio7video_operation">Audio&amp;Video Operation</string>

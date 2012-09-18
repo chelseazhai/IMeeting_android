@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.text.SpannableString;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,8 +27,10 @@ public class InAB6In7PreinTalkingGroupContactAdapter extends CommonListAdapter {
 		// textView
 		if (view instanceof TextView) {
 			// set view text
-			((TextView) view).setText(null == _itemData ? "" : _itemData
-					.toString());
+			((TextView) view)
+					.setText(null == _itemData ? ""
+							: _itemData instanceof SpannableString ? (SpannableString) _itemData
+									: _itemData.toString());
 		}
 	}
 

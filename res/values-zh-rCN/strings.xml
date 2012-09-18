@@ -56,6 +56,8 @@
     <string name="addressBook_textView_text">通讯录</string>
     <string name="in7preinTalkingGroup_textView_text">已添加成员</string>
     <string name="contact_search_editText_hint">搜索联系人</string>
+    <string name="add_notExistedInABContact_editText_hint">请输入手机号码</string>
+    <string name="add_notExistedInABContact_confirmBtn_title">添加</string>
 
     <!-- talking group detail info activity -->
     <string name="menu_audio7video_operation">语音视频操作</string>

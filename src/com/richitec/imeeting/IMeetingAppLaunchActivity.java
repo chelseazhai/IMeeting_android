@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 
 import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
+import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.utils.DataStorageUtils;
 import com.richitec.imeeting.account.AccountSettingActivity;
 import com.richitec.imeeting.account.AccountSettingActivity.AppAccountStatus;
@@ -44,14 +45,8 @@ public class IMeetingAppLaunchActivity extends AppLaunchActivity {
 
 	@Override
 	public void didFinishLaunching() {
-		// sleep 3 seconds
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		// traversal address book
+		AddressBookManager.getInstance().traversalAddressBook();
 	}
 
 }
