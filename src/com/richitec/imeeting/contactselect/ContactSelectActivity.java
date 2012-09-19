@@ -107,6 +107,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				.setAdapter(generateInABContactAdapter(_mPresentContactsInABInfoArray));
 
 		// test in and prein talking group attendees name
+		generateIn7PreinTalkingGroupContactAdapter(null);
 		String[] _testIn7PreinTalkingGroupContactsName7Phone = new String[] {
 				"翟绍虎", "王星", "胡光辉" };
 
@@ -277,8 +278,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	}
 
 	// generate in and prein talking group contact adapter
-	private ListAdapter generateIn7PreinTalkingGroupContactAdapter(
-			List<ContactBean> contactsIn7PreinTalkingGroup) {
+	private ListAdapter generateIn7PreinTalkingGroupContactAdapter(List<?> lists) {
 		return null;
 	}
 

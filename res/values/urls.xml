@@ -4,6 +4,9 @@
     <!-- iMeeting server url -->
     <string name="server_url">http://www.wetalking.net/imeeting</string>
 
+    <!-- my talking group history list url -->
+    <string name="myTalkingGroup_historyList_url">/conference/list</string>
+
     <!-- user login & account setting url -->
     <string name="user_login7account_setting_url">/user/login</string>
 

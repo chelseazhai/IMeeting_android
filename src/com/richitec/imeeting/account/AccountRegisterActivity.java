@@ -112,8 +112,8 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object result and userKey
-			String _result = JSONUtils.getJsonString(StringUtils
-					.toJsonObject(_respEntityString),
+			String _result = JSONUtils.getStringFromJSONObject(StringUtils
+					.toJSONObject(_respEntityString),
 					getResources()
 							.getString(R.string.bg_server_req_resp_result));
 
@@ -224,8 +224,8 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object result and userKey
-			String _result = JSONUtils.getJsonString(StringUtils
-					.toJsonObject(_respEntityString),
+			String _result = JSONUtils.getStringFromJSONObject(StringUtils
+					.toJSONObject(_respEntityString),
 					getResources()
 							.getString(R.string.bg_server_req_resp_result));
 
@@ -365,8 +365,8 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object result and userKey
-			String _result = JSONUtils.getJsonString(StringUtils
-					.toJsonObject(_respEntityString),
+			String _result = JSONUtils.getStringFromJSONObject(StringUtils
+					.toJSONObject(_respEntityString),
 					getResources()
 							.getString(R.string.bg_server_req_resp_result));
 

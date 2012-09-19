@@ -51,6 +51,9 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 
 					// check visible view
 					if (i < _itemDataArray.length) {
+						// shown table row item
+						_tableRowItem.setVisibility(View.VISIBLE);
+
 						// check table row item type
 						// linearLayout
 						if (_tableRowItem instanceof RelativeLayout) {
@@ -65,6 +68,7 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 							Log.d(LOG_TAG, "It's a TextView");
 						}
 					} else {
+						// hide table row item
 						_tableRowItem.setVisibility(View.GONE);
 					}
 				}

@@ -156,8 +156,8 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object result and userKey
-			String _result = JSONUtils.getJsonString(StringUtils
-					.toJsonObject(_respEntityString),
+			String _result = JSONUtils.getStringFromJSONObject(StringUtils
+					.toJSONObject(_respEntityString),
 					getResources()
 							.getString(R.string.bg_server_req_resp_result));
 
@@ -174,9 +174,9 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 													.getText().toString(),
 											((EditText) findViewById(R.id.login_pwd_editText))
 													.getText().toString(),
-											JSONUtils.getJsonString(
+											JSONUtils.getStringFromJSONObject(
 													StringUtils
-															.toJsonObject(_respEntityString),
+															.toJSONObject(_respEntityString),
 													getResources()
 															.getString(
 																	R.string.bg_server_loginReq_resp_userkey))));
@@ -202,6 +202,10 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 								Toast.LENGTH_LONG).show();
 					} else {
 						Log.d(LOG_TAG, "user account reset successful");
+
+						// set my talking group history list activity need to
+						// refresh
+						TalkingGroupHistoryListActivity.MYTALKINGGROUP_HISTORYLIST_NEED2REFRESH = true;
 
 						// pop to setting activity
 						popActivity();
