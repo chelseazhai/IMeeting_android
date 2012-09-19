@@ -435,14 +435,13 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 		@Override
 		public void onClick(View v) {
+			// set add not existed in address book contact popup window
+			// focusable
+			_mAddNotExistedInABContactPopupWindow.setFocusable(true);
+
 			// show add not existed in address book contact popup window
 			_mAddNotExistedInABContactPopupWindow.showAtLocation(v,
 					Gravity.CENTER, 0, 0);
-
-			// set add not existed in address book contact exitText focusable
-			((EditText) _mNotExistedInABContactPopupWindowFrameLayoutView
-					.findViewById(R.id.add_notExistedInABContact_editText))
-					.setFocusable(true);
 		}
 
 	}
