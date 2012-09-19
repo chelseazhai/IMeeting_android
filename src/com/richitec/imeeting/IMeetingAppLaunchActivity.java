@@ -17,13 +17,13 @@ public class IMeetingAppLaunchActivity extends AppLaunchActivity {
 	// main activity class name storage key
 	public static final String MAINACTIVITY_STORAGE_KEY = "mainActivityClass";
 	// login user name storage key
-	public static final String LOGIN_USERNAME_STORAGE_KEY = "login_userName";
+	public static final String LOGIN_USERNAME_STORAGE_KEY = "loginUserName";
 	// login user password storage key
-	public static final String LOGIN_USERPWD_STORAGE_KEY = "login_userPwd";
+	public static final String LOGIN_USERPWD_STORAGE_KEY = "loginUserPwd";
 	// remember login user password storage key
-	public static final String REMEMBER_LOGINUSERPWD_STORAGE_KEY = "remember_loginUserPwd";
+	public static final String ISREMEMBER_LOGINUSERPWD_STORAGE_KEY = "isRememberLoginUserPwd";
 	// login user key storage key
-	public static final String LOGIN_USERKEY_STORAGE_KEY = "login_userKey";
+	public static final String LOGIN_USERKEY_STORAGE_KEY = "loginUserKey";
 
 	@Override
 	public Drawable splashImg() {

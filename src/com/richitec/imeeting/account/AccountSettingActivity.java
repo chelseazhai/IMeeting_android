@@ -78,7 +78,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 						.getString(IMeetingAppLaunchActivity.LOGIN_USERPWD_STORAGE_KEY));
 		((ToggleButton) findViewById(R.id.remember_pwd_toggleBtn))
 				.setChecked(DataStorageUtils
-						.getBoolean(IMeetingAppLaunchActivity.REMEMBER_LOGINUSERPWD_STORAGE_KEY));
+						.getBoolean(IMeetingAppLaunchActivity.ISREMEMBER_LOGINUSERPWD_STORAGE_KEY));
 
 		// set user login confirm button on click listener
 		((Button) findViewById(R.id.login_confirm_btn))
@@ -184,7 +184,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 							.getText().toString();
 					String _loginPwd = ((EditText) findViewById(R.id.login_pwd_editText))
 							.getText().toString();
-					boolean _rememberLoginPwd = ((ToggleButton) findViewById(R.id.remember_pwd_toggleBtn))
+					boolean _isRememberLoginPwd = ((ToggleButton) findViewById(R.id.remember_pwd_toggleBtn))
 							.isChecked();
 					String _responseLoginUserKey = JSONUtils
 							.getStringFromJSONObject(
@@ -206,11 +206,11 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 					DataStorageUtils
 							.putObject(
 									IMeetingAppLaunchActivity.LOGIN_USERPWD_STORAGE_KEY,
-									_rememberLoginPwd ? _loginPwd : "");
+									_isRememberLoginPwd ? _loginPwd : "");
 					DataStorageUtils
 							.putObject(
-									IMeetingAppLaunchActivity.REMEMBER_LOGINUSERPWD_STORAGE_KEY,
-									_rememberLoginPwd);
+									IMeetingAppLaunchActivity.ISREMEMBER_LOGINUSERPWD_STORAGE_KEY,
+									_isRememberLoginPwd);
 					DataStorageUtils
 							.putObject(
 									IMeetingAppLaunchActivity.LOGIN_USERKEY_STORAGE_KEY,
@@ -221,7 +221,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 						Log.d(LOG_TAG, "login successful");
 
 						// check remember user login password flag
-						if (_rememberLoginPwd) {
+						if (_isRememberLoginPwd) {
 							// update main activity class name from storage
 							DataStorageUtils
 									.putObject(
