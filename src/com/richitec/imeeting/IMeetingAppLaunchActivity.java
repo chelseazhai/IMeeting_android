@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 
 import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
+import com.richitec.commontoolkit.user.UserBean;
+import com.richitec.commontoolkit.user.UserManager;
 import com.richitec.commontoolkit.utils.DataStorageUtils;
 import com.richitec.imeeting.account.AccountSettingActivity;
 import com.richitec.imeeting.account.AccountSettingActivity.AppAccountStatus;
@@ -14,6 +16,14 @@ public class IMeetingAppLaunchActivity extends AppLaunchActivity {
 
 	// main activity class name storage key
 	public static final String MAINACTIVITY_STORAGE_KEY = "mainActivityClass";
+	// login user name storage key
+	public static final String LOGIN_USERNAME_STORAGE_KEY = "login_userName";
+	// login user password storage key
+	public static final String LOGIN_USERPWD_STORAGE_KEY = "login_userPwd";
+	// remember login user password storage key
+	public static final String REMEMBER_LOGINUSERPWD_STORAGE_KEY = "remember_loginUserPwd";
+	// login user key storage key
+	public static final String LOGIN_USERKEY_STORAGE_KEY = "login_userKey";
 
 	@Override
 	public Drawable splashImg() {
@@ -47,6 +57,14 @@ public class IMeetingAppLaunchActivity extends AppLaunchActivity {
 	public void didFinishLaunching() {
 		// traversal address book
 		AddressBookManager.getInstance().traversalAddressBook();
+
+		// get login user info from storage and add to user manager
+		// save user bean and add to user manager
+		UserManager.getInstance().setUser(
+				new UserBean(DataStorageUtils
+						.getString(LOGIN_USERNAME_STORAGE_KEY),
+						DataStorageUtils.getString(LOGIN_USERPWD_STORAGE_KEY),
+						DataStorageUtils.getString(LOGIN_USERKEY_STORAGE_KEY)));
 	}
 
 }

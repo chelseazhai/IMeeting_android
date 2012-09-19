@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.richitec.commontoolkit.customcomponent.BarButtonItem.BarButtonItemStyle;
 import com.richitec.commontoolkit.user.UserBean;
@@ -66,6 +67,18 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 		setRightBarButtonItem(new IMeetingBarButtonItem(this,
 				BarButtonItemStyle.RIGHT_GO, R.string.register_nav_btn_title,
 				new RigisterBtnOnClickListener()));
+
+		// auto complete login user name, password and remember login user pwd
+		// toggle buton
+		((EditText) findViewById(R.id.login_name_editText))
+				.setText(DataStorageUtils
+						.getString(IMeetingAppLaunchActivity.LOGIN_USERNAME_STORAGE_KEY));
+		((EditText) findViewById(R.id.login_pwd_editText))
+				.setText(DataStorageUtils
+						.getString(IMeetingAppLaunchActivity.LOGIN_USERPWD_STORAGE_KEY));
+		((ToggleButton) findViewById(R.id.remember_pwd_toggleBtn))
+				.setChecked(DataStorageUtils
+						.getBoolean(IMeetingAppLaunchActivity.REMEMBER_LOGINUSERPWD_STORAGE_KEY));
 
 		// set user login confirm button on click listener
 		((Button) findViewById(R.id.login_confirm_btn))
@@ -165,32 +178,57 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 			if (null != _result) {
 				switch (Integer.parseInt(_result)) {
 				case 0:
+					// get login user name, password, remember login user pwd
+					// flag and response userKey
+					String _loginName = ((EditText) findViewById(R.id.login_name_editText))
+							.getText().toString();
+					String _loginPwd = ((EditText) findViewById(R.id.login_pwd_editText))
+							.getText().toString();
+					boolean _rememberLoginPwd = ((ToggleButton) findViewById(R.id.remember_pwd_toggleBtn))
+							.isChecked();
+					String _responseLoginUserKey = JSONUtils
+							.getStringFromJSONObject(
+									StringUtils.toJSONObject(_respEntityString),
+									getResources()
+											.getString(
+													R.string.bg_server_loginReq_resp_userkey));
+
 					// save user bean and add to user manager
-					UserManager
-							.getInstance()
-							.setUser(
-									new UserBean(
-											((EditText) findViewById(R.id.login_name_editText))
-													.getText().toString(),
-											((EditText) findViewById(R.id.login_pwd_editText))
-													.getText().toString(),
-											JSONUtils.getStringFromJSONObject(
-													StringUtils
-															.toJSONObject(_respEntityString),
-													getResources()
-															.getString(
-																	R.string.bg_server_loginReq_resp_userkey))));
+					UserManager.getInstance().setUser(
+							new UserBean(_loginName, _loginPwd,
+									_responseLoginUserKey));
+
+					// add to data storage
+					DataStorageUtils
+							.putObject(
+									IMeetingAppLaunchActivity.LOGIN_USERNAME_STORAGE_KEY,
+									_loginName);
+					DataStorageUtils
+							.putObject(
+									IMeetingAppLaunchActivity.LOGIN_USERPWD_STORAGE_KEY,
+									_rememberLoginPwd ? _loginPwd : "");
+					DataStorageUtils
+							.putObject(
+									IMeetingAppLaunchActivity.REMEMBER_LOGINUSERPWD_STORAGE_KEY,
+									_rememberLoginPwd);
+					DataStorageUtils
+							.putObject(
+									IMeetingAppLaunchActivity.LOGIN_USERKEY_STORAGE_KEY,
+									_responseLoginUserKey);
 
 					// check goto activity
 					if (AppAccountStatus.ESTABLISHING == _mCurrentAppAccountStatus) {
 						Log.d(LOG_TAG, "login successful");
 
-						// update main activity class name from storage
-						DataStorageUtils
-								.putObject(
-										IMeetingAppLaunchActivity.MAINACTIVITY_STORAGE_KEY,
-										TalkingGroupHistoryListActivity.class
-												.getName());
+						// check remember user login password flag
+						if (_rememberLoginPwd) {
+							// update main activity class name from storage
+							DataStorageUtils
+									.putObject(
+											IMeetingAppLaunchActivity.MAINACTIVITY_STORAGE_KEY,
+											TalkingGroupHistoryListActivity.class
+													.getName());
+						}
 
 						// go to talking group history list activity
 						finish();
