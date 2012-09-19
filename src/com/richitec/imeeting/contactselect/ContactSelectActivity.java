@@ -39,10 +39,6 @@ import com.richitec.imeeting.talkinggroup.TalkingGroupDetailInfoActivity;
 
 public class ContactSelectActivity extends IMeetingNavigationActivity {
 
-	// contact adapter data keys
-	private final String CONTACT_NAME = "contact_name";
-	private final String CONTACT_PHONES = "contact_phones";
-
 	// current talking group status, default value is establishing
 	private TalkingGroupStatus _mCurrentTalkingGroupStatus = TalkingGroupStatus.ESTABLISHING;
 
@@ -184,6 +180,10 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	// generate in address book contact adapter
 	private ListAdapter generateInABContactAdapter(
 			List<ContactBean> presentContactsInAB) {
+		// contact adapter data keys
+		final String CONTACT_NAME = "contact_name";
+		final String CONTACT_PHONES = "contact_phones";
+
 		// set address book contacts list view present data list
 		List<Map<String, Object>> _addressBookContactsPresentDataList = new ArrayList<Map<String, Object>>();
 

@@ -3,19 +3,30 @@ package com.richitec.imeeting.talkinggroup;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+
 import android.content.Context;
+import android.graphics.Color;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.customadapter.CommonListAdapter;
+import com.richitec.commontoolkit.utils.JSONUtils;
 import com.richitec.imeeting.R;
 
 public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 
 	private static final String LOG_TAG = "MyGroupHistoryListItemAdapter";
+
+	// SeaGreen color
+	private final int SEAGREEN = Color.rgb(46, 139, 87);
 
 	public TalkingGroupHistoryListItemAdapter(Context context,
 			List<? extends Map<String, ?>> data, int itemsLayoutResId,
@@ -31,18 +42,29 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 		// check view type
 		// textView
 		if (view instanceof TextView) {
+			// generate view text
+			SpannableString _viewNewText = new SpannableString(
+					(null == ((TextView) view).getHint() ? ""
+							: ((TextView) view).getHint())
+							+ (null == _itemData ? "" : _itemData.toString()));
+			// check data class name
+			if (_itemData instanceof SpannableString) {
+				_viewNewText
+						.setSpan(new ForegroundColorSpan(SEAGREEN), 0,
+								_viewNewText.length(),
+								Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+
 			// set view text
-			((TextView) view).setText((null == ((TextView) view).getHint() ? ""
-					: ((TextView) view).getHint())
-					+ (null == _itemData ? "" : _itemData.toString()));
+			((TextView) view).setText(_viewNewText);
 		}
 		// tableRow
 		else if (view instanceof TableRow) {
 			// define item data array
-			String[] _itemDataArray;
+			JSONArray _itemDataArray;
 			try {
 				// convert item data to string array
-				_itemDataArray = (String[]) _itemData;
+				_itemDataArray = (JSONArray) _itemData;
 
 				// process each table row item
 				for (int i = 0; i < ((TableRow) view).getVirtualChildCount(); i++) {
@@ -50,7 +72,7 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 					View _tableRowItem = ((TableRow) view).getVirtualChildAt(i);
 
 					// check visible view
-					if (i < _itemDataArray.length) {
+					if (i < _itemDataArray.length()) {
 						// shown table row item
 						_tableRowItem.setVisibility(View.VISIBLE);
 
@@ -60,7 +82,13 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 							// set attendee name
 							((TextView) ((RelativeLayout) _tableRowItem)
 									.findViewById(R.id.attendee_name_textView))
-									.setText(_itemDataArray[i]);
+									.setText(AddressBookManager
+											.getInstance()
+											.getContactsDisplayNamesByPhone(
+													JSONUtils
+															.getStringFromJSONArray(
+																	_itemDataArray,
+																	i)).get(0));
 						}
 						// textView
 						else if (_tableRowItem instanceof TextView) {

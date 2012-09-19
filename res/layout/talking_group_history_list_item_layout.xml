@@ -52,22 +52,26 @@
         <include
             android:layout_width="48dp"
             android:layout_marginLeft="8dp"
-            layout="@layout/talking_group_attendee_layout" />
+            layout="@layout/talking_group_attendee_layout"
+            android:visibility="gone" />
 
         <include
             android:layout_width="48dp"
             android:layout_marginLeft="8dp"
-            layout="@layout/talking_group_attendee_layout" />
+            layout="@layout/talking_group_attendee_layout"
+            android:visibility="gone" />
 
         <include
             android:layout_width="48dp"
             android:layout_marginLeft="8dp"
-            layout="@layout/talking_group_attendee_layout" />
+            layout="@layout/talking_group_attendee_layout"
+            android:visibility="gone" />
 
         <include
             android:layout_width="48dp"
             android:layout_marginLeft="8dp"
-            layout="@layout/talking_group_attendee_layout" />
+            layout="@layout/talking_group_attendee_layout"
+            android:visibility="gone" />
     </TableRow>
 
 </LinearLayout>

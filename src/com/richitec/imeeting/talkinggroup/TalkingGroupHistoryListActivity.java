@@ -1,5 +1,7 @@
 package com.richitec.imeeting.talkinggroup;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -65,39 +68,6 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 				HttpRequestType.ASYNCHRONOUS,
 				new GetMyTalkingGroupHistoryListHttpRequestListener());
 
-		// test by ares
-		// test attendees phone numbers
-		String[][] _testGroupPhones = new String[][] { { "1-111", "1-222" },
-				{ "2-111", "2-222", "2-333", "2-444", "2-555" },
-				{ "3-111", "3-222", "3-333" },
-				{ "4-111", "4-222", "4-333", "4-444" }, { "5-111" } };
-
-		// list view data list
-		List<Map<String, Object>> _dataList = new ArrayList<Map<String, Object>>();
-		// generate data
-		for (int i = 0; i < _testGroupPhones.length; i++) {
-			HashMap<String, Object> _dataMap = new HashMap<String, Object>();
-
-			// set data
-			_dataMap.put("group_id", "-" + (i + 1));
-			_dataMap.put("group_createdTime", "+" + (i + 1));
-			_dataMap.put("group_attendees_phone", _testGroupPhones[i]);
-
-			// add to data list
-			_dataList.add(_dataMap);
-		}
-
-		// set my group history listView adapter
-		((ListView) findViewById(R.id.myGroup_history_listView))
-				.setAdapter(new TalkingGroupHistoryListItemAdapter(this,
-						_dataList,
-						R.layout.talking_group_history_list_item_layout,
-						new String[] { "group_id", "group_createdTime",
-								"group_attendees_phone" }, new int[] {
-								R.id.talkingGroupId_textView,
-								R.id.talkingGroup_createdTime_textView,
-								R.id.talkingGroup_attendees_tableRow }));
-
 		// bind new talking group button on click listener
 		((Button) findViewById(R.id.newTalkingGroup_btn))
 				.setOnClickListener(new NewTalkingGroupBtnOnClickListener());
@@ -133,8 +103,76 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 
 	// generate my group history list item adapter
 	private ListAdapter generateMyTalkingGroupHistoryListItemAdapter(
-			List<?> lists) {
-		return null;
+			JSONArray talkingGroupHistoryList) {
+		// my group history list item adapter data keys
+		final String GROUP_ID = "group_id";
+		final String GROUP_CREATEDTIME = "group_createdTime";
+		final String GROUP_ATTENDEESPHONES = "group_attendeesPhones";
+
+		// data format, format unix timeStamp
+		final DateFormat _dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+		// my talking group history list view data list
+		List<Map<String, Object>> _dataList = new ArrayList<Map<String, Object>>();
+
+		// generate data
+		for (int i = 0; i < talkingGroupHistoryList.length(); i++) {
+			// get group info json object
+			JSONObject _groupInfoJsonObject = JSONUtils
+					.getJSONObjectFromJSONArray(talkingGroupHistoryList, i);
+
+			// get talking group id and status
+			String _talkingGroupId = JSONUtils
+					.getStringFromJSONObject(
+							_groupInfoJsonObject,
+							getResources()
+									.getString(
+											R.string.bg_server_myTalkingGroupHistoryList_listConfId));
+			String _talkingGroupStatus = JSONUtils
+					.getStringFromJSONObject(
+							_groupInfoJsonObject,
+							getResources()
+									.getString(
+											R.string.bg_server_myTalkingGroupHistoryList_listStatus));
+
+			// define each talking group data map
+			HashMap<String, Object> _dataMap = new HashMap<String, Object>();
+
+			// set data
+			_dataMap.put(
+					GROUP_ID,
+					getResources()
+							.getString(
+									R.string.bg_server_myTalkingGroupHistoryList_listStatus_open)
+							.equalsIgnoreCase(_talkingGroupStatus) ? new SpannableString(
+							_talkingGroupId) : _talkingGroupId);
+			_dataMap.put(
+					GROUP_CREATEDTIME,
+					_dataFormat.format(1000 * JSONUtils
+							.getLongFromJSONObject(
+									_groupInfoJsonObject,
+									getResources()
+											.getString(
+													R.string.bg_server_myTalkingGroupHistoryList_listCreatedTime))));
+			_dataMap.put(
+					GROUP_ATTENDEESPHONES,
+					JSONUtils
+							.getJSONArrayFromJSONObject(
+									_groupInfoJsonObject,
+									getResources()
+											.getString(
+													R.string.bg_server_myTalkingGroupHistoryList_listAttendees)));
+
+			// add to data list
+			_dataList.add(_dataMap);
+		}
+
+		return new TalkingGroupHistoryListItemAdapter(this, _dataList,
+				R.layout.talking_group_history_list_item_layout, new String[] {
+						GROUP_ID, GROUP_CREATEDTIME, GROUP_ATTENDEESPHONES },
+				new int[] { R.id.talkingGroupId_textView,
+						R.id.talkingGroup_createdTime_textView,
+						R.id.talkingGroup_attendees_tableRow });
 	}
 
 	// inner class
@@ -181,11 +219,10 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 							getResources()
 									.getString(
 											R.string.bg_server_myTalkingGroupHistoryList_list));
-			Log.d(LOG_TAG, "my talking group history list json array = "
-					+ _myTalkingGroupHistoryList);
 
-			//
-			generateMyTalkingGroupHistoryListItemAdapter(null);
+			// reset my group history listView adapter
+			((ListView) findViewById(R.id.myGroup_history_listView))
+					.setAdapter(generateMyTalkingGroupHistoryListItemAdapter(_myTalkingGroupHistoryList));
 		}
 
 		@Override

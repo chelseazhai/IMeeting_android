@@ -8,7 +8,7 @@
     <string name="bg_server_myTalkingGroupHistoryList_page">pager</string>
     <string name="bg_server_myTalkingGroupHistoryList_list">list</string>
     <string name="bg_server_myTalkingGroupHistoryList_listStatus">status</string>
-    <string name="bg_server_myTalkingGroupHistoryList_listTitle">title</string>
+    <string name="bg_server_myTalkingGroupHistoryList_listStatus_open">OPEN</string>
     <string name="bg_server_myTalkingGroupHistoryList_listConfId">conferenceId</string>
     <string name="bg_server_myTalkingGroupHistoryList_listCreatedTime">created_time</string>
     <string name="bg_server_myTalkingGroupHistoryList_listAttendees">attendees</string>
