@@ -63,8 +63,10 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT) {
 
 		@Override
-		public void phoneBtn6PhoneListViewItemOnClick(String selectedPhone) {
-			Log.d("ContactSelectActivity", "selected contact phone number = "
+		public void phoneBtn6PhoneListViewItemOnClick(String selectedPhone,
+				int selectedContactPosition) {
+			Log.d("ContactSelectActivity", "selected contact @ "
+					+ selectedContactPosition + " and selected phone number = "
 					+ selectedPhone);
 
 			//
@@ -441,11 +443,6 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			Log.d("ContactSelectActivity",
-					"ContactsInABListViewOnItemClickListener - onItemClick - parent = "
-							+ parent + ", view = " + view + ", position = "
-							+ position + " and row id = " + id);
-
 			// get the click item view data: contact object
 			ContactBean _clickItemViewData = _mPresentContactsInABInfoArray
 					.get((int) id);
@@ -460,12 +457,10 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					break;
 
 				default:
-					// set title and phone numbers for selecting
+					// set contact phone numbers for selecting
 					_mContactPhoneNumbersSelectPopupWindow
-							.setTipTitle(_clickItemViewData.getDisplayName());
-					_mContactPhoneNumbersSelectPopupWindow
-							.setPhoneNumbers4Selecting(_clickItemViewData
-									.getPhoneNumbers());
+							.setContactPhones4Selecting(_clickItemViewData,
+									position);
 
 					// show contact phone numbers select popup window
 					_mContactPhoneNumbersSelectPopupWindow.showAtLocation(

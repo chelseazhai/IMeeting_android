@@ -2,7 +2,6 @@ package com.richitec.imeeting.customcomponent;
 
 import java.util.List;
 
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -14,13 +13,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
+import com.richitec.commontoolkit.addressbook.ContactBean;
 import com.richitec.commontoolkit.customcomponent.CommonPopupWindow;
 import com.richitec.imeeting.R;
 
 public abstract class ContactPhoneNumbersSelectPopupWindow extends
 		CommonPopupWindow {
 
-	private final String LOG_TAG = "ContactPhoneNumbersSelectPopupWindow";
+	// select contact position
+	private int _mSelectContactPosition;
 
 	public ContactPhoneNumbersSelectPopupWindow(int resource, int width,
 			int height, boolean focusable, boolean isBindDefListener) {
@@ -77,8 +78,11 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 		}
 	}
 
-	// set tip title
-	public void setTipTitle(String tipString) {
+	// set contact phone number for selecting
+	public void setContactPhones4Selecting(ContactBean contact, int position) {
+		// update select contact position
+		_mSelectContactPosition = position;
+
 		// set contact phones select title textView text
 		((TextView) getContentView().findViewById(
 				R.id.contactPhones_select_titleTextView))
@@ -87,17 +91,13 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 						.getResources()
 						.getString(
 								R.string.contactPhones_selectPopupWindow_titleTextView_text)
-						.replace("***", tipString));
-	}
+						.replace("***", contact.getDisplayName()));
 
-	// set phone number for selecting
-	public void setPhoneNumbers4Selecting(List<String> phoneNumbers) {
+		// get contact phone numbers
+		List<String> _phoneNumbers = contact.getPhoneNumbers();
+
 		// check phone numbers for selecting
-		if (null == phoneNumbers || phoneNumbers.size() < 2) {
-			Log.e(LOG_TAG,
-					"set phone numbers for selecting error, phone numbers = "
-							+ phoneNumbers);
-		} else if (2 <= phoneNumbers.size() && phoneNumbers.size() <= 3) {
+		if (2 <= _phoneNumbers.size() && _phoneNumbers.size() <= 3) {
 			// get contact phones select phone button parent linearLayout and
 			// show it
 			LinearLayout _phoneBtnParentLinearLayout = (LinearLayout) getContentView()
@@ -106,13 +106,13 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 			_phoneBtnParentLinearLayout.setVisibility(View.VISIBLE);
 
 			// process phone button
-			for (int i = 0; i < phoneNumbers.size(); i++) {
+			for (int i = 0; i < _phoneNumbers.size(); i++) {
 				// get contact phones select phone button
 				Button _phoneBtn = (Button) _phoneBtnParentLinearLayout
 						.getChildAt(i);
 
 				// set button text and show it
-				_phoneBtn.setText(phoneNumbers.get(i));
+				_phoneBtn.setText(_phoneNumbers.get(i));
 				_phoneBtn.setVisibility(View.VISIBLE);
 			}
 		} else {
@@ -123,7 +123,7 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 			// set phone list view adapter
 			_phoneListView.setAdapter(new ArrayAdapter<String>(
 					AppLaunchActivity.getAppContext(),
-					android.R.layout.simple_list_item_1, phoneNumbers));
+					android.R.layout.simple_list_item_1, _phoneNumbers));
 
 			// show phone list view
 			_phoneListView.setVisibility(View.VISIBLE);
@@ -132,7 +132,8 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 
 	// contact phone select popup window phone button or phone listView item on
 	// click
-	public abstract void phoneBtn6PhoneListViewItemOnClick(String selectedPhone);
+	public abstract void phoneBtn6PhoneListViewItemOnClick(
+			String selectedPhone, int selectedContactPosition);
 
 	// inner class
 	// contact phone select phone button on click listener
@@ -147,7 +148,8 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 			dismiss();
 
 			// selected contact phone
-			phoneBtn6PhoneListViewItemOnClick(_selectedPhone);
+			phoneBtn6PhoneListViewItemOnClick(_selectedPhone,
+					_mSelectContactPosition);
 		}
 
 	}
@@ -166,7 +168,8 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 			dismiss();
 
 			// selected contact phone
-			phoneBtn6PhoneListViewItemOnClick(_selectedPhone);
+			phoneBtn6PhoneListViewItemOnClick(_selectedPhone,
+					_mSelectContactPosition);
 
 		}
 
