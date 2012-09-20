@@ -6,7 +6,6 @@ import java.util.Map;
 import org.json.JSONArray;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -16,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.customadapter.CommonListAdapter;
 import com.richitec.commontoolkit.utils.JSONUtils;
@@ -24,9 +24,6 @@ import com.richitec.imeeting.R;
 public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 
 	private static final String LOG_TAG = "MyGroupHistoryListItemAdapter";
-
-	// SeaGreen color
-	private final int SEAGREEN = Color.rgb(46, 139, 87);
 
 	public TalkingGroupHistoryListItemAdapter(Context context,
 			List<? extends Map<String, ?>> data, int itemsLayoutResId,
@@ -50,7 +47,10 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 			// check data class name
 			if (_itemData instanceof SpannableString) {
 				_viewNewText
-						.setSpan(new ForegroundColorSpan(SEAGREEN), 0,
+						.setSpan(
+								new ForegroundColorSpan(AppLaunchActivity
+										.getAppContext().getResources()
+										.getColor(R.color.dark_seagreen)), 0,
 								_viewNewText.length(),
 								Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}

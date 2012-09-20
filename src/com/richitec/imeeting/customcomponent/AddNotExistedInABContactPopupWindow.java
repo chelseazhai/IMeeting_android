@@ -1,117 +1,80 @@
 package com.richitec.imeeting.customcomponent;
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnKeyListener;
-import android.view.View.OnTouchListener;
-import android.widget.FrameLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 
-import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
+import com.richitec.commontoolkit.customcomponent.CommonPopupWindow;
 import com.richitec.imeeting.R;
 
-public class AddNotExistedInABContactPopupWindow extends PopupWindow {
+public abstract class AddNotExistedInABContactPopupWindow extends
+		CommonPopupWindow {
 
-	public AddNotExistedInABContactPopupWindow() {
-		super();
+	public AddNotExistedInABContactPopupWindow(int resource, int width,
+			int height, boolean focusable, boolean isBindDefListener) {
+		super(resource, width, height, focusable, isBindDefListener);
 	}
 
-	public AddNotExistedInABContactPopupWindow(Context context,
-			AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
-
-	public AddNotExistedInABContactPopupWindow(Context context,
-			AttributeSet attrs) {
-		super(context, attrs);
-	}
-
-	public AddNotExistedInABContactPopupWindow(Context context) {
-		super(context);
-	}
-
-	public AddNotExistedInABContactPopupWindow(int width, int height) {
-		super(width, height);
-	}
-
-	public AddNotExistedInABContactPopupWindow(View contentView, int width,
-			int height, boolean focusable) {
-		super(contentView, width, height, focusable);
-	}
-
-	public AddNotExistedInABContactPopupWindow(View contentView, int width,
-			int height) {
-		super(contentView, width, height);
-	}
-
-	public AddNotExistedInABContactPopupWindow(View contentView) {
-		super(contentView);
-	}
-
-	// constructor with add not existed in address book contact popup window
-	// layout resource id
 	public AddNotExistedInABContactPopupWindow(int resource, int width,
 			int height) {
-		super(((LayoutInflater) AppLaunchActivity.getAppContext()
-				.getSystemService(Activity.LAYOUT_INFLATER_SERVICE)).inflate(
-				resource, null), width, height);
-
-		// bind add not existed in address book contact popup window content
-		// view and relativeLayout on touch listener
-		getContentView().setOnTouchListener(
-				new AddNotExistedInABContactPopupWindowOnTouchListener());
-		((RelativeLayout) getContentView().findViewById(
-				R.id.add_notExistedInABContact_popupWindow_relativeLayout))
-				.setOnTouchListener(new AddNotExistedInABContactPopupWindowOnTouchListener());
-
-		// bind add not existed in address book contact popup window content
-		// view on key listener
-		getContentView().setOnKeyListener(
-				new AddNotExistedInABContactPopupWindowOnKeyListener());
+		super(resource, width, height);
 	}
 
+	@Override
+	protected void bindPopupWindowComponentsListener() {
+		// bind add not existed in address book contact popup window dismiss and
+		// confirm added button on click listener
+		((Button) getContentView().findViewById(
+				R.id.add_notExistedInABContact_popupWindow_dismiss_btn))
+				.setOnClickListener(new AddNotExistedInABContactPopupWindowDismissBtnOnClickListener());
+		((Button) getContentView().findViewById(
+				R.id.add_notExistedInABContact_confirmBtn))
+				.setOnClickListener(new AddNotExistedInABContactPopupWindowConfirmAddedBtnOnClickListener());
+	}
+
+	@Override
+	protected void resetPopupWindow() {
+		// clear add not existed in address book contact editText text
+		((EditText) getContentView().findViewById(
+				R.id.add_notExistedInABContact_editText)).setText("");
+	}
+
+	// add not existed in address book contact popup window confirm added button
+	// on click
+	public abstract void confirmAddedBtnOnClick(String addedPhone);
+
 	// inner class
-	// add not existed in address book contact popup window on touch listener
-	class AddNotExistedInABContactPopupWindowOnTouchListener implements
-			OnTouchListener {
+	// add not existed in address book contact popup window dismiss button on
+	// click listener
+	class AddNotExistedInABContactPopupWindowDismissBtnOnClickListener
+			implements OnClickListener {
 
 		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			// check on touch view class
-			if (v instanceof FrameLayout) {
-				// dismiss add not existed in address book contact popup window
-				dismiss();
-			}
-
-			return true;
+		public void onClick(View v) {
+			// dismiss add not existed in address book contact popup window
+			dismiss();
 		}
 
 	}
 
-	// add not existed in address book contact popup window on key listener
-	class AddNotExistedInABContactPopupWindowOnKeyListener implements
-			OnKeyListener {
+	// add not existed in address book contact popup window confirm added button
+	// on click listener
+	class AddNotExistedInABContactPopupWindowConfirmAddedBtnOnClickListener
+			implements OnClickListener {
 
 		@Override
-		public boolean onKey(View v, int keyCode, KeyEvent event) {
-			Log.d("", "view = " + v + ", key code = " + keyCode
-					+ " and key event = " + event);
+		public void onClick(View v) {
+			// get added not existed in address book contact phone number
+			String _addedNotExistedInABContactPhoneNumber = ((EditText) getContentView()
+					.findViewById(R.id.add_notExistedInABContact_editText))
+					.getText().toString();
 
-			// listen back button pressed
-			if (KeyEvent.KEYCODE_BACK == keyCode
-					&& KeyEvent.ACTION_DOWN == event.getAction()) {
-				// dismiss add not existed in address book contact popup window
-				dismiss();
-			}
+			// dismiss add not existed in address book contact popup window
+			dismiss();
 
-			return false;
+			// confirm added the phone
+			confirmAddedBtnOnClick(_addedNotExistedInABContactPhoneNumber);
 		}
 
 	}
