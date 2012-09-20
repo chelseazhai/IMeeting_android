@@ -71,6 +71,8 @@
     <string name="add_notExistedInABContact_popupWindow_dismiss_btn_title">×</string>
     <string name="add_notExistedInABContact_editText_hint">Please input phone number</string>
     <string name="add_notExistedInABContact_confirmBtn_title">Added</string>
+    <string name="contactPhones_selectPopupWindow_titleTextView_text">Select ***\'s phone to join talking group</string>
+    <string name="contactPhones_selectPopupWindow_cancelBtn_title">Cancel</string>
 
     <!-- talking group detail info activity -->
     <string name="menu_audio7video_operation">Audio&amp;Video Operation</string>

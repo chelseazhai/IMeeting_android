@@ -58,6 +58,8 @@
     <string name="contact_search_editText_hint">搜索聯繫人</string>
     <string name="add_notExistedInABContact_editText_hint">請輸入手機號碼</string>
     <string name="add_notExistedInABContact_confirmBtn_title">添加</string>
+    <string name="contactPhones_selectPopupWindow_titleTextView_text">選擇 *** 加入群聊的號碼</string>
+    <string name="contactPhones_selectPopupWindow_cancelBtn_title">取消</string>
 
     <!-- talking group detail info activity -->
     <string name="menu_audio7video_operation">語音視頻操作</string>
