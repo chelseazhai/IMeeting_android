@@ -37,7 +37,7 @@ public class IMeetingAppLaunchActivity extends AppLaunchActivity {
 		Intent _ret = new Intent(this, AccountSettingActivity.class);
 		// put extra data
 		_ret.putExtra(
-				AccountSettingActivity.ACCOUNT_SETTING_ACTIVITY_PARAM_KEY,
+				AccountSettingActivity.ACCOUNT_SETTING_ACTIVITY_PARAM_APPACCOUNTSTATUS,
 				AppAccountStatus.ESTABLISHING);
 
 		// get main activity class name from storage

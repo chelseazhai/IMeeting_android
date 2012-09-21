@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
-import com.richitec.commontoolkit.addressbook.ContactBean;
 import com.richitec.commontoolkit.customcomponent.CommonPopupWindow;
 import com.richitec.imeeting.R;
 
@@ -79,7 +78,8 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 	}
 
 	// set contact phone number for selecting
-	public void setContactPhones4Selecting(ContactBean contact, int position) {
+	public void setContactPhones4Selecting(String displayName,
+			List<String> phoneNumbers, int position) {
 		// update select contact position
 		_mSelectContactPosition = position;
 
@@ -91,13 +91,10 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 						.getResources()
 						.getString(
 								R.string.contactPhones_selectPopupWindow_titleTextView_text)
-						.replace("***", contact.getDisplayName()));
-
-		// get contact phone numbers
-		List<String> _phoneNumbers = contact.getPhoneNumbers();
+						.replace("***", displayName));
 
 		// check phone numbers for selecting
-		if (2 <= _phoneNumbers.size() && _phoneNumbers.size() <= 3) {
+		if (2 <= phoneNumbers.size() && phoneNumbers.size() <= 3) {
 			// get contact phones select phone button parent linearLayout and
 			// show it
 			LinearLayout _phoneBtnParentLinearLayout = (LinearLayout) getContentView()
@@ -106,13 +103,13 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 			_phoneBtnParentLinearLayout.setVisibility(View.VISIBLE);
 
 			// process phone button
-			for (int i = 0; i < _phoneNumbers.size(); i++) {
+			for (int i = 0; i < phoneNumbers.size(); i++) {
 				// get contact phones select phone button
 				Button _phoneBtn = (Button) _phoneBtnParentLinearLayout
 						.getChildAt(i);
 
 				// set button text and show it
-				_phoneBtn.setText(_phoneNumbers.get(i));
+				_phoneBtn.setText(phoneNumbers.get(i));
 				_phoneBtn.setVisibility(View.VISIBLE);
 			}
 		} else {
@@ -125,7 +122,7 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 					.setAdapter(new ArrayAdapter<String>(
 							AppLaunchActivity.getAppContext(),
 							R.layout.contact_phonenumbers_select_phoneslist_item_layout,
-							_phoneNumbers));
+							phoneNumbers));
 
 			// show phone list view
 			_phoneListView.setVisibility(View.VISIBLE);

@@ -9,19 +9,21 @@
     android:paddingTop="6dp" >
 
     <ImageView
-        android:id="@+id/in7preinTalkingGroup_contact_sel_imageView"
+        android:id="@+id/in7preinTalkingGroup_contactInTalkingGroup_imageView"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_marginTop="2dp"
         android:contentDescription="@string/contactSelect_in7preinTalkingGroupContact_sel_imageView_content_description"
-        android:src="@drawable/img_preintalkinggroup_contact_selected" />
+        android:src="@drawable/img_preintalkinggroup_contact_selected"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/in7preinTalkingGroup_contact_displayName_textView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/in7preinTalkingGroup_contact_sel_imageView"
+        android:layout_toRightOf="@id/in7preinTalkingGroup_contactInTalkingGroup_imageView"
+        android:ellipsize="end"
         android:textColor="@color/dim_gray" />
 
 </RelativeLayout>

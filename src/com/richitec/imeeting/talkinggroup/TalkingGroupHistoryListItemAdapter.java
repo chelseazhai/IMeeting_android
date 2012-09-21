@@ -60,11 +60,11 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 		}
 		// tableRow
 		else if (view instanceof TableRow) {
-			// define item data array
-			JSONArray _itemDataArray;
+			// define item data json array
+			JSONArray _itemDataJSONArray;
 			try {
-				// convert item data to string array
-				_itemDataArray = (JSONArray) _itemData;
+				// convert item data to json array
+				_itemDataJSONArray = (JSONArray) _itemData;
 
 				// process each table row item
 				for (int i = 0; i < ((TableRow) view).getVirtualChildCount(); i++) {
@@ -72,7 +72,7 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 					View _tableRowItem = ((TableRow) view).getVirtualChildAt(i);
 
 					// check visible view
-					if (i < _itemDataArray.length()) {
+					if (i < _itemDataJSONArray.length()) {
 						// shown table row item
 						_tableRowItem.setVisibility(View.VISIBLE);
 
@@ -87,7 +87,7 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 											.getContactsDisplayNamesByPhone(
 													JSONUtils
 															.getStringFromJSONArray(
-																	_itemDataArray,
+																	_itemDataJSONArray,
 																	i)).get(0));
 						}
 						// textView
@@ -103,7 +103,10 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 
 			} catch (Exception e) {
 				e.printStackTrace();
-				Log.e(LOG_TAG, "??????");
+
+				Log.e(LOG_TAG,
+						"Convert item data to json array error, item data = "
+								+ _itemData);
 			}
 		}
 	}

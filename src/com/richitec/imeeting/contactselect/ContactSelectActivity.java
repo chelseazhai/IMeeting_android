@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -28,6 +29,7 @@ import android.widget.ListView;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.addressbook.ContactBean;
 import com.richitec.commontoolkit.customcomponent.BarButtonItem.BarButtonItemStyle;
+import com.richitec.commontoolkit.user.UserManager;
 import com.richitec.commontoolkit.utils.StringUtils;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.customcomponent.AddNotExistedInABContactPopupWindow;
@@ -38,8 +40,33 @@ import com.richitec.imeeting.talkinggroup.TalkingGroupDetailInfoActivity;
 
 public class ContactSelectActivity extends IMeetingNavigationActivity {
 
+	private static final String LOG_TAG = "ContactSelectActivity";
+
+	// contact select activity onCreate param key
+	public static final String CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPSTATUS = "talking group status";
+	public static final String CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPID = "talking group id";
+	public static final String CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPATTENDEESPHONE = "talking group attendees phone";
+
+	// in and prein talking group contacts adapter data keys
+	private final String SELECTED_CONTACT_DISPLAYNAME = "selected_contact_displayName";
+	private final String SELECTED_CONTACT_IS_IN_TALKINGGROUP = "selected_contact_is_in_talkingGroup";
+
 	// current talking group status, default value is establishing
-	private TalkingGroupStatus _mCurrentTalkingGroupStatus = TalkingGroupStatus.ESTABLISHING;
+	private TalkingGroupStatus _mTalkingGroupStatus = TalkingGroupStatus.ESTABLISHING;
+
+	// talking group id
+	private String _mTalkingGroupId;
+	// talking group attendees phone list
+	private List<String> _mTalkingGroupContactsPhoneArray = new ArrayList<String>();
+
+	// address book contacts list view
+	private ListView _mABContactsListView;
+
+	// all address book name phonetic sorted contacts detail info list
+	private final List<ContactBean> allNamePhoneticSortedContactsInfoArray = AddressBookManager
+			.getInstance().getAllNamePhoneticSortedContactsInfoArray();
+	// present contacts in address book detail info list
+	private List<ContactBean> _mPresentContactsInABInfoArray;
 
 	// contact search status
 	private ContactSearchStatus _mContactSearchStatus = ContactSearchStatus.NONESEARCH;
@@ -51,7 +78,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 		@Override
 		public void confirmAddedBtnOnClick(String addedPhone) {
-			Log.d("ContactSelectActivity", "added phone number = " + addedPhone);
+			Log.d(LOG_TAG, "added phone number = " + addedPhone);
 
 			//
 		}
@@ -65,23 +92,50 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		@Override
 		public void phoneBtn6PhoneListViewItemOnClick(String selectedPhone,
 				int selectedContactPosition) {
-			Log.d("ContactSelectActivity", "selected contact @ "
-					+ selectedContactPosition + " and selected phone number = "
-					+ selectedPhone);
+			Log.d(LOG_TAG, "selected contact @ " + selectedContactPosition
+					+ " and selected phone number = " + selectedPhone);
 
 			//
+			_mIn7PreinTalkingGroupContactsAdapterDataList
+					.add(generateIn6PreinTalkingGroupAdapterData(selectedPhone,
+							false));
+			((InAB6In7PreinTalkingGroupContactAdapter) _mIn7PreinTalkingGroupContactsListView
+					.getAdapter()).notifyDataSetChanged();
 		}
 	};
 
-	// all address book name phonetic sorted contacts detail info list
-	private final List<ContactBean> allNamePhoneticSortedContactsInfoArray = AddressBookManager
-			.getInstance().getAllNamePhoneticSortedContactsInfoArray();
-	// present contacts in address book detail info list
-	private List<ContactBean> _mPresentContactsInABInfoArray;
+	// in and prein talking group contacts list view
+	private ListView _mIn7PreinTalkingGroupContactsListView;
+
+	// prein talking group contacts detail info list
+	private final List<ContactBean> _mPreinTalkingGroupContactsInABInfoArray = new ArrayList<ContactBean>();
+
+	// in and prein talking group contacts adapter data list
+	private final List<Map<String, Object>> _mIn7PreinTalkingGroupContactsAdapterDataList = new ArrayList<Map<String, Object>>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// get the intent parameter data
+		Bundle _data = getIntent().getExtras();
+
+		// check the data bundle
+		if (null != _data) {
+			// set talking group status
+			_mTalkingGroupStatus = (TalkingGroupStatus) _data
+					.get(CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPSTATUS);
+
+			// set talking group id and attendees phone list
+			_mTalkingGroupId = (String) _data
+					.get(CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPID);
+			@SuppressWarnings("unchecked")
+			List<String> _attendeesPhoneList = (List<String>) _data
+					.get(CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPATTENDEESPHONE);
+			if (null != _attendeesPhoneList) {
+				_mTalkingGroupContactsPhoneArray.addAll(_attendeesPhoneList);
+			}
+		}
 
 		// set content view
 		setContentView(R.layout.contact_select_activity_layout);
@@ -89,15 +143,13 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		// set title text
 		setTitle(R.string.contactSelect_nav_title_text);
 
-		// check current talking group status
-		// establishing
-		if (TalkingGroupStatus.ESTABLISHING == _mCurrentTalkingGroupStatus) {
-			// set nav back bar button item as self activity left bar button
-			// item
-			setLeftBarButtonItem(new IMeetingBarButtonItem(this,
-					BarButtonItemStyle.LEFT_BACK, R.string.back_nav_btn_title,
-					new NavBackBtnOnClickListener()));
+		// set nav back bar button item as self activity left bar button item
+		setLeftBarButtonItem(new IMeetingBarButtonItem(this,
+				BarButtonItemStyle.LEFT_BACK, R.string.back_nav_btn_title,
+				new NavBackBtnOnClickListener()));
 
+		// check current talking group status establishing
+		if (TalkingGroupStatus.ESTABLISHING == _mTalkingGroupStatus) {
 			// set open talking group bar button item as self activity right bar
 			// button item
 			setRightBarButtonItem(new IMeetingBarButtonItem(this,
@@ -107,60 +159,29 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		}
 		// going
 		else {
-			// set back bar button item as self activity left bar button item
-			setLeftBarButtonItem(new IMeetingBarButtonItem(this,
-					BarButtonItemStyle.LEFT_BACK, R.string.back_nav_btn_title,
-					new BackBtnOnClickListener()));
-
-			// set confirm add attendee bar button item as self activity right
-			// bar button item
+			// set confirm add new contacts to talking group bar button item as
+			// self activity right bar button item
 			setRightBarButtonItem(new IMeetingBarButtonItem(this,
 					BarButtonItemStyle.RIGHT_GO,
 					R.string.confirmAdd_nav_btn_title,
-					new ConfirmAddAttendeeBtnOnClickListener()));
+					new ConfirmAddNewContacts2TalkingGroupBtnOnClickListener()));
 		}
 
-		// get contacts in address book list view
-		ListView _contactsInABListView = (ListView) findViewById(R.id.contactInAB_listView);
+		// add moderator to talking group attendees list as header
+		_mTalkingGroupContactsPhoneArray.add(0, UserManager.getInstance()
+				.getUser().getName());
+
+		// init contacts in address book list view
+		_mABContactsListView = (ListView) findViewById(R.id.contactInAB_listView);
 
 		// set contacts in address book listView adapter
 		_mPresentContactsInABInfoArray = allNamePhoneticSortedContactsInfoArray;
-		_contactsInABListView
+		_mABContactsListView
 				.setAdapter(generateInABContactAdapter(_mPresentContactsInABInfoArray));
 
 		// bind contacts in address book listView item click listener
-		_contactsInABListView
+		_mABContactsListView
 				.setOnItemClickListener(new ContactsInABListViewOnItemClickListener());
-
-		// test by ares begin
-		// test in and prein talking group attendees name
-		generateIn7PreinTalkingGroupContactAdapter(null);
-		String[] _testIn7PreinTalkingGroupContactsName7Phone = new String[] {
-				"翟绍虎", "王星", "胡光辉" };
-
-		// list view data list
-		List<Map<String, Object>> _In7PreinTalkingGroupContactsDataList = new ArrayList<Map<String, Object>>();
-		// generate data
-		for (int i = 0; i < _testIn7PreinTalkingGroupContactsName7Phone.length; i++) {
-			HashMap<String, Object> _dataMap = new HashMap<String, Object>();
-
-			// set data
-			_dataMap.put("contact_name",
-					_testIn7PreinTalkingGroupContactsName7Phone[i]);
-
-			// add to data list
-			_In7PreinTalkingGroupContactsDataList.add(_dataMap);
-		}
-
-		// set contacts in address book listView adapter
-		((ListView) findViewById(R.id.contactIn7PreinTalkingGroup_listView))
-				.setAdapter(new InAB6In7PreinTalkingGroupContactAdapter(
-						this,
-						_In7PreinTalkingGroupContactsDataList,
-						R.layout.in7prein_talking_group_contact_layout,
-						new String[] { "contact_name" },
-						new int[] { R.id.in7preinTalkingGroup_contact_displayName_textView }));
-		// test by ares end
 
 		// bind contact search editText text watcher
 		((EditText) findViewById(R.id.contact_search_editText))
@@ -169,12 +190,41 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		// bind add not existed in address book contact button on click listener
 		((Button) findViewById(R.id.add_notExistedInABContact_btn))
 				.setOnClickListener(new AddNotExistedInABContactBtnOnClickListener());
+
+		// init contacts in address book list view
+		_mIn7PreinTalkingGroupContactsListView = (ListView) findViewById(R.id.contactIn7PreinTalkingGroup_listView);
+
+		// generate in and prein talking group contact adapter
+		// process in talking group attendees phone list, then set in and prein
+		// talking group contacts list view present data list
+		for (int i = 0; i < _mTalkingGroupContactsPhoneArray.size(); i++) {
+			// add data to list
+			_mIn7PreinTalkingGroupContactsAdapterDataList
+					.add(generateIn6PreinTalkingGroupAdapterData(
+							_mTalkingGroupContactsPhoneArray.get(i), true));
+		}
+
+		// set contacts in and prein talking group listView adapter
+		_mIn7PreinTalkingGroupContactsListView
+				.setAdapter(new InAB6In7PreinTalkingGroupContactAdapter(
+						this,
+						_mIn7PreinTalkingGroupContactsAdapterDataList,
+						R.layout.in7prein_talking_group_contact_layout,
+						new String[] { SELECTED_CONTACT_DISPLAYNAME,
+								SELECTED_CONTACT_IS_IN_TALKINGGROUP },
+						new int[] {
+								R.id.in7preinTalkingGroup_contact_displayName_textView,
+								R.id.in7preinTalkingGroup_contactInTalkingGroup_imageView }));
+
+		// bind contacts in and prein talking group listView item click listener
+		_mIn7PreinTalkingGroupContactsListView
+				.setOnItemClickListener(new ContactsIn7PreinTalkingGroupListViewOnItemClickListener());
 	}
 
 	// generate in address book contact adapter
 	private ListAdapter generateInABContactAdapter(
 			List<ContactBean> presentContactsInAB) {
-		// contact adapter data keys
+		// in address book contacts adapter data keys
 		final String CONTACT_NAME = "contact_name";
 		final String CONTACT_PHONES = "contact_phones";
 
@@ -204,7 +254,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				// set attributed
 				for (int i = 0; i < _nameMatchingIndexes.size(); i++) {
 					// get key and value
-					Integer _nameCharMatchedPos = getRealPosInContactDisplayName(
+					Integer _nameCharMatchedPos = getRealPositionInContactDisplayName(
 							_contact.getDisplayName(),
 							_nameMatchingIndexes.keyAt(i));
 					Integer _nameCharMatchedLength = _nameMatchingIndexes
@@ -271,14 +321,25 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 						R.id.addressBook_contact_phoneNumber_textView });
 	}
 
-	// generate in and prein talking group contact adapter
-	private ListAdapter generateIn7PreinTalkingGroupContactAdapter(List<?> lists) {
-		return null;
+	// generate in or prein talking group adapter data
+	private Map<String, Object> generateIn6PreinTalkingGroupAdapterData(
+			String displayName6Phone, boolean isIntalkingGroup) {
+		Map<String, Object> _dataMap = new HashMap<String, Object>();
+
+		// set data
+		_dataMap.put(
+				SELECTED_CONTACT_DISPLAYNAME,
+				isIntalkingGroup ? AddressBookManager.getInstance()
+						.getContactsDisplayNamesByPhone(displayName6Phone)
+						.get(0) : displayName6Phone);
+		_dataMap.put(SELECTED_CONTACT_IS_IN_TALKINGGROUP, isIntalkingGroup);
+
+		return _dataMap;
 	}
 
-	// get real position in contact display name
-	private Integer getRealPosInContactDisplayName(String displayName,
-			Integer position) {
+	// get real position in contact display name with original position
+	private Integer getRealPositionInContactDisplayName(String displayName,
+			Integer origPosition) {
 		int _realPos = 0;
 
 		int _tmpPos = 0;
@@ -293,7 +354,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					_tmpPos += 1;
 				}
 
-				if (_tmpPos == position) {
+				if (_tmpPos == origPosition) {
 					_realPos = i;
 
 					break;
@@ -307,7 +368,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					_tmpPos += 1;
 				}
 			} else {
-				if (_tmpPos == position) {
+				if (_tmpPos == origPosition) {
 					_realPos = i;
 
 					break;
@@ -353,24 +414,15 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 	}
 
-	// back button on click listener
-	class BackBtnOnClickListener implements OnClickListener {
+	// confirm add new contacts to talking group button on click listener
+	class ConfirmAddNewContacts2TalkingGroupBtnOnClickListener implements
+			OnClickListener {
 
 		@Override
 		public void onClick(View v) {
 			// back to talking group detail info activity
-			Log.d("!", "!!");
-		}
-
-	}
-
-	// confirm add attendee button on click listener
-	class ConfirmAddAttendeeBtnOnClickListener implements OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			// back to talking group detail info activity
-			Log.d("@", "@@");
+			Log.d(LOG_TAG,
+					"Confirm add new contacts to talking group, then back to talking group detail info activity");
 		}
 
 	}
@@ -408,7 +460,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			}
 
 			// update contacts in address book listView adapter
-			((ListView) findViewById(R.id.contactInAB_listView))
+			_mABContactsListView
 					.setAdapter(generateInABContactAdapter(_mPresentContactsInABInfoArray));
 		}
 
@@ -449,7 +501,13 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 			// check the click item view data
 			if (null == _clickItemViewData.getPhoneNumbers()) {
-				//
+				// show contact has no phone number alert dialog
+				new AlertDialog.Builder(ContactSelectActivity.this)
+						.setTitle(R.string.contact_hasNoPhone_alertDialog_title)
+						.setMessage(_clickItemViewData.getDisplayName())
+						.setPositiveButton(
+								R.string.contact_hasNoPhone_alertDialog_reselectBtn_title,
+								null).show();
 			} else {
 				switch (_clickItemViewData.getPhoneNumbers().size()) {
 				case 1:
@@ -459,7 +517,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				default:
 					// set contact phone numbers for selecting
 					_mContactPhoneNumbersSelectPopupWindow
-							.setContactPhones4Selecting(_clickItemViewData,
+							.setContactPhones4Selecting(
+									_clickItemViewData.getDisplayName(),
+									_clickItemViewData.getPhoneNumbers(),
 									position);
 
 					// show contact phone numbers select popup window
@@ -469,6 +529,23 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					break;
 				}
 			}
+
+			//
+		}
+
+	}
+
+	// contacts in and prein talking group listView on item click listener
+	class ContactsIn7PreinTalkingGroupListViewOnItemClickListener implements
+			OnItemClickListener {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Log.d(LOG_TAG,
+					"ContactsIn7PreinTalkingGroupListViewOnItemClickListener - parent = "
+							+ parent + ", view = " + view + ", position = "
+							+ position + " and id = " + id);
 
 			//
 		}

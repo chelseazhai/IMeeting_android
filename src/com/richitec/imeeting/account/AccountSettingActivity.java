@@ -38,7 +38,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 	private static final String LOG_TAG = "AccountSettingActivity";
 
 	// account setting activity onCreate param key
-	public static final String ACCOUNT_SETTING_ACTIVITY_PARAM_KEY = "application account status";
+	public static final String ACCOUNT_SETTING_ACTIVITY_PARAM_APPACCOUNTSTATUS = "application account status";
 
 	// current application account status, default value is reset
 	private AppAccountStatus _mCurrentAppAccountStatus = AppAccountStatus.RESET;
@@ -53,7 +53,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 		// check the data bundle
 		if (null != _data) {
 			_mCurrentAppAccountStatus = (AppAccountStatus) _data
-					.get(ACCOUNT_SETTING_ACTIVITY_PARAM_KEY);
+					.get(ACCOUNT_SETTING_ACTIVITY_PARAM_APPACCOUNTSTATUS);
 		}
 
 		// set content view
