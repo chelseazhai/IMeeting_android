@@ -101,9 +101,6 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		@Override
 		public void phoneBtn6PhoneListViewItemOnClick(String selectedPhone,
 				int selectedContactPosition) {
-			Log.d(LOG_TAG, "selected contact @ " + selectedContactPosition
-					+ " and selected phone number = " + selectedPhone);
-
 			// mark contact selected
 			markContactSelected(selectedPhone, selectedContactPosition);
 		}
