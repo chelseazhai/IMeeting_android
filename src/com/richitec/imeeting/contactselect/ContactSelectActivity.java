@@ -170,6 +170,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					new OpenTalkingGroupBtnOnClickListener()));
 		}
 
+		// init present contacts in address book detail info array
+		_mPresentContactsInABInfoArray = allNamePhoneticSortedContactsInfoArray;
+
 		// add moderator to talking group attendees list as header
 		_mTalkingGroupContactsPhoneArray.add(0, UserManager.getInstance()
 				.getUser().getName());
@@ -178,7 +181,6 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		_mABContactsListView = (ListView) findViewById(R.id.contactInAB_listView);
 
 		// set contacts in address book listView adapter
-		_mPresentContactsInABInfoArray = allNamePhoneticSortedContactsInfoArray;
 		_mABContactsListView
 				.setAdapter(generateInABContactAdapter(_mPresentContactsInABInfoArray));
 
@@ -222,6 +224,14 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		// bind contacts in and prein talking group listView item click listener
 		_mIn7PreinTalkingGroupContactsListView
 				.setOnItemClickListener(new ContactsIn7PreinTalkingGroupListViewOnItemClickListener());
+	}
+
+	@Override
+	public void onBackPressed() {
+		// reset selected contacts selected flag
+		resetSelectedContacts();
+
+		super.onBackPressed();
 	}
 
 	// generate in address book contact adapter
@@ -488,6 +498,13 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				.getAdapter()).notifyDataSetChanged();
 	}
 
+	// reset selected contacts selected flag
+	private void resetSelectedContacts() {
+		for (ContactBean _selectedContact : _mPreinTalkingGroupContactsInfoArray) {
+			_selectedContact.getExtension().put(CONTACT_IS_SELECTED, false);
+		}
+	}
+
 	// inner class
 	// talking group status
 	public static enum TalkingGroupStatus {
@@ -504,6 +521,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 		@Override
 		public void onClick(View v) {
+			// reset selected contacts selected flag
+			resetSelectedContacts();
+
 			// back to last activity
 			popActivity();
 		}
@@ -515,6 +535,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 		@Override
 		public void onClick(View v) {
+			// reset selected contacts selected flag
+			resetSelectedContacts();
+
 			// go to talking group detail info activity
 			pushActivity(TalkingGroupDetailInfoActivity.class);
 		}
@@ -527,6 +550,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 		@Override
 		public void onClick(View v) {
+			// reset selected contacts selected flag
+			resetSelectedContacts();
+
 			// back to talking group detail info activity
 			Log.d(LOG_TAG,
 					"Confirm add new contacts to talking group, then back to talking group detail info activity");
