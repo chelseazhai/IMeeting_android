@@ -47,6 +47,10 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	public static final String CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPID = "talking group id";
 	public static final String CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPATTENDEESPHONE = "talking group attendees phone";
 
+	// in address book is selected flag saved in contact bean extension
+	// structured and in address book contact adapter data key
+	private final String CONTACT_IS_SELECTED = "in address book contact is selected";
+
 	// in and prein talking group contacts adapter data keys
 	private final String SELECTED_CONTACT_DISPLAYNAME = "selected_contact_displayName";
 	private final String SELECTED_CONTACT_IS_IN_TALKINGGROUP = "selected_contact_is_in_talkingGroup";
@@ -82,6 +86,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 			//
 		}
+
 	};
 
 	// define contact phone numbers select popup window
@@ -95,20 +100,53 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			Log.d(LOG_TAG, "selected contact @ " + selectedContactPosition
 					+ " and selected phone number = " + selectedPhone);
 
-			//
-			_mIn7PreinTalkingGroupContactsAdapterDataList
-					.add(generateIn6PreinTalkingGroupAdapterData(selectedPhone,
-							false));
+			// get select contact object
+			ContactBean _selectContact = _mPresentContactsInABInfoArray
+					.get(selectedContactPosition);
+
+			// get contact is selected flag
+			Boolean _isSelected = (Boolean) _selectContact.getExtension().get(
+					CONTACT_IS_SELECTED);
+
+			// update contact is selected flag
+			_selectContact.getExtension().put(CONTACT_IS_SELECTED,
+					!_isSelected.booleanValue());
+
+			// get in address book or in and prein talking group contacts
+			// adapter
+			InAB6In7PreinTalkingGroupContactAdapter _inABContactAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
+					.getAdapter();
+
+			// get in address book or in and prein talking group contacts
+			// adapter data map
+			@SuppressWarnings("unchecked")
+			Map<String, Object> _inABContactAdapterDataMap = (Map<String, Object>) _inABContactAdapter
+					.getItem(selectedContactPosition);
+
+			// ??
+			_inABContactAdapterDataMap.put(CONTACT_IS_SELECTED, _selectContact
+					.getExtension().get(CONTACT_IS_SELECTED));
+			_inABContactAdapter.notifyDataSetChanged();
+
+			// ??
+			if (!_isSelected) {
+				// add to prein talking group contacts adapter data list
+				_mPreinTalkingGroupContactsInfoArray.add(_selectContact);
+				_mIn7PreinTalkingGroupContactsAdapterDataList
+						.add(generateIn6PreinTalkingGroupAdapterData(
+								_selectContact.getDisplayName(), false));
+			}
 			((InAB6In7PreinTalkingGroupContactAdapter) _mIn7PreinTalkingGroupContactsListView
 					.getAdapter()).notifyDataSetChanged();
 		}
+
 	};
 
 	// in and prein talking group contacts list view
 	private ListView _mIn7PreinTalkingGroupContactsListView;
 
 	// prein talking group contacts detail info list
-	private final List<ContactBean> _mPreinTalkingGroupContactsInABInfoArray = new ArrayList<ContactBean>();
+	private final List<ContactBean> _mPreinTalkingGroupContactsInfoArray = new ArrayList<ContactBean>();
 
 	// in and prein talking group contacts adapter data list
 	private final List<Map<String, Object>> _mIn7PreinTalkingGroupContactsAdapterDataList = new ArrayList<Map<String, Object>>();
@@ -308,17 +346,30 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			} else {
 				_dataMap.put(CONTACT_PHONES, _contact.getFormatPhoneNumbers());
 			}
+			// get in address book contact is selected flag saved in contact
+			// bean extension structured
+			Boolean _isSelected = (Boolean) _contact.getExtension().get(
+					CONTACT_IS_SELECTED);
+			if (null == _isSelected) {
+				_contact.getExtension().put(CONTACT_IS_SELECTED, false);
+			}
+			_dataMap.put(CONTACT_IS_SELECTED,
+					_contact.getExtension().get(CONTACT_IS_SELECTED));
 
 			// add data to list
 			_addressBookContactsPresentDataList.add(_dataMap);
 		}
 
-		return new InAB6In7PreinTalkingGroupContactAdapter(this,
+		return new InAB6In7PreinTalkingGroupContactAdapter(
+				this,
 				_addressBookContactsPresentDataList,
-				R.layout.addressbook_contact_layout, new String[] {
-						CONTACT_NAME, CONTACT_PHONES }, new int[] {
+				R.layout.addressbook_contact_layout,
+				new String[] { CONTACT_NAME, CONTACT_PHONES,
+						CONTACT_IS_SELECTED },
+				new int[] {
 						R.id.adressBook_contact_displayName_textView,
-						R.id.addressBook_contact_phoneNumber_textView });
+						R.id.addressBook_contact_phoneNumber_textView,
+						R.id.addressBook_contact_unsel6sel_imageView_parentFrameLayout });
 	}
 
 	// generate in or prein talking group adapter data
@@ -499,38 +550,121 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			ContactBean _clickItemViewData = _mPresentContactsInABInfoArray
 					.get((int) id);
 
-			// check the click item view data
-			if (null == _clickItemViewData.getPhoneNumbers()) {
-				// show contact has no phone number alert dialog
-				new AlertDialog.Builder(ContactSelectActivity.this)
-						.setTitle(R.string.contact_hasNoPhone_alertDialog_title)
-						.setMessage(_clickItemViewData.getDisplayName())
-						.setPositiveButton(
-								R.string.contact_hasNoPhone_alertDialog_reselectBtn_title,
-								null).show();
+			// get contact is selected flag
+			Boolean _isSelected = (Boolean) _clickItemViewData.getExtension()
+					.get(CONTACT_IS_SELECTED);
+
+			// check the click item view data(contact object) is selected
+			if (_isSelected) {
+				// update contact is selected flag
+				_clickItemViewData.getExtension().put(CONTACT_IS_SELECTED,
+						false);
+
+				// get in address book or in and prein talking group contacts
+				// adapter
+				InAB6In7PreinTalkingGroupContactAdapter _inABContactAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
+						.getAdapter();
+
+				// get in address book or in and prein talking group contacts
+				// adapter data map
+				@SuppressWarnings("unchecked")
+				Map<String, Object> _inABContactAdapterDataMap = (Map<String, Object>) _inABContactAdapter
+						.getItem(position);
+
+				// ??
+				_inABContactAdapterDataMap.put(
+						CONTACT_IS_SELECTED,
+						_clickItemViewData.getExtension().get(
+								CONTACT_IS_SELECTED));
+				_inABContactAdapter.notifyDataSetChanged();
+
+				// get select contact in prein talking contacts detail info list
+				// position
+				int _index = _mPreinTalkingGroupContactsInfoArray
+						.indexOf(_clickItemViewData);
+
+				// remove from prein talking group contacts adapter data list
+				_mPreinTalkingGroupContactsInfoArray.remove(_index);
+				_mIn7PreinTalkingGroupContactsAdapterDataList
+						.remove(_mTalkingGroupContactsPhoneArray.size()
+								+ _index);
+
+				((InAB6In7PreinTalkingGroupContactAdapter) _mIn7PreinTalkingGroupContactsListView
+						.getAdapter()).notifyDataSetChanged();
 			} else {
-				switch (_clickItemViewData.getPhoneNumbers().size()) {
-				case 1:
-					//
-					break;
+				// check the click item view data
+				if (null == _clickItemViewData.getPhoneNumbers()) {
+					// show contact has no phone number alert dialog
+					new AlertDialog.Builder(ContactSelectActivity.this)
+							.setTitle(
+									R.string.contact_hasNoPhone_alertDialog_title)
+							.setMessage(_clickItemViewData.getDisplayName())
+							.setPositiveButton(
+									R.string.contact_hasNoPhone_alertDialog_reselectBtn_title,
+									null).show();
+				} else {
+					switch (_clickItemViewData.getPhoneNumbers().size()) {
+					case 1:
+					// ??
+					{
+						// update contact is selected flag
+						_clickItemViewData.getExtension().put(
+								CONTACT_IS_SELECTED,
+								!_isSelected.booleanValue());
 
-				default:
-					// set contact phone numbers for selecting
-					_mContactPhoneNumbersSelectPopupWindow
-							.setContactPhones4Selecting(
-									_clickItemViewData.getDisplayName(),
-									_clickItemViewData.getPhoneNumbers(),
-									position);
+						// get in address book or in and prein talking group
+						// contacts
+						// adapter
+						InAB6In7PreinTalkingGroupContactAdapter _inABContactAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
+								.getAdapter();
 
-					// show contact phone numbers select popup window
-					_mContactPhoneNumbersSelectPopupWindow.showAtLocation(
-							parent, Gravity.CENTER, 0, 0);
+						// get in address book or in and prein talking group
+						// contacts
+						// adapter data map
+						@SuppressWarnings("unchecked")
+						Map<String, Object> _inABContactAdapterDataMap = (Map<String, Object>) _inABContactAdapter
+								.getItem(position);
 
-					break;
+						// ??
+						_inABContactAdapterDataMap.put(
+								CONTACT_IS_SELECTED,
+								_clickItemViewData.getExtension().get(
+										CONTACT_IS_SELECTED));
+						_inABContactAdapter.notifyDataSetChanged();
+
+						// ??
+						if (!_isSelected) {
+							// add to prein talking group contacts adapter data
+							// list
+							_mPreinTalkingGroupContactsInfoArray
+									.add(_clickItemViewData);
+							_mIn7PreinTalkingGroupContactsAdapterDataList
+									.add(generateIn6PreinTalkingGroupAdapterData(
+											_clickItemViewData.getDisplayName(),
+											false));
+						}
+						((InAB6In7PreinTalkingGroupContactAdapter) _mIn7PreinTalkingGroupContactsListView
+								.getAdapter()).notifyDataSetChanged();
+
+					}
+						break;
+
+					default:
+						// set contact phone numbers for selecting
+						_mContactPhoneNumbersSelectPopupWindow
+								.setContactPhones4Selecting(
+										_clickItemViewData.getDisplayName(),
+										_clickItemViewData.getPhoneNumbers(),
+										position);
+
+						// show contact phone numbers select popup window
+						_mContactPhoneNumbersSelectPopupWindow.showAtLocation(
+								parent, Gravity.CENTER, 0, 0);
+
+						break;
+					}
 				}
 			}
-
-			//
 		}
 
 	}
@@ -547,7 +681,41 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 							+ parent + ", view = " + view + ", position = "
 							+ position + " and id = " + id);
 
-			//
+			// get prein talking group contact real position
+			int _preinTalkingGroupContactRealPosition = position
+					- _mTalkingGroupContactsPhoneArray.size();
+
+			// get selected contact
+			ContactBean _selectedContact = _mPreinTalkingGroupContactsInfoArray
+					.get(_preinTalkingGroupContactRealPosition);
+
+			// update contact is selected flag
+			_selectedContact.getExtension().put(CONTACT_IS_SELECTED, false);
+
+			// get in address book or in and prein talking group contacts
+			// adapter
+			InAB6In7PreinTalkingGroupContactAdapter _inABContactAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
+					.getAdapter();
+
+			// get in address book or in and prein talking group contacts
+			// adapter data map
+			@SuppressWarnings("unchecked")
+			Map<String, Object> _inABContactAdapterDataMap = (Map<String, Object>) _inABContactAdapter
+					.getItem(_mPresentContactsInABInfoArray
+							.indexOf(_selectedContact));
+
+			// ??
+			_inABContactAdapterDataMap.put(CONTACT_IS_SELECTED,
+					_selectedContact.getExtension().get(CONTACT_IS_SELECTED));
+			_inABContactAdapter.notifyDataSetChanged();
+
+			// ??
+			_mPreinTalkingGroupContactsInfoArray
+					.remove(_preinTalkingGroupContactRealPosition);
+			_mIn7PreinTalkingGroupContactsAdapterDataList.remove(position);
+
+			((InAB6In7PreinTalkingGroupContactAdapter) _mIn7PreinTalkingGroupContactsListView
+					.getAdapter()).notifyDataSetChanged();
 		}
 
 	}

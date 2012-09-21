@@ -10,16 +10,27 @@
     android:paddingTop="6dp" >
 
     <FrameLayout
+        android:id="@+id/addressBook_contact_unsel6sel_imageView_parentFrameLayout"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent" >
 
         <ImageView
-            android:id="@+id/addressBook_contact_unsel6sel_imageView"
+            android:id="@+id/addressBook_contact_unselected_imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/contactSelect_addressbookContact_unsel6sel_imageView_content_description"
             android:paddingTop="10dp"
-            android:src="@drawable/img_addressbook_contact_unselected" />
+            android:src="@drawable/img_addressbook_contact_unselected"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/addressBook_contact_selected_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/contactSelect_addressbookContact_unsel6sel_imageView_content_description"
+            android:paddingTop="10dp"
+            android:src="@drawable/img_addressbook_contact_selected"
+            android:visibility="gone" />
     </FrameLayout>
 
     <LinearLayout
