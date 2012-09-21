@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/contact_phonenumbers_select_phoneslistitem_bg"
+    android:gravity="center"
+    android:minHeight="54dp"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textColor="@drawable/contact_phonenumbers_select_phoneslistitem_textcolor"
+    android:textStyle="bold" >
+
+</TextView>

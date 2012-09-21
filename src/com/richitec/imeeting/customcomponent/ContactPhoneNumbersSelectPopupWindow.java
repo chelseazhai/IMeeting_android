@@ -121,9 +121,11 @@ public abstract class ContactPhoneNumbersSelectPopupWindow extends
 					R.id.contactPhones_select_phonesListView);
 
 			// set phone list view adapter
-			_phoneListView.setAdapter(new ArrayAdapter<String>(
-					AppLaunchActivity.getAppContext(),
-					android.R.layout.simple_list_item_1, _phoneNumbers));
+			_phoneListView
+					.setAdapter(new ArrayAdapter<String>(
+							AppLaunchActivity.getAppContext(),
+							R.layout.contact_phonenumbers_select_phoneslist_item_layout,
+							_phoneNumbers));
 
 			// show phone list view
 			_phoneListView.setVisibility(View.VISIBLE);

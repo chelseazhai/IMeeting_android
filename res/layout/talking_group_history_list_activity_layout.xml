@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="6dp"
     android:paddingTop="4dp" >
 
     <Button
@@ -11,7 +10,7 @@
         android:layout_height="46dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/accountsetting7register7newtalkinggroup_btn_bg"
         android:text="@string/newTalkingGroup_btn_title"
@@ -27,8 +26,7 @@
         android:fadingEdge="none"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
-        android:listSelector="@android:color/transparent"
-        android:scrollbars="none" >
+        android:listSelector="@android:color/transparent" >
     </ListView>
 
 </RelativeLayout>

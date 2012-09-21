@@ -71,6 +71,9 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 android:background="@android:color/white"
+                android:cacheColorHint="@android:color/transparent"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
                 android:visibility="gone" >
             </ListView>
         </FrameLayout>

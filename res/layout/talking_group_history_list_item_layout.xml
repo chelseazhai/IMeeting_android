@@ -1,77 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/talking_group_historylistitem_bg"
-    android:orientation="vertical"
-    android:paddingBottom="6dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="14dp" >
+    android:layout_height="match_parent" >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp" >
+        android:layout_height="fill_parent"
+        android:layout_gravity="left"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/talking_group_historylistitem_bg"
+        android:orientation="vertical"
+        android:paddingBottom="6dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="14dp" >
 
-        <TextView
-            android:id="@+id/talkingGroupId_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:hint="@string/groupId_textView_textHeader"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/dark_goldenrod" />
-
-        <TextView
-            android:id="@+id/talkingGroup_createdTime_textView"
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/talkingGroupId_textView"
-            android:layout_toRightOf="@id/talkingGroupId_textView"
-            android:gravity="right"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/goldenrod" />
-    </RelativeLayout>
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp" >
 
-    <TableRow
-        android:id="@+id/talkingGroup_attendees_tableRow"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingLeft="9dp"
-        android:paddingRight="9dp"
-        android:paddingTop="5dp" >
+            <TextView
+                android:id="@+id/talkingGroupId_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:hint="@string/groupId_textView_textHeader"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/dark_goldenrod" />
 
-        <include
-            android:layout_width="48dp"
-            layout="@layout/talking_group_attendee_layout" />
+            <TextView
+                android:id="@+id/talkingGroup_createdTime_textView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/talkingGroupId_textView"
+                android:layout_toRightOf="@id/talkingGroupId_textView"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/goldenrod" />
+        </RelativeLayout>
 
-        <include
-            android:layout_width="48dp"
-            android:layout_marginLeft="8dp"
-            layout="@layout/talking_group_attendee_layout"
-            android:visibility="gone" />
+        <TableRow
+            android:id="@+id/talkingGroup_attendees_tableRow"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:paddingTop="5dp" >
 
-        <include
-            android:layout_width="48dp"
-            android:layout_marginLeft="8dp"
-            layout="@layout/talking_group_attendee_layout"
-            android:visibility="gone" />
+            <include
+                android:layout_width="48dp"
+                layout="@layout/talking_group_attendee_layout" />
 
-        <include
-            android:layout_width="48dp"
-            android:layout_marginLeft="8dp"
-            layout="@layout/talking_group_attendee_layout"
-            android:visibility="gone" />
+            <include
+                android:layout_width="48dp"
+                android:layout_marginLeft="8dp"
+                layout="@layout/talking_group_attendee_layout"
+                android:visibility="gone" />
 
-        <include
-            android:layout_width="48dp"
-            android:layout_marginLeft="8dp"
-            layout="@layout/talking_group_attendee_layout"
-            android:visibility="gone" />
-    </TableRow>
+            <include
+                android:layout_width="48dp"
+                android:layout_marginLeft="8dp"
+                layout="@layout/talking_group_attendee_layout"
+                android:visibility="gone" />
 
-</LinearLayout>
+            <include
+                android:layout_width="48dp"
+                android:layout_marginLeft="8dp"
+                layout="@layout/talking_group_attendee_layout"
+                android:visibility="gone" />
+
+            <include
+                android:layout_width="48dp"
+                android:layout_marginLeft="8dp"
+                layout="@layout/talking_group_attendee_layout"
+                android:visibility="gone" />
+        </TableRow>
+    </LinearLayout>
+
+</FrameLayout>
