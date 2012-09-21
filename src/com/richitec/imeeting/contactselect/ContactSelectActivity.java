@@ -151,23 +151,23 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				BarButtonItemStyle.LEFT_BACK, R.string.back_nav_btn_title,
 				new NavBackBtnOnClickListener()));
 
-		// check current talking group status establishing
-		if (TalkingGroupStatus.ESTABLISHING == _mTalkingGroupStatus) {
-			// set open talking group bar button item as self activity right bar
-			// button item
-			setRightBarButtonItem(new IMeetingBarButtonItem(this,
-					BarButtonItemStyle.RIGHT_GO,
-					R.string.openTalkingGroup_nav_btn_title,
-					new OpenTalkingGroupBtnOnClickListener()));
-		}
-		// going
-		else {
+		// check current talking group status
+		if (TalkingGroupStatus.GOING == _mTalkingGroupStatus) {
 			// set confirm add new contacts to talking group bar button item as
 			// self activity right bar button item
 			setRightBarButtonItem(new IMeetingBarButtonItem(this,
 					BarButtonItemStyle.RIGHT_GO,
 					R.string.confirmAdd_nav_btn_title,
 					new ConfirmAddNewContacts2TalkingGroupBtnOnClickListener()));
+		}
+		// establishing
+		else {
+			// set open talking group bar button item as self activity right bar
+			// button item
+			setRightBarButtonItem(new IMeetingBarButtonItem(this,
+					BarButtonItemStyle.RIGHT_GO,
+					R.string.openTalkingGroup_nav_btn_title,
+					new OpenTalkingGroupBtnOnClickListener()));
 		}
 
 		// add moderator to talking group attendees list as header

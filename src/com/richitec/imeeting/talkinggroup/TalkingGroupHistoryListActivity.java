@@ -33,6 +33,7 @@ import com.richitec.commontoolkit.utils.StringUtils;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.assistant.SettingActivity;
 import com.richitec.imeeting.contactselect.ContactSelectActivity;
+import com.richitec.imeeting.contactselect.ContactSelectActivity.TalkingGroupStatus;
 import com.richitec.imeeting.customcomponent.IMeetingBarButtonItem;
 import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
@@ -192,8 +193,23 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 
 		@Override
 		public void onClick(View v) {
+			// extra data, add for test by ares
+			Map<String, Object> _extraData = new HashMap<String, Object>();
+			_extraData
+					.put(ContactSelectActivity.CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPSTATUS,
+							TalkingGroupStatus.GOING);
+			_extraData
+					.put(ContactSelectActivity.CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPID,
+							"123123");
+			List<String> _inTalkingGroupAttendeesPhone = new ArrayList<String>();
+			_inTalkingGroupAttendeesPhone.add("1234");
+			_inTalkingGroupAttendeesPhone.add("4567");
+			_extraData
+					.put(ContactSelectActivity.CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPATTENDEESPHONE,
+							_inTalkingGroupAttendeesPhone);
+
 			// go to talking group attendee select activity
-			pushActivity(ContactSelectActivity.class);
+			pushActivity(ContactSelectActivity.class, _extraData);
 		}
 
 	}
