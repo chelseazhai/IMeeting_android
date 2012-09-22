@@ -209,7 +209,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 							_inTalkingGroupAttendeesPhone);
 
 			// go to talking group attendee select activity
-			pushActivity(ContactSelectActivity.class, _extraData);
+			pushActivity(ContactSelectActivity.class);
 		}
 
 	}
