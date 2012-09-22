@@ -687,8 +687,11 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			// mark contact unselected
-			markContactUnselected((int) id, false);
+			// check clicked item position
+			if (position >= _mTalkingGroupContactsPhoneArray.size()) {
+				// mark contact unselected
+				markContactUnselected((int) id, false);
+			}
 		}
 
 	}
