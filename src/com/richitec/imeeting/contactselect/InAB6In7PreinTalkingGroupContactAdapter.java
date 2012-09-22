@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.richitec.commontoolkit.customadapter.CommonListAdapter;
@@ -50,18 +51,26 @@ public class InAB6In7PreinTalkingGroupContactAdapter extends CommonListAdapter {
 
 				// check view type
 				if (view instanceof ImageView) {
+					// get it's parent relativeLayout
+					RelativeLayout _parentRelativeLayout = (RelativeLayout) view
+							.getParent();
+
 					// contact in talking group flag imageView
 					if (_itemDataBoolean) {
 						// hide in talking group image view
 						((ImageView) view).setVisibility(View.INVISIBLE);
 
-						// update it's parent relativeLayout background color:
+						// clear it's parent relativeLayout background, set
 						// transparent
-						_mLayoutInflater.inflate(_mItemsLayoutResId, null)
+						_parentRelativeLayout
 								.setBackgroundColor(Color.TRANSPARENT);
 					} else {
 						// show in talking group image view
 						((ImageView) view).setVisibility(View.VISIBLE);
+
+						// reset it's parent relativeLayout background
+						_parentRelativeLayout
+								.setBackgroundResource(R.drawable.in7preintalkinggroup_contact_bg);
 					}
 				} else if (view instanceof FrameLayout) {
 					// contact in address book selected/unselected flag
