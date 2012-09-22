@@ -59,19 +59,19 @@
 
         <include
             android:layout_width="80.5dp"
-            layout="@layout/talking_group_toolbar_item_layout" />
+            layout="@layout/talking_group_detailinfo_bottomtoolbar_item_layout" />
 
         <include
             android:layout_width="80.5dp"
-            layout="@layout/talking_group_toolbar_item_layout" />
+            layout="@layout/talking_group_detailinfo_bottomtoolbar_item_layout" />
 
         <include
             android:layout_width="80.5dp"
-            layout="@layout/talking_group_toolbar_item_layout" />
+            layout="@layout/talking_group_detailinfo_bottomtoolbar_item_layout" />
 
         <include
             android:layout_width="78.5dp"
-            layout="@layout/talking_group_toolbar_item_layout" />
+            layout="@layout/talking_group_detailinfo_bottomtoolbar_item_layout" />
     </TableRow>
 
 </RelativeLayout>

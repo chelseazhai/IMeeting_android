@@ -169,7 +169,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 		}
 
 		return new TalkingGroupHistoryListItemAdapter(this, _dataList,
-				R.layout.talking_group_history_list_item_layout, new String[] {
+				R.layout.talking_group_historylist_item_layout, new String[] {
 						GROUP_ID, GROUP_CREATEDTIME, GROUP_ATTENDEESPHONES },
 				new int[] { R.id.talkingGroupId_textView,
 						R.id.talkingGroup_createdTime_textView,

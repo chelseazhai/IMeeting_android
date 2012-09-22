@@ -15,7 +15,7 @@
         android:layout_width="2dp"
         android:layout_height="fill_parent"
         android:contentDescription="@string/talkingGroup_bottomToolbarItem_separateLine_imageView_content_description"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:src="@drawable/img_talkinggroup_detailinfo_bottomtoolbaritem_separateline_bg" />
 
 </LinearLayout>
