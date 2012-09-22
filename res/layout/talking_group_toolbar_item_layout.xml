@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_groupdetailinfo_bottomtoolbaritem_bg"
-    android:gravity="center" >
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/talkingGroup_bottomToolbarItem_btn"
+        android:layout_width="78.5dp"
+        android:layout_height="fill_parent"
+        android:background="@drawable/talkinggroup_detailinfo_bottomtoolbaritem_bg" />
 
     <ImageView
-        android:id="@+id/toolbarItemIcon_imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/talkingGroup_bottomToolbarItem_icon_content_description" />
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/talkingGroup_bottomToolbarItem_separateLine_imageView_content_description"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_talkinggroup_detailinfo_bottomtoolbaritem_separateline_bg" />
 
-    <TextView
-        android:id="@+id/toolbarItemName_textView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbarItemIcon_imageView"
-        android:gravity="center" />
-
-</RelativeLayout>
+</LinearLayout>
