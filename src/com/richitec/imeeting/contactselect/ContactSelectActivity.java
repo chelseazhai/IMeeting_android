@@ -47,8 +47,6 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 	// contact select activity onCreate param key
 	public static final String CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPSTATUS = "talking group status";
-	public static final String CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPID = "talking group id";
-	public static final String CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPATTENDEESPHONE = "talking group attendees phone";
 
 	// in address book is selected flag saved in contact bean extension
 	// structured and in address book contact adapter data key
@@ -116,10 +114,10 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 			// set talking group id and attendees phone list
 			_mTalkingGroupId = (String) _data
-					.get(CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPID);
+					.get(TalkingGroupDetailInfoActivity.ACTIVITIES_PARAM_TALKINGGROUPID);
 			@SuppressWarnings("unchecked")
 			List<String> _attendeesPhoneList = (List<String>) _data
-					.get(CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPATTENDEESPHONE);
+					.get(TalkingGroupDetailInfoActivity.ACTIVITIES_PARAM_TALKINGGROUP_ATTENDEESPHONE);
 			if (null != _attendeesPhoneList) {
 				_mTalkingGroupContactsPhoneArray.addAll(_attendeesPhoneList);
 			}

@@ -76,7 +76,7 @@
         <activity
             android:name=".talkinggroup.TalkingGroupDetailInfoActivity"
             android:label="@string/title_activity_talking_group_detail_info"
-            android:theme="@style/WithBgImg7NoTitleActivityTheme" >
+            android:theme="@style/WithBgImg7NoTitleFullScreenActivityTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="horizontal" >
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/talkingGroup_bottomToolbarItem_separateLine_imageView"
+        android:layout_width="2dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/talkingGroup_bottomToolbarItem_separateLine_imageView_content_description"
+        android:src="@drawable/img_talkinggroup_detailinfo_bottomtoolbaritem_separateline_bg" />
 
     <Button
         android:id="@+id/talkingGroup_bottomToolbarItem_btn"
-        android:layout_width="78.5dp"
-        android:layout_height="fill_parent"
-        android:background="@drawable/talkinggroup_detailinfo_bottomtoolbaritem_bg" />
+        android:layout_width="fill_parent"
+        android:layout_height="81dp"
+        android:layout_toLeftOf="@id/talkingGroup_bottomToolbarItem_separateLine_imageView"
+        android:background="@drawable/talkinggroup_detailinfo_bottomtoolbaritem_bg"
+        android:textColor="@android:color/white" />
 
-    <ImageView
-        android:layout_width="2dp"
-        android:layout_height="fill_parent"
-        android:contentDescription="@string/talkingGroup_bottomToolbarItem_separateLine_imageView_content_description"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_talkinggroup_detailinfo_bottomtoolbaritem_separateline_bg" />
-
-</LinearLayout>
+</RelativeLayout>

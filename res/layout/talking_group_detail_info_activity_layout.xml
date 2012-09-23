@@ -52,25 +52,26 @@
     <TableRow
         android:id="@+id/talkingGroup_detailInfo_bottomToolbar_tableRow"
         android:layout_width="fill_parent"
-        android:layout_height="76dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/img_talkinggroup_detailinfo_bottomtoolbar_bg"
         android:orientation="horizontal" >
 
         <include
-            android:layout_width="80.5dp"
+            android:layout_weight="1"
             layout="@layout/talking_group_detailinfo_bottomtoolbar_item_layout" />
 
         <include
-            android:layout_width="80.5dp"
+            android:layout_weight="1"
             layout="@layout/talking_group_detailinfo_bottomtoolbar_item_layout" />
 
         <include
-            android:layout_width="80.5dp"
+            android:layout_weight="1"
             layout="@layout/talking_group_detailinfo_bottomtoolbar_item_layout" />
 
         <include
-            android:layout_width="78.5dp"
+            android:layout_marginRight="-2.5dp"
+            android:layout_weight="1"
             layout="@layout/talking_group_detailinfo_bottomtoolbar_item_layout" />
     </TableRow>
 
