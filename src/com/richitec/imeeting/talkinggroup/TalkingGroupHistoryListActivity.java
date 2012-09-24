@@ -199,16 +199,16 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 					.put(ContactSelectActivity.CONTACT_SELECT_ACTIVITY_PARAM_TALKINGGROUPSTATUS,
 							TalkingGroupStatus.GOING);
 			_extraData
-					.put(TalkingGroupDetailInfoActivity.ACTIVITIES_PARAM_TALKINGGROUPID,
+					.put(TalkingGroupActivity.TALKINGGROUP_ACTIVITY_PARAM_TALKINGGROUPID,
 							"123123");
 			List<String> _inTalkingGroupAttendeesPhone = new ArrayList<String>();
 			_inTalkingGroupAttendeesPhone.add("1234");
 			_inTalkingGroupAttendeesPhone.add("4567");
 			_extraData
-					.put(TalkingGroupDetailInfoActivity.ACTIVITIES_PARAM_TALKINGGROUP_ATTENDEESPHONE,
+					.put(TalkingGroupActivity.TALKINGGROUP_ACTIVITY_PARAM_TALKINGGROUP_ATTENDEESPHONE,
 							_inTalkingGroupAttendeesPhone);
 
-			// go to talking group attendee select activity
+			// go to contact(talking group prein attendee) select activity
 			pushActivity(ContactSelectActivity.class);
 		}
 

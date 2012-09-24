@@ -76,7 +76,7 @@
     <string name="contactPhones_selectPopupWindow_titleTextView_text">Select ***\'s phone to join talking group</string>
     <string name="contactPhones_selectPopupWindow_cancelBtn_title">Cancel</string>
 
-    <!-- talking group detail info activity -->
+    <!-- talking group activity -->
     <string name="menu_audio7video_operation">Audio&amp;Video Operation</string>
     <string name="menu_voice_callIn">Voice CallIn</string>
     <string name="menu_voice_hangup">Voice Hangup</string>
@@ -85,7 +85,7 @@
     <string name="menu_leave_talkingGroup">Leave Talking Group</string>
     <string name="menu_add_attendee">Add Attendee</string>
     <string name="menu_sms_invitation">SMS Invitation</string>
-    <string name="title_activity_talking_group_detail_info">TalkingGroupDetailInfoActivity</string>
+    <string name="title_activity_talking_group">TalkingGroupActivity</string>
     <string name="talkingGroup_bottomToolbarItem_separateLine_imageView_content_description">talking group bottom toolbar item separate line</string>
     <string name="talkingGroup_fullScreenVideo_imageView_content_description">talking group fullScreen video image view</string>
     <string name="talkingGroup_smallVideo_imageView_content_description">talking group small video image view</string>

@@ -39,7 +39,7 @@ import com.richitec.commontoolkit.utils.StringUtils;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.customcomponent.IMeetingBarButtonItem;
 import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
-import com.richitec.imeeting.talkinggroup.TalkingGroupDetailInfoActivity;
+import com.richitec.imeeting.talkinggroup.TalkingGroupActivity;
 
 public class ContactSelectActivity extends IMeetingNavigationActivity {
 
@@ -114,10 +114,10 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 			// set talking group id and attendees phone list
 			_mTalkingGroupId = (String) _data
-					.get(TalkingGroupDetailInfoActivity.ACTIVITIES_PARAM_TALKINGGROUPID);
+					.get(TalkingGroupActivity.TALKINGGROUP_ACTIVITY_PARAM_TALKINGGROUPID);
 			@SuppressWarnings("unchecked")
 			List<String> _attendeesPhoneList = (List<String>) _data
-					.get(TalkingGroupDetailInfoActivity.ACTIVITIES_PARAM_TALKINGGROUP_ATTENDEESPHONE);
+					.get(TalkingGroupActivity.TALKINGGROUP_ACTIVITY_PARAM_TALKINGGROUP_ATTENDEESPHONE);
 			if (null != _attendeesPhoneList) {
 				_mTalkingGroupContactsPhoneArray.addAll(_attendeesPhoneList);
 			}
@@ -524,8 +524,8 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			// send create an new talking group post http request
 			Log.d(LOG_TAG, "Create an new talking group");
 
-			// go to talking group detail info activity
-			pushActivity(TalkingGroupDetailInfoActivity.class);
+			// go to talking group activity
+			pushActivity(TalkingGroupActivity.class);
 		}
 
 	}

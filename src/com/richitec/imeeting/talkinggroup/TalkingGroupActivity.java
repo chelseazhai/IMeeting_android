@@ -13,13 +13,13 @@ import android.widget.TableRow;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
-public class TalkingGroupDetailInfoActivity extends IMeetingNavigationActivity {
+public class TalkingGroupActivity extends IMeetingNavigationActivity {
 
 	private static final String LOG_TAG = "TalkingGroupDetailInfoActivity";
 
-	// activities parameter keys
-	public static final String ACTIVITIES_PARAM_TALKINGGROUPID = "talking group id";
-	public static final String ACTIVITIES_PARAM_TALKINGGROUP_ATTENDEESPHONE = "talking group attendees phone";
+	// talking group activity parameter keys
+	public static final String TALKINGGROUP_ACTIVITY_PARAM_TALKINGGROUPID = "talking group id";
+	public static final String TALKINGGROUP_ACTIVITY_PARAM_TALKINGGROUP_ATTENDEESPHONE = "talking group attendees phone";
 
 	// talking group id
 	private String _mTalkingGroupId;
@@ -29,13 +29,13 @@ public class TalkingGroupDetailInfoActivity extends IMeetingNavigationActivity {
 		super.onCreate(savedInstanceState);
 
 		// set content view
-		setContentView(R.layout.talking_group_detail_info_activity_layout);
+		setContentView(R.layout.talking_group_activity_layout);
 
-		// generate talking group detail info activity bottom toolBar items data
-		// list and init bottom toolBar items
+		// generate talking group activity bottom toolBar items data list and
+		// init bottom toolBar items
 		List<Map<String, Object>> _bottomToolbarItemsDataList = generateBottomToolbarItemsDataList();
 
-		TableRow _talkingGroupDetailInfoBottomToolbarTableRow = (TableRow) findViewById(R.id.talkingGroup_detailInfo_bottomToolbar_tableRow);
+		TableRow _talkingGroupDetailInfoBottomToolbarTableRow = (TableRow) findViewById(R.id.talkingGroup_bottomToolbar_tableRow);
 
 		for (int i = 0; i < _talkingGroupDetailInfoBottomToolbarTableRow
 				.getChildCount(); i++) {
@@ -55,8 +55,7 @@ public class TalkingGroupDetailInfoActivity extends IMeetingNavigationActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(
-				R.menu.talking_group_detail_info_activity_layout, menu);
+		getMenuInflater().inflate(R.menu.talking_group_activity_layout, menu);
 		return true;
 	}
 
@@ -70,8 +69,7 @@ public class TalkingGroupDetailInfoActivity extends IMeetingNavigationActivity {
 		return true;
 	}
 
-	// generate talking group detail info activity bottom toolBar items data
-	// list
+	// generate talking group activity bottom toolBar items data list
 	private List<Map<String, Object>> generateBottomToolbarItemsDataList() {
 		return null;
 	}

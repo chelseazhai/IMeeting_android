@@ -63,7 +63,7 @@
     <string name="contactPhones_selectPopupWindow_titleTextView_text">选择 *** 加入群聊的号码</string>
     <string name="contactPhones_selectPopupWindow_cancelBtn_title">取消</string>
 
-    <!-- talking group detail info activity -->
+    <!-- talking group activity -->
     <string name="menu_audio7video_operation">语音&amp;视频操作</string>
     <string name="menu_voice_callIn">语音呼入</string>
     <string name="menu_voice_hangup">关闭语音</string>
