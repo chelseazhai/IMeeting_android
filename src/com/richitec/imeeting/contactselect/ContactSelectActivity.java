@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
@@ -80,9 +81,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	// contact search status
 	private ContactSearchStatus _mContactSearchStatus = ContactSearchStatus.NONESEARCH;
 
-	// define add not existed in address book contact popup window
-	private final AddNotExistedInABContactPopupWindow _mAddNotExistedInABContactPopupWindow = new AddNotExistedInABContactPopupWindow(
-			R.layout.add_notexistedinabcontact_popupwindow_layout,
+	// define add manual input contact popup window
+	private final AddManualInputContactPopupWindow _mAddManualInputContactPopupWindow = new AddManualInputContactPopupWindow(
+			R.layout.add_manualinput_contact_popupwindow_layout,
 			LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 
 	// define contact phone numbers select popup window
@@ -175,9 +176,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		((EditText) findViewById(R.id.contact_search_editText))
 				.addTextChangedListener(new ContactSearchEditTextTextWatcher());
 
-		// bind add not existed in address book contact button on click listener
-		((Button) findViewById(R.id.add_notExistedInABContact_btn))
-				.setOnClickListener(new AddNotExistedInABContactBtnOnClickListener());
+		// bind add manual input contact button on click listener
+		((Button) findViewById(R.id.add_manualInputContact_btn))
+				.setOnClickListener(new AddManualInputContactBtnOnClickListener());
 
 		// init contacts in address book list view
 		_mIn7PreinTalkingGroupContactsListView = (ListView) findViewById(R.id.contactIn7PreinTalkingGroup_listView);
@@ -391,45 +392,52 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	}
 
 	// mark contact selected
-	private void markContactSelected(String selectedPhone, int contactPosition) {
+	private void markContactSelected(String selectedPhone, int contactPosition,
+			boolean isPresentInABContactsListView) {
 		// get selected contact object
-		ContactBean _selectedContact = _mPresentContactsInABInfoArray
-				.get(contactPosition);
+		ContactBean _selectedContact;
+
+		// check if it is present in address book contacts listView
+		if (isPresentInABContactsListView) {
+			_selectedContact = _mPresentContactsInABInfoArray
+					.get(contactPosition);
+		} else {
+			_selectedContact = allNamePhoneticSortedContactsInfoArray
+					.get(contactPosition);
+		}
 
 		// set selected contact the selected phone
 		_selectedContact.getExtension().put(SELECTED_CONTACT_SELECTEDPHONE,
 				selectedPhone);
 
-		// get selected contact is selected flag
-		Boolean _isSelected = (Boolean) _selectedContact.getExtension().get(
-				CONTACT_IS_SELECTED);
-
 		// update contact is selected flag
 		_selectedContact.getExtension().put(CONTACT_IS_SELECTED, true);
 
-		// get in address book present contacts adapter
-		InAB6In7PreinTalkingGroupContactAdapter _inABContactAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
-				.getAdapter();
+		// update address book contacts listView, if the selected contact is
+		// present in address book contacts listView
+		if (isPresentInABContactsListView) {
+			// get in address book present contacts adapter
+			InAB6In7PreinTalkingGroupContactAdapter _inABContactAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
+					.getAdapter();
 
-		// get in address book present contacts adapter data map
-		@SuppressWarnings("unchecked")
-		Map<String, Object> _inABContactAdapterDataMap = (Map<String, Object>) _inABContactAdapter
-				.getItem(contactPosition);
+			// get in address book present contacts adapter data map
+			@SuppressWarnings("unchecked")
+			Map<String, Object> _inABContactAdapterDataMap = (Map<String, Object>) _inABContactAdapter
+					.getItem(contactPosition);
 
-		// update address book present contacts adapter data map and notify
-		// adapter changed
-		_inABContactAdapterDataMap.put(CONTACT_IS_SELECTED, _selectedContact
-				.getExtension().get(CONTACT_IS_SELECTED));
-		_inABContactAdapter.notifyDataSetChanged();
+			// update address book present contacts adapter data map and notify
+			// adapter changed
+			_inABContactAdapterDataMap.put(CONTACT_IS_SELECTED,
+					_selectedContact.getExtension().get(CONTACT_IS_SELECTED));
+			_inABContactAdapter.notifyDataSetChanged();
+		}
 
 		// add to in and prein talking group contacts adapter data list and
 		// notify adapter changed
-		if (!_isSelected) {
-			_mPreinTalkingGroupContactsInfoArray.add(_selectedContact);
-			_mIn7PreinTalkingGroupContactsAdapterDataList
-					.add(generateIn6PreinTalkingGroupAdapterData(
-							_selectedContact.getDisplayName(), false));
-		}
+		_mPreinTalkingGroupContactsInfoArray.add(_selectedContact);
+		_mIn7PreinTalkingGroupContactsAdapterDataList
+				.add(generateIn6PreinTalkingGroupAdapterData(
+						_selectedContact.getDisplayName(), false));
 		((InAB6In7PreinTalkingGroupContactAdapter) _mIn7PreinTalkingGroupContactsListView
 				.getAdapter()).notifyDataSetChanged();
 	}
@@ -451,21 +459,25 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		// update contact is selected flag
 		_selectedContact.getExtension().put(CONTACT_IS_SELECTED, false);
 
-		// get in address book present contacts adapter
-		InAB6In7PreinTalkingGroupContactAdapter _inABContactAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
-				.getAdapter();
+		// update address book contacts listView, if the selected contact is
+		// present in address book contacts listView
+		if (_mPresentContactsInABInfoArray.contains(_selectedContact)) {
+			// get in address book present contacts adapter
+			InAB6In7PreinTalkingGroupContactAdapter _inABContactAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
+					.getAdapter();
 
-		// get in address book present contacts adapter data map
-		@SuppressWarnings("unchecked")
-		Map<String, Object> _inABContactAdapterDataMap = (Map<String, Object>) _inABContactAdapter
-				.getItem(_mPresentContactsInABInfoArray
-						.indexOf(_selectedContact));
+			// get in address book present contacts adapter data map
+			@SuppressWarnings("unchecked")
+			Map<String, Object> _inABContactAdapterDataMap = (Map<String, Object>) _inABContactAdapter
+					.getItem(_mPresentContactsInABInfoArray
+							.indexOf(_selectedContact));
 
-		// update address book present contacts adapter data map and notify
-		// adapter changed
-		_inABContactAdapterDataMap.put(CONTACT_IS_SELECTED, _selectedContact
-				.getExtension().get(CONTACT_IS_SELECTED));
-		_inABContactAdapter.notifyDataSetChanged();
+			// update address book present contacts adapter data map and notify
+			// adapter changed
+			_inABContactAdapterDataMap.put(CONTACT_IS_SELECTED,
+					_selectedContact.getExtension().get(CONTACT_IS_SELECTED));
+			_inABContactAdapter.notifyDataSetChanged();
+		}
 
 		// get select contact in prein talking contacts detail info list
 		// position
@@ -601,88 +613,129 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 	}
 
-	// add not existed in address book contact popup window
-	class AddNotExistedInABContactPopupWindow extends CommonPopupWindow {
+	// add manual input contact popup window
+	class AddManualInputContactPopupWindow extends CommonPopupWindow {
 
-		public AddNotExistedInABContactPopupWindow(int resource, int width,
+		public AddManualInputContactPopupWindow(int resource, int width,
 				int height, boolean focusable, boolean isBindDefListener) {
 			super(resource, width, height, focusable, isBindDefListener);
 		}
 
-		public AddNotExistedInABContactPopupWindow(int resource, int width,
+		public AddManualInputContactPopupWindow(int resource, int width,
 				int height) {
 			super(resource, width, height);
 		}
 
 		@Override
 		protected void bindPopupWindowComponentsListener() {
-			// bind add not existed in address book contact popup window dismiss
-			// and confirm added button on click listener
+			// bind add manual input contact popup window dismiss and confirm
+			// added button on click listener
 			((Button) getContentView().findViewById(
-					R.id.add_notExistedInABContact_popupWindow_dismiss_btn))
-					.setOnClickListener(new AddNotExistedInABContactPopupWindowDismissBtnOnClickListener());
+					R.id.add_manualInputContact_popupWindow_dismiss_btn))
+					.setOnClickListener(new AddManualInputContactPopupWindowDismissBtnOnClickListener());
 			((Button) getContentView().findViewById(
-					R.id.add_notExistedInABContact_confirmBtn))
-					.setOnClickListener(new AddNotExistedInABContactPopupWindowConfirmAddedBtnOnClickListener());
+					R.id.add_manualInputContact_confirmBtn))
+					.setOnClickListener(new AddManualInputContactPopupWindowConfirmAddedBtnOnClickListener());
 		}
 
 		@Override
 		protected void resetPopupWindow() {
-			// clear add not existed in address book contact editText text
+			// clear add not manual input contact editText text
 			((EditText) getContentView().findViewById(
-					R.id.add_notExistedInABContact_editText)).setText("");
+					R.id.add_manualInputContact_editText)).setText("");
 		}
 
 		// inner class
-		// add not existed in address book contact popup window dismiss button
-		// on click listener
-		class AddNotExistedInABContactPopupWindowDismissBtnOnClickListener
+		// add manual input contact popup window dismiss button on click
+		// listener
+		class AddManualInputContactPopupWindowDismissBtnOnClickListener
 				implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
-				// dismiss add not existed in address book contact popup window
+				// dismiss add manual input contact popup window
 				dismiss();
 			}
 
 		}
 
-		// add not existed in address book contact popup window confirm added
-		// button on click listener
-		class AddNotExistedInABContactPopupWindowConfirmAddedBtnOnClickListener
+		// add manual input contact popup window confirm added button on click
+		// listener
+		class AddManualInputContactPopupWindowConfirmAddedBtnOnClickListener
 				implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
-				// get added not existed in address book contact phone number
-				String _addedNotExistedInABContactPhoneNumber = ((EditText) getContentView()
-						.findViewById(R.id.add_notExistedInABContact_editText))
+				// get added manual input contact phone number
+				String _addedManualInputContactPhoneNumber = ((EditText) getContentView()
+						.findViewById(R.id.add_manualInputContact_editText))
 						.getText().toString();
 
-				// dismiss add not existed in address book contact popup window
+				// check added manual input contact phone number
+				if (null == _addedManualInputContactPhoneNumber
+						|| _addedManualInputContactPhoneNumber
+								.equalsIgnoreCase("")) {
+					Toast.makeText(ContactSelectActivity.this,
+							R.string.toast_manualInputContact_phoneNumber_null,
+							Toast.LENGTH_SHORT).show();
+
+					return;
+				}
+
+				// dismiss add manual input contact popup window
 				dismiss();
 
-				// confirm added the phone
-				Log.d(LOG_TAG, "added phone number = "
-						+ _addedNotExistedInABContactPhoneNumber);
+				// get address book manager
+				AddressBookManager _addressBookManager = AddressBookManager
+						.getInstance();
 
-				// check the added not
-				Long _is = AddressBookManager.getInstance()
-						.isContactWithPhoneInAddressBook(
-								_addedNotExistedInABContactPhoneNumber);
+				// check the added manual input contact with phone number is in
+				// address book
+				Long _manualInputContactId = _addressBookManager
+						.isContactWithPhoneInAddressBook(_addedManualInputContactPhoneNumber);
+				if (null == _manualInputContactId) {
+					Log.d(LOG_TAG, "generate new added contact");
+					// generate new added contact
+					ContactBean _newAddedContact = new ContactBean();
+
+					// ??
+					_newAddedContact.getExtension().put(CONTACT_IS_SELECTED,
+							true);
+				} else {
+					// get the matched contact
+					ContactBean _matchedContact = _addressBookManager
+							.getContactByAggregatedId(_manualInputContactId);
+
+					// check the matched contact in address book listView
+					// present contacts list
+					if (_mPresentContactsInABInfoArray
+							.contains(_matchedContact)) {
+						// mark contact selected
+						markContactSelected(
+								_addedManualInputContactPhoneNumber,
+								_mPresentContactsInABInfoArray
+										.indexOf(_matchedContact), true);
+					} else {
+						// mark contact selected
+						markContactSelected(
+								_addedManualInputContactPhoneNumber,
+								allNamePhoneticSortedContactsInfoArray
+										.indexOf(_matchedContact), false);
+					}
+				}
 			}
 
 		}
 
 	}
 
-	// add not existed in address book contact button on click listener
-	class AddNotExistedInABContactBtnOnClickListener implements OnClickListener {
+	// add manual input contact button on click listener
+	class AddManualInputContactBtnOnClickListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
-			// show add not existed in address book contact popup window
-			_mAddNotExistedInABContactPopupWindow.showAtLocation(v,
+			// show add manual input contact popup window
+			_mAddManualInputContactPopupWindow.showAtLocation(v,
 					Gravity.CENTER, 0, 0);
 		}
 
@@ -817,7 +870,8 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				dismiss();
 
 				// mark contact selected
-				markContactSelected(_selectedPhone, _mSelectContactPosition);
+				markContactSelected(_selectedPhone, _mSelectContactPosition,
+						true);
 			}
 
 		}
@@ -836,7 +890,8 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				dismiss();
 
 				// mark contact selected
-				markContactSelected(_selectedPhone, _mSelectContactPosition);
+				markContactSelected(_selectedPhone, _mSelectContactPosition,
+						true);
 
 			}
 
@@ -891,7 +946,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					case 1:
 						// mark contact selected
 						markContactSelected(_clickItemViewData
-								.getPhoneNumbers().get(0), (int) id);
+								.getPhoneNumbers().get(0), (int) id, true);
 
 						break;
 

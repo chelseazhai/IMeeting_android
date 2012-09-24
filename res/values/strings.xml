@@ -68,9 +68,9 @@
     <string name="contact_search_editText_hint">Search contacts</string>
     <string name="contactSelect_addressbookContact_unsel6sel_imageView_content_description">contact select address book contact unselected or selected image view</string>
     <string name="contactSelect_in7preinTalkingGroupContact_sel_imageView_content_description">contact select in and prein talking group contact selected image view</string>
-    <string name="add_notExistedInABContact_popupWindow_dismiss_btn_title">×</string>
-    <string name="add_notExistedInABContact_editText_hint">Please input phone number</string>
-    <string name="add_notExistedInABContact_confirmBtn_title">Added</string>
+    <string name="add_manualInputContact_popupWindow_dismiss_btn_title">×</string>
+    <string name="add_manualInputContact_editText_hint">Please input phone number</string>
+    <string name="add_manualInputContact_confirmBtn_title">Added</string>
     <string name="contact_hasNoPhone_alertDialog_title">Contact has no phone</string>
     <string name="contact_hasNoPhone_alertDialog_reselectBtn_title">Reselect</string>
     <string name="contactPhones_selectPopupWindow_titleTextView_text">Select ***\'s phone to join talking group</string>

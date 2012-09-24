@@ -5,27 +5,27 @@
     android:background="@color/half_transparent" >
 
     <RelativeLayout
-        android:id="@+id/add_notExistedInABContact_popupWindow_relativeLayout"
+        android:id="@+id/add_manualInputContact_popupWindow_relativeLayout"
         android:layout_width="260dp"
         android:layout_height="160dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="120dp"
-        android:background="@drawable/add_notexistedinabcontact_popupwindow_relativelayout_bg" >
+        android:background="@drawable/add_manualinputcontact_popupwindow_relativelayout_bg" >
 
         <Button
-            android:id="@+id/add_notExistedInABContact_popupWindow_dismiss_btn"
+            android:id="@+id/add_manualInputContact_popupWindow_dismiss_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:text="@string/add_notExistedInABContact_popupWindow_dismiss_btn_title"
+            android:text="@string/add_manualInputContact_popupWindow_dismiss_btn_title"
             android:textColor="@android:color/white"
             android:textSize="30dp" />
 
         <EditText
-            android:id="@+id/add_notExistedInABContact_editText"
+            android:id="@+id/add_manualInputContact_editText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -33,21 +33,21 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="42dp"
             android:ellipsize="end"
-            android:hint="@string/add_notExistedInABContact_editText_hint"
+            android:hint="@string/add_manualInputContact_editText_hint"
             android:inputType="phone" >
 
             <requestFocus />
         </EditText>
 
         <Button
-            android:id="@+id/add_notExistedInABContact_confirmBtn"
+            android:id="@+id/add_manualInputContact_confirmBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="6dp"
             android:layout_marginTop="24dp"
-            android:text="@string/add_notExistedInABContact_confirmBtn_title" />
+            android:text="@string/add_manualInputContact_confirmBtn_title" />
     </RelativeLayout>
 
 </FrameLayout>
