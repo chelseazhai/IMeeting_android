@@ -544,9 +544,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			Log.d(LOG_TAG,
 					"Confirm add new contacts to talking group(group id = "
 							+ _mTalkingGroupId
-							+ "), then back to talking group detail info activity");
+							+ "), then back to talking group activity");
 
-			// back to talking group detail info activity
+			// back to talking group activity
 			popActivity();
 		}
 
@@ -666,7 +666,10 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				Log.d(LOG_TAG, "added phone number = "
 						+ _addedNotExistedInABContactPhoneNumber);
 
-				// ??
+				// check the added not
+				Long _is = AddressBookManager.getInstance()
+						.isContactWithPhoneInAddressBook(
+								_addedNotExistedInABContactPhoneNumber);
 			}
 
 		}

@@ -15,7 +15,7 @@ import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
 public class TalkingGroupActivity extends IMeetingNavigationActivity {
 
-	private static final String LOG_TAG = "TalkingGroupDetailInfoActivity";
+	private static final String LOG_TAG = "TalkingGroupActivity";
 
 	// talking group activity parameter keys
 	public static final String TALKINGGROUP_ACTIVITY_PARAM_TALKINGGROUPID = "talking group id";
@@ -35,12 +35,11 @@ public class TalkingGroupActivity extends IMeetingNavigationActivity {
 		// init bottom toolBar items
 		List<Map<String, Object>> _bottomToolbarItemsDataList = generateBottomToolbarItemsDataList();
 
-		TableRow _talkingGroupDetailInfoBottomToolbarTableRow = (TableRow) findViewById(R.id.talkingGroup_bottomToolbar_tableRow);
+		TableRow _talkingGroupBottomToolbarTableRow = (TableRow) findViewById(R.id.talkingGroup_bottomToolbar_tableRow);
 
-		for (int i = 0; i < _talkingGroupDetailInfoBottomToolbarTableRow
-				.getChildCount(); i++) {
+		for (int i = 0; i < _talkingGroupBottomToolbarTableRow.getChildCount(); i++) {
 			// get each bottom toolBar item
-			Button _bottomToolbarItemBtn = (Button) _talkingGroupDetailInfoBottomToolbarTableRow
+			Button _bottomToolbarItemBtn = (Button) _talkingGroupBottomToolbarTableRow
 					.getChildAt(i).findViewById(
 							R.id.talkingGroup_bottomToolbarItem_btn);
 
