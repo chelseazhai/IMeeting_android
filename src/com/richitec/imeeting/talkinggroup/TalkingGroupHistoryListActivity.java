@@ -19,7 +19,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -42,7 +41,12 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 	private static final String LOG_TAG = "TalkingGroupHistoryListActivity";
 
 	// my talking group history list need to refresh
-	public static boolean MYTALKINGGROUP_HISTORYLIST_NEED2REFRESH = false;
+	public static boolean TALKINGGROUP_HISTORYLIST_NEED2REFRESH = false;
+
+	// my group history list item adapter data keys
+	private final String GROUP_ID = "group_id";
+	private final String GROUP_CREATEDTIME = "group_createdTime";
+	private final String GROUP_ATTENDEESPHONES = "group_attendeesPhones";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -79,9 +83,9 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 		super.onResume();
 
 		// check my talking group need to refresh
-		if (MYTALKINGGROUP_HISTORYLIST_NEED2REFRESH) {
+		if (TALKINGGROUP_HISTORYLIST_NEED2REFRESH) {
 			// clear the refresh flag
-			MYTALKINGGROUP_HISTORYLIST_NEED2REFRESH = false;
+			TALKINGGROUP_HISTORYLIST_NEED2REFRESH = false;
 
 			Log.d(LOG_TAG, "refresh my talking group history list");
 			// send get my talking history list http post request
@@ -102,25 +106,21 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 		return true;
 	}
 
-	// generate my group history list item adapter
-	private ListAdapter generateMyTalkingGroupHistoryListItemAdapter(
-			JSONArray talkingGroupHistoryList) {
-		// my group history list item adapter data keys
-		final String GROUP_ID = "group_id";
-		final String GROUP_CREATEDTIME = "group_createdTime";
-		final String GROUP_ATTENDEESPHONES = "group_attendeesPhones";
-
-		// data format, format unix timeStamp
-		final DateFormat _dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	// generate my talking group history list adapter data list
+	private List<Map<String, Object>> generateMyTalkingGroupHistoryListDataList(
+			JSONArray talkingGroupHistoryListInfo) {
+		// talking group created time data format, format unix timeStamp
+		final DateFormat _talkingGroupCreatedTimeDataFormat = new SimpleDateFormat(
+				"yyyy-MM-dd HH:mm");
 
 		// my talking group history list view data list
 		List<Map<String, Object>> _dataList = new ArrayList<Map<String, Object>>();
 
 		// generate data
-		for (int i = 0; i < talkingGroupHistoryList.length(); i++) {
+		for (int i = 0; i < talkingGroupHistoryListInfo.length(); i++) {
 			// get group info json object
 			JSONObject _groupInfoJsonObject = JSONUtils
-					.getJSONObjectFromJSONArray(talkingGroupHistoryList, i);
+					.getJSONObjectFromJSONArray(talkingGroupHistoryListInfo, i);
 
 			// get talking group id and status
 			String _talkingGroupId = JSONUtils
@@ -149,7 +149,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 							_talkingGroupId) : _talkingGroupId);
 			_dataMap.put(
 					GROUP_CREATEDTIME,
-					_dataFormat.format(1000 * JSONUtils
+					_talkingGroupCreatedTimeDataFormat.format(1000 * JSONUtils
 							.getLongFromJSONObject(
 									_groupInfoJsonObject,
 									getResources()
@@ -168,12 +168,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 			_dataList.add(_dataMap);
 		}
 
-		return new TalkingGroupHistoryListItemAdapter(this, _dataList,
-				R.layout.talking_group_historylist_item_layout, new String[] {
-						GROUP_ID, GROUP_CREATEDTIME, GROUP_ATTENDEESPHONES },
-				new int[] { R.id.talkingGroupId_textView,
-						R.id.talkingGroup_createdTime_textView,
-						R.id.talkingGroup_attendees_tableRow });
+		return _dataList;
 	}
 
 	// inner class
@@ -228,8 +223,8 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 			JSONObject _respEntityStringJsonObject = StringUtils
 					.toJSONObject(_respEntityString);
 
-			// get my talking group history list
-			JSONArray _myTalkingGroupHistoryList = JSONUtils
+			// get my talking group history list info
+			JSONArray _myTalkingGroupHistoryListInfo = JSONUtils
 					.getJSONArrayFromJSONObject(
 							_respEntityStringJsonObject,
 							getResources()
@@ -238,7 +233,15 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 
 			// reset my group history listView adapter
 			((ListView) findViewById(R.id.myGroup_history_listView))
-					.setAdapter(generateMyTalkingGroupHistoryListItemAdapter(_myTalkingGroupHistoryList));
+					.setAdapter(new TalkingGroupHistoryListItemAdapter(
+							TalkingGroupHistoryListActivity.this,
+							generateMyTalkingGroupHistoryListDataList(_myTalkingGroupHistoryListInfo),
+							R.layout.talking_group_historylist_item_layout,
+							new String[] { GROUP_ID, GROUP_CREATEDTIME,
+									GROUP_ATTENDEESPHONES }, new int[] {
+									R.id.talkingGroupId_textView,
+									R.id.talkingGroup_createdTime_textView,
+									R.id.talkingGroup_attendees_tableRow }));
 		}
 
 		@Override

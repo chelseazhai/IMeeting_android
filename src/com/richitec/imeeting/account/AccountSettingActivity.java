@@ -243,7 +243,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 
 						// set my talking group history list activity need to
 						// refresh
-						TalkingGroupHistoryListActivity.MYTALKINGGROUP_HISTORYLIST_NEED2REFRESH = true;
+						TalkingGroupHistoryListActivity.TALKINGGROUP_HISTORYLIST_NEED2REFRESH = true;
 
 						// pop to setting activity
 						popActivity();

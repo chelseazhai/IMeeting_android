@@ -45,9 +45,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="12dp"
             android:layout_marginTop="24dp"
-            android:text="@string/add_manualInputContact_confirmBtn_title" />
+            android:background="@drawable/add_manualinputcontact_popupwindow_confirmbtn_bg"
+            android:text="@string/add_manualInputContact_confirmBtn_title"
+            android:textColor="@android:color/black" />
     </RelativeLayout>
 
 </FrameLayout>
