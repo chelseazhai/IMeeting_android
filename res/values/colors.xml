@@ -2,6 +2,7 @@
 <resources>
 
     <!-- black transparent color -->
+    <color name="quarter_transparent">#30000000</color>
     <color name="half_transparent">#70000000</color>
     <color name="threequarters_transparent">#b0000000</color>
 

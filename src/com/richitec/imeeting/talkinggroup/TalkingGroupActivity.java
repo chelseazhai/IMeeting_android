@@ -1,12 +1,8 @@
 package com.richitec.imeeting.talkinggroup;
 
-import java.util.List;
-import java.util.Map;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TableRow;
 
@@ -31,10 +27,7 @@ public class TalkingGroupActivity extends IMeetingNavigationActivity {
 		// set content view
 		setContentView(R.layout.talking_group_activity_layout);
 
-		// generate talking group activity bottom toolBar items data list and
-		// init bottom toolBar items
-		List<Map<String, Object>> _bottomToolbarItemsDataList = generateBottomToolbarItemsDataList();
-
+		// get talking group bottom toolBar tableRow
 		TableRow _talkingGroupBottomToolbarTableRow = (TableRow) findViewById(R.id.talkingGroup_bottomToolbar_tableRow);
 
 		for (int i = 0; i < _talkingGroupBottomToolbarTableRow.getChildCount(); i++) {
@@ -44,11 +37,8 @@ public class TalkingGroupActivity extends IMeetingNavigationActivity {
 							R.id.talkingGroup_bottomToolbarItem_btn);
 
 			// init each bottom toolBar item
-			_bottomToolbarItemBtn.setText((String) _bottomToolbarItemsDataList
-					.get(i).get(""));
-			_bottomToolbarItemBtn
-					.setOnClickListener((OnClickListener) _bottomToolbarItemsDataList
-							.get(i).get(""));
+			_bottomToolbarItemBtn.setText("Test");
+			_bottomToolbarItemBtn.setOnClickListener(null);
 		}
 	}
 
@@ -66,11 +56,6 @@ public class TalkingGroupActivity extends IMeetingNavigationActivity {
 	@Override
 	protected boolean hideNavigationBarWhenOnCreated() {
 		return true;
-	}
-
-	// generate talking group activity bottom toolBar items data list
-	private List<Map<String, Object>> generateBottomToolbarItemsDataList() {
-		return null;
 	}
 
 }

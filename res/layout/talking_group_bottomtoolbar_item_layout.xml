@@ -18,6 +18,7 @@
         android:layout_height="81dp"
         android:layout_toLeftOf="@id/talkingGroup_bottomToolbarItem_separateLine_imageView"
         android:background="@drawable/talkinggroup_bottomtoolbaritem_bg"
+        android:gravity="center"
         android:textColor="@android:color/white" />
 
 </RelativeLayout>
