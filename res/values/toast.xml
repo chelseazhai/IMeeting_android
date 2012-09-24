@@ -26,5 +26,8 @@
 
     <!-- contact select activity -->
     <string name="toast_manualInputContact_phoneNumber_null">Added phone number mustn\'t null</string>
+    <string name="toast_selectedContact_existedInTalkingGroup_attendees"> use the selected phone had been joined in talking group</string>
+    <string name="toast_selectedContact_useTheSelectedPhone_existedInPreinTalkingGroup_contacts"> use the selected phone had been prepared for joining in talking group</string>
+    <string name="toast_selectedContact_useAnotherPhone_existedInPreinTalkingGroup_contacts"> use another phone had been prepared for joining in talking group</string>
 
 </resources>

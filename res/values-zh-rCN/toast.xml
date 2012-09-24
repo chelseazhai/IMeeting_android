@@ -23,8 +23,11 @@
     <string name="toast_accountReg_twoPwd_notMatched">注册密码和验证密码不一致</string>
     <string name="toast_accountRegister_timeout">注册超时，请重新注册</string>
     <string name="toast_accountRegister_successful">注册成功，请及时登录来享受群聊</string>
-    
+
     <!-- contact select activity -->
     <string name="toast_manualInputContact_phoneNumber_null">添加的手机号码不能为空</string>
+    <string name="toast_selectedContact_existedInTalkingGroup_attendees"> 已使用此号码加入群聊</string>
+    <string name="toast_selectedContact_useTheSelectedPhone_existedInPreinTalkingGroup_contacts"> 已使用此号码准备加入群聊</string>
+    <string name="toast_selectedContact_useAnotherPhone_existedInPreinTalkingGroup_contacts"> 已使用其他号码准备加入群聊</string>
 
 </resources>

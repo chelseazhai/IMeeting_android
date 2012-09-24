@@ -26,5 +26,8 @@
 
     <!-- contact select activity -->
     <string name="toast_manualInputContact_phoneNumber_null">添加的手機號碼不能為空</string>
+    <string name="toast_selectedContact_existedInTalkingGroup_attendees"> 已使用此號碼加入群聊</string>
+    <string name="toast_selectedContact_useTheSelectedPhone_existedInPreinTalkingGroup_contacts"> 已使用此號碼準備加入群聊</string>
+    <string name="toast_selectedContact_useAnotherPhone_existedInPreinTalkingGroup_contacts"> 已使用其他號碼準備加入群聊</string>
 
 </resources>

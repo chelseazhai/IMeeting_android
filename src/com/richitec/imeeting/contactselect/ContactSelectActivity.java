@@ -333,16 +333,16 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 	// generate in or prein talking group adapter data
 	private Map<String, Object> generateIn6PreinTalkingGroupAdapterData(
-			String displayName6Phone, boolean isIntalkingGroup) {
+			String displayName6Phone, boolean isInTalkingGroup) {
 		Map<String, Object> _dataMap = new HashMap<String, Object>();
 
 		// set data
 		_dataMap.put(
 				SELECTED_CONTACT_DISPLAYNAME,
-				isIntalkingGroup ? AddressBookManager.getInstance()
+				isInTalkingGroup ? AddressBookManager.getInstance()
 						.getContactsDisplayNamesByPhone(displayName6Phone)
 						.get(0) : displayName6Phone);
-		_dataMap.put(SELECTED_CONTACT_IS_IN_TALKINGGROUP, isIntalkingGroup);
+		_dataMap.put(SELECTED_CONTACT_IS_IN_TALKINGGROUP, isInTalkingGroup);
 
 		return _dataMap;
 	}
@@ -404,6 +404,22 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		} else {
 			_selectedContact = allNamePhoneticSortedContactsInfoArray
 					.get(contactPosition);
+		}
+
+		// check the selected contact is in talking group attendees
+		if (_mTalkingGroupContactsPhoneArray.contains(selectedPhone)) {
+			Toast.makeText(
+					ContactSelectActivity.this,
+					AddressBookManager.getInstance()
+							.getContactsDisplayNamesByPhone(selectedPhone)
+							.get(0)
+							+ ContactSelectActivity.this
+									.getResources()
+									.getString(
+											R.string.toast_selectedContact_existedInTalkingGroup_attendees),
+					Toast.LENGTH_SHORT).show();
+
+			return;
 		}
 
 		// set selected contact the selected phone
@@ -694,17 +710,96 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				Long _manualInputContactId = _addressBookManager
 						.isContactWithPhoneInAddressBook(_addedManualInputContactPhoneNumber);
 				if (null == _manualInputContactId) {
-					Log.d(LOG_TAG, "generate new added contact");
+					// check the new added contact is in talking group attendees
+					if (_mTalkingGroupContactsPhoneArray
+							.contains(_addedManualInputContactPhoneNumber)) {
+						Toast.makeText(
+								ContactSelectActivity.this,
+								AddressBookManager
+										.getInstance()
+										.getContactsDisplayNamesByPhone(
+												_addedManualInputContactPhoneNumber)
+										.get(0)
+										+ ContactSelectActivity.this
+												.getResources()
+												.getString(
+														R.string.toast_selectedContact_existedInTalkingGroup_attendees),
+								Toast.LENGTH_SHORT).show();
+
+						return;
+					}
+					// check the new added contact is in prein talking group
+					// contacts
+					for (ContactBean _preinTalkingGroupContact : _mPreinTalkingGroupContactsInfoArray) {
+						if (_addedManualInputContactPhoneNumber
+								.equalsIgnoreCase((String) _preinTalkingGroupContact
+										.getExtension().get(
+												SELECTED_CONTACT_SELECTEDPHONE))) {
+							Toast.makeText(
+									ContactSelectActivity.this,
+									_preinTalkingGroupContact.getDisplayName()
+											+ ContactSelectActivity.this
+													.getResources()
+													.getString(
+															R.string.toast_selectedContact_useTheSelectedPhone_existedInPreinTalkingGroup_contacts),
+									Toast.LENGTH_SHORT).show();
+
+							return;
+						}
+					}
+
 					// generate new added contact
 					ContactBean _newAddedContact = new ContactBean();
 
-					// ??
+					// init new added contact
+					// set aggregated id
+					_newAddedContact.setId(-1L);
+					// set display name
+					_newAddedContact
+							.setDisplayName(_addedManualInputContactPhoneNumber);
+					// set phone numbers
+					List<String> _phoneNumbersList = new ArrayList<String>();
+					_phoneNumbersList.add(_addedManualInputContactPhoneNumber);
+					_newAddedContact.setPhoneNumbers(_phoneNumbersList);
+					// set selected contact the selected phone
+					_newAddedContact.getExtension().put(
+							SELECTED_CONTACT_SELECTEDPHONE,
+							_addedManualInputContactPhoneNumber);
+					// set contact is selected flag
 					_newAddedContact.getExtension().put(CONTACT_IS_SELECTED,
 							true);
+
+					// add new added contact to in and prein talking group
+					// contacts adapter data list and notify adapter changed
+					_mPreinTalkingGroupContactsInfoArray.add(_newAddedContact);
+					_mIn7PreinTalkingGroupContactsAdapterDataList
+							.add(generateIn6PreinTalkingGroupAdapterData(
+									_addedManualInputContactPhoneNumber, false));
+					((InAB6In7PreinTalkingGroupContactAdapter) _mIn7PreinTalkingGroupContactsListView
+							.getAdapter()).notifyDataSetChanged();
 				} else {
 					// get the matched contact
 					ContactBean _matchedContact = _addressBookManager
 							.getContactByAggregatedId(_manualInputContactId);
+
+					// check the matched contact is selected flag
+					if ((Boolean) _matchedContact.getExtension().get(
+							CONTACT_IS_SELECTED)) {
+						Toast.makeText(
+								ContactSelectActivity.this,
+								_matchedContact.getDisplayName()
+										+ ContactSelectActivity.this
+												.getResources()
+												.getString(
+														_addedManualInputContactPhoneNumber
+																.equalsIgnoreCase((String) _matchedContact
+																		.getExtension()
+																		.get(SELECTED_CONTACT_SELECTEDPHONE)) ? R.string.toast_selectedContact_useTheSelectedPhone_existedInPreinTalkingGroup_contacts
+																: R.string.toast_selectedContact_useAnotherPhone_existedInPreinTalkingGroup_contacts),
+								Toast.LENGTH_SHORT).show();
+
+						return;
+					}
 
 					// check the matched contact in address book listView
 					// present contacts list
