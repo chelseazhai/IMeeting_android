@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/add_manualInputContact_popupWindow_relativeLayout"
         android:layout_width="260dp"
-        android:layout_height="150dp"
+        android:layout_height="148dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="120dp"
         android:background="@drawable/add_manualinputcontact_popupwindow_relativelayout_bg" >
@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="-6dp"
             android:background="@android:color/transparent"
             android:text="@string/add_manualInputContact_popupWindow_dismiss_btn_title"
             android:textColor="@android:color/white"
@@ -31,7 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="44dp"
             android:ellipsize="end"
             android:hint="@string/add_manualInputContact_editText_hint"
             android:inputType="phone" >
@@ -46,7 +47,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="12dp"
-            android:layout_marginTop="24dp"
             android:background="@drawable/add_manualinputcontact_popupwindow_confirmbtn_bg"
             android:text="@string/add_manualInputContact_confirmBtn_title"
             android:textColor="@drawable/component_normal7pressed_textcolor" />
