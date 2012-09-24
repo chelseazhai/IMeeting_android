@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="@android:color/white" />
+    <item android:drawable="@color/dark_wheat" android:state_pressed="true"/>
+    <item android:drawable="@drawable/add_manualinputcontact_popupwindow_confirmbtn_shapebg"/>
 
-    <corners android:radius="10dp" />
-
-    <size
-        android:height="40dp"
-        android:width="80dp" />
-
-</shape>
+</selector>
