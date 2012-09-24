@@ -6,7 +6,7 @@
     android:gravity="center"
     android:minHeight="54dp"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:textColor="@drawable/contact_phonenumbers_select_phoneslistitem_textcolor"
+    android:textColor="@drawable/component_normal7pressed_textcolor"
     android:textStyle="bold" >
 
 </TextView>

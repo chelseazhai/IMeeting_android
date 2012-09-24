@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/dark_wheat" android:state_pressed="true"/>
-    <item android:drawable="@drawable/add_manualinputcontact_popupwindow_confirmbtn_shapebg"/>
+    <item android:drawable="@drawable/add_manualinputcontact_popupwindow_confirmbtn_touchdown_shapebg" android:state_pressed="true"/>
+    <item android:drawable="@drawable/add_manualinputcontact_popupwindow_confirmbtn_normal_shapebg"/>
 
 </selector>

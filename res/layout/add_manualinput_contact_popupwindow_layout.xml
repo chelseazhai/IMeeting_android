@@ -49,7 +49,7 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/add_manualinputcontact_popupwindow_confirmbtn_bg"
             android:text="@string/add_manualInputContact_confirmBtn_title"
-            android:textColor="@android:color/black" />
+            android:textColor="@drawable/component_normal7pressed_textcolor" />
     </RelativeLayout>
 
 </FrameLayout>
