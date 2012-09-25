@@ -35,6 +35,7 @@ import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.addressbook.ContactBean;
 import com.richitec.commontoolkit.customcomponent.BarButtonItem.BarButtonItemStyle;
 import com.richitec.commontoolkit.customcomponent.CommonPopupWindow;
+import com.richitec.commontoolkit.customcomponent.ListViewQuickAlphabetBar;
 import com.richitec.commontoolkit.user.UserManager;
 import com.richitec.commontoolkit.utils.StringUtils;
 import com.richitec.imeeting.R;
@@ -171,6 +172,10 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		// bind contacts in address book listView item click listener
 		_mABContactsListView
 				.setOnItemClickListener(new ContactsInABListViewOnItemClickListener());
+
+		// ??, test by ares
+		ListViewQuickAlphabetBar _ares = new ListViewQuickAlphabetBar(
+				_mABContactsListView);
 
 		// bind contact search editText text watcher
 		((EditText) findViewById(R.id.contact_search_editText))

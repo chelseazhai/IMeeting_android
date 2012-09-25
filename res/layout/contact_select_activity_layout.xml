@@ -93,17 +93,22 @@
                 </EditText>
             </RelativeLayout>
 
-            <ListView
-                android:id="@+id/contactInAB_listView"
+            <FrameLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:cacheColorHint="@android:color/transparent"
-                android:divider="@drawable/img_addressbook_contact_listview_divider_bg"
-                android:fadingEdge="none"
-                android:headerDividersEnabled="false"
-                android:listSelector="@android:color/transparent"
-                android:scrollbars="none" >
-            </ListView>
+                android:layout_height="fill_parent" >
+
+                <ListView
+                    android:id="@+id/contactInAB_listView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:divider="@drawable/img_addressbook_contact_listview_divider_bg"
+                    android:fadingEdge="none"
+                    android:headerDividersEnabled="false"
+                    android:listSelector="@android:color/transparent"
+                    android:scrollbars="none" >
+                </ListView>
+            </FrameLayout>
         </LinearLayout>
     </RelativeLayout>
 
