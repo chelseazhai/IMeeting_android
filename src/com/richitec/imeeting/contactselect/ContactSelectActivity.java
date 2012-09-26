@@ -174,9 +174,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				.setOnItemClickListener(new ContactsInABListViewOnItemClickListener());
 
 		// ??, test by ares
-		ListViewQuickAlphabetBar _ares = new ListViewQuickAlphabetBar(
-				_mABContactsListView);
-		_ares.bindListViewAlphabet();
+		new ListViewQuickAlphabetBar(_mABContactsListView);
 
 		// bind contact search editText text watcher
 		((EditText) findViewById(R.id.contact_search_editText))
