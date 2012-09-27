@@ -107,14 +107,14 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 	}
 
 	// generate my talking group history list adapter data list
-	private List<Map<String, Object>> generateMyTalkingGroupHistoryListDataList(
+	private List<Map<String, ?>> generateMyTalkingGroupHistoryListDataList(
 			JSONArray talkingGroupHistoryListInfo) {
 		// talking group created time data format, format unix timeStamp
 		final DateFormat _talkingGroupCreatedTimeDataFormat = new SimpleDateFormat(
 				"yyyy-MM-dd HH:mm");
 
 		// my talking group history list view data list
-		List<Map<String, Object>> _dataList = new ArrayList<Map<String, Object>>();
+		List<Map<String, ?>> _dataList = new ArrayList<Map<String, ?>>();
 
 		// generate data
 		for (int i = 0; i < talkingGroupHistoryListInfo.length(); i++) {

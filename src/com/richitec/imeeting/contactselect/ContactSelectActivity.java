@@ -16,6 +16,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -27,15 +28,18 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.addressbook.ContactBean;
+import com.richitec.commontoolkit.customadapter.CommonListAdapter;
 import com.richitec.commontoolkit.customcomponent.BarButtonItem.BarButtonItemStyle;
 import com.richitec.commontoolkit.customcomponent.CommonPopupWindow;
 import com.richitec.commontoolkit.customcomponent.ListViewQuickAlphabetBar;
+import com.richitec.commontoolkit.customcomponent.ListViewQuickAlphabetBar.OnTouchListener;
 import com.richitec.commontoolkit.user.UserManager;
 import com.richitec.commontoolkit.utils.StringUtils;
 import com.richitec.imeeting.R;
@@ -99,7 +103,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	private final List<ContactBean> _mPreinTalkingGroupContactsInfoArray = new ArrayList<ContactBean>();
 
 	// in and prein talking group contacts adapter data list
-	private final List<Map<String, Object>> _mIn7PreinTalkingGroupContactsAdapterDataList = new ArrayList<Map<String, Object>>();
+	private final List<Map<String, ?>> _mIn7PreinTalkingGroupContactsAdapterDataList = new ArrayList<Map<String, ?>>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -168,13 +172,14 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		// set contacts in address book listView adapter
 		_mABContactsListView
 				.setAdapter(generateInABContactAdapter(_mPresentContactsInABInfoArray));
+		// init address book contacts listView quick alphabet bar and add on
+		// touch listener
+		new ListViewQuickAlphabetBar(_mABContactsListView)
+				.setOnTouchListener(new ContactsInABListViewQuickAlphabetBarOnTouchListener());
 
 		// bind contacts in address book listView item click listener
 		_mABContactsListView
 				.setOnItemClickListener(new ContactsInABListViewOnItemClickListener());
-
-		// ??, test by ares
-		new ListViewQuickAlphabetBar(_mABContactsListView);
 
 		// bind contact search editText text watcher
 		((EditText) findViewById(R.id.contact_search_editText))
@@ -230,7 +235,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		final String CONTACT_PHONES = "contact_phones";
 
 		// set address book contacts list view present data list
-		List<Map<String, Object>> _addressBookContactsPresentDataList = new ArrayList<Map<String, Object>>();
+		List<Map<String, ?>> _addressBookContactsPresentDataList = new ArrayList<Map<String, ?>>();
 
 		for (ContactBean _contact : presentContactsInAB) {
 			// generate data
@@ -309,6 +314,13 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			} else {
 				_dataMap.put(CONTACT_PHONES, _contact.getFormatPhoneNumbers());
 			}
+
+			// put alphabet index
+			_dataMap.put(
+					CommonListAdapter.ALPHABET_INDEX,
+					null == _contact.getNamePhoneticsString() ? "#" : _contact
+							.getNamePhoneticsString());
+
 			// get in address book contact is selected flag saved in contact
 			// bean extension structured
 			Boolean _isSelected = (Boolean) _contact.getExtension().get(
@@ -323,7 +335,11 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			_addressBookContactsPresentDataList.add(_dataMap);
 		}
 
-		return new InAB6In7PreinTalkingGroupContactAdapter(
+		// get address book contacts listView adapter
+		InAB6In7PreinTalkingGroupContactAdapter _addressBookContactsListViewAdapter = (InAB6In7PreinTalkingGroupContactAdapter) _mABContactsListView
+				.getAdapter();
+
+		return null == _addressBookContactsListViewAdapter ? new InAB6In7PreinTalkingGroupContactAdapter(
 				this,
 				_addressBookContactsPresentDataList,
 				R.layout.addressbook_contact_layout,
@@ -332,7 +348,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				new int[] {
 						R.id.adressBook_contact_displayName_textView,
 						R.id.addressBook_contact_phoneNumber_textView,
-						R.id.addressBook_contact_unsel6sel_imageView_parentFrameLayout });
+						R.id.addressBook_contact_unsel6sel_imageView_parentFrameLayout })
+				: _addressBookContactsListViewAdapter
+						.setData(_addressBookContactsPresentDataList);
 	}
 
 	// generate in or prein talking group adapter data
@@ -1065,6 +1083,50 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					}
 				}
 			}
+		}
+
+	}
+
+	// contacts in address book listView quick alphabet bar on touch listener
+	class ContactsInABListViewQuickAlphabetBarOnTouchListener extends
+			OnTouchListener {
+
+		@Override
+		protected boolean onTouch(RelativeLayout alphabetRelativeLayout,
+				ListView dependentListView, MotionEvent event,
+				Character alphabeticalCharacter) {
+			// get scroll position
+			if (dependentListView.getAdapter() instanceof CommonListAdapter) {
+				// get dependent listView adapter
+				CommonListAdapter _commonListAdapter = (CommonListAdapter) dependentListView
+						.getAdapter();
+
+				for (int i = 0; i < _commonListAdapter.getCount(); i++) {
+					// get alphabet index
+					@SuppressWarnings("unchecked")
+					String _alphabetIndex = (String) ((Map<String, ?>) _commonListAdapter
+							.getItem(i)).get(CommonListAdapter.ALPHABET_INDEX);
+
+					// check alphabet index
+					if (_alphabetIndex.equalsIgnoreCase("")
+							|| !_alphabetIndex.startsWith(String.valueOf(
+									alphabeticalCharacter).toLowerCase())) {
+						continue;
+					} else {
+						Log.d(LOG_TAG, "index = " + i);
+						// set selection
+						dependentListView.setSelection(i);
+
+						break;
+					}
+				}
+			} else {
+				Log.e(LOG_TAG, "Dependent listView adapter = "
+						+ dependentListView.getAdapter() + " and class name = "
+						+ dependentListView.getAdapter().getClass().getName());
+			}
+
+			return true;
 		}
 
 	}

@@ -26,8 +26,8 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 	private static final String LOG_TAG = "MyGroupHistoryListItemAdapter";
 
 	public TalkingGroupHistoryListItemAdapter(Context context,
-			List<? extends Map<String, ?>> data, int itemsLayoutResId,
-			String[] dataKeys, int[] itemsComponentResIds) {
+			List<Map<String, ?>> data, int itemsLayoutResId, String[] dataKeys,
+			int[] itemsComponentResIds) {
 		super(context, data, itemsLayoutResId, dataKeys, itemsComponentResIds);
 	}
 

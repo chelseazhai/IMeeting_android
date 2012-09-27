@@ -21,8 +21,8 @@ public class InAB6In7PreinTalkingGroupContactAdapter extends CommonListAdapter {
 	private static final String LOG_TAG = "InAB6In7PreinTalkingGroupContactAdapter";
 
 	public InAB6In7PreinTalkingGroupContactAdapter(Context context,
-			List<? extends Map<String, ?>> data, int itemsLayoutResId,
-			String[] dataKeys, int[] itemsComponentResIds) {
+			List<Map<String, ?>> data, int itemsLayoutResId, String[] dataKeys,
+			int[] itemsComponentResIds) {
 		super(context, data, itemsLayoutResId, dataKeys, itemsComponentResIds);
 	}
 
