@@ -1113,7 +1113,6 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 									alphabeticalCharacter).toLowerCase())) {
 						continue;
 					} else {
-						Log.d(LOG_TAG, "index = " + i);
 						// set selection
 						dependentListView.setSelection(i);
 
