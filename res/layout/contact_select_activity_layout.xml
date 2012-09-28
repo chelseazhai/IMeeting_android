@@ -86,6 +86,7 @@
                     android:layout_height="40dp"
                     android:layout_toLeftOf="@id/add_manualInputContact_btn"
                     android:drawableLeft="@drawable/ic_action_search"
+                    android:ellipsize="end"
                     android:hint="@string/contact_search_editText_hint"
                     android:inputType="text" >
 

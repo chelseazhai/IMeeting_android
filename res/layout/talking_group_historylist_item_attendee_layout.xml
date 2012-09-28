@@ -16,8 +16,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/attendee_avatar_imageView"
-        android:ellipsize="middle"
+        android:ellipsize="end"
         android:gravity="center"
+        android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/dark_gray" />
 

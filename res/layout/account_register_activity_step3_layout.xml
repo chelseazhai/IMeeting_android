@@ -25,6 +25,7 @@
             android:layout_toRightOf="@id/register_step3_textView"
             android:ellipsize="end"
             android:gravity="right"
+            android:singleLine="true"
             android:text="@string/register_step3_description"
             android:textColor="@color/light_dim_gray" />
     </RelativeLayout>
