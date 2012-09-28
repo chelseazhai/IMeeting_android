@@ -231,8 +231,8 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	private ListAdapter generateInABContactAdapter(
 			List<ContactBean> presentContactsInAB) {
 		// in address book contacts adapter data keys
-		final String CONTACT_NAME = "contact_name";
-		final String CONTACT_PHONES = "contact_phones";
+		final String PRESENT_CONTACT_NAME = "present_contact_name";
+		final String PRESENT_CONTACT_PHONES = "contact_phones";
 
 		// set address book contacts list view present data list
 		List<Map<String, ?>> _addressBookContactsPresentDataList = new ArrayList<Map<String, ?>>();
@@ -276,9 +276,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 									Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				}
 
-				_dataMap.put(CONTACT_NAME, _displayName);
+				_dataMap.put(PRESENT_CONTACT_NAME, _displayName);
 			} else {
-				_dataMap.put(CONTACT_NAME, _contact.getDisplayName());
+				_dataMap.put(PRESENT_CONTACT_NAME, _contact.getDisplayName());
 			}
 			if (ContactSearchStatus.SEARCHBYPHONE == _mContactSearchStatus) {
 				// get format phone number string
@@ -310,16 +310,15 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					}
 				}
 
-				_dataMap.put(CONTACT_PHONES, _formatPhoneNumberString);
+				_dataMap.put(PRESENT_CONTACT_PHONES, _formatPhoneNumberString);
 			} else {
-				_dataMap.put(CONTACT_PHONES, _contact.getFormatPhoneNumbers());
+				_dataMap.put(PRESENT_CONTACT_PHONES,
+						_contact.getFormatPhoneNumbers());
 			}
 
 			// put alphabet index
-			_dataMap.put(
-					CommonListAdapter.ALPHABET_INDEX,
-					null == _contact.getNamePhoneticsString() ? "#" : _contact
-							.getNamePhoneticsString());
+			_dataMap.put(CommonListAdapter.ALPHABET_INDEX,
+					_contact.getNamePhoneticsString());
 
 			// get in address book contact is selected flag saved in contact
 			// bean extension structured
@@ -343,7 +342,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				this,
 				_addressBookContactsPresentDataList,
 				R.layout.addressbook_contact_layout,
-				new String[] { CONTACT_NAME, CONTACT_PHONES,
+				new String[] { PRESENT_CONTACT_NAME, PRESENT_CONTACT_PHONES,
 						CONTACT_IS_SELECTED },
 				new int[] {
 						R.id.adressBook_contact_displayName_textView,
@@ -1108,11 +1107,9 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 							.getItem(i)).get(CommonListAdapter.ALPHABET_INDEX);
 
 					// check alphabet index
-					if (_alphabetIndex.equalsIgnoreCase("")
-							|| !_alphabetIndex.startsWith(String.valueOf(
+					if (null == _alphabetIndex
+							|| _alphabetIndex.startsWith(String.valueOf(
 									alphabeticalCharacter).toLowerCase())) {
-						continue;
-					} else {
 						// set selection
 						dependentListView.setSelection(i);
 
