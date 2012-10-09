@@ -93,7 +93,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 	// define contact phone numbers select popup window
 	private final ContactPhoneNumbersSelectPopupWindow _mContactPhoneNumbersSelectPopupWindow = new ContactPhoneNumbersSelectPopupWindow(
-			R.layout.contact_phonenumbers_select_layout,
+			R.layout.contact_phonenumbers_select_popupwindow_layout,
 			LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 
 	// in and prein talking group contacts list view
