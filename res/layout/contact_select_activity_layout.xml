@@ -106,8 +106,7 @@
                     android:divider="@drawable/img_addressbook_contact_listview_divider_bg"
                     android:fadingEdge="none"
                     android:headerDividersEnabled="false"
-                    android:listSelector="@android:color/transparent"
-                    android:scrollbars="none" >
+                    android:listSelector="@android:color/transparent" >
                 </ListView>
             </FrameLayout>
         </LinearLayout>
