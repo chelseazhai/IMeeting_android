@@ -232,7 +232,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			List<ContactBean> presentContactsInAB) {
 		// in address book contacts adapter data keys
 		final String PRESENT_CONTACT_NAME = "present_contact_name";
-		final String PRESENT_CONTACT_PHONES = "contact_phones";
+		final String PRESENT_CONTACT_PHONES = "present_contact_phones";
 
 		// set address book contacts list view present data list
 		List<Map<String, ?>> _addressBookContactsPresentDataList = new ArrayList<Map<String, ?>>();
