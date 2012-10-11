@@ -252,7 +252,8 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 							AddressBookManager.PHONENUMBER_MATCHING_INDEXES);
 
 			// set data
-			if (ContactSearchStatus.SEARCHBYNAME == _mContactSearchStatus) {
+			if (ContactSearchStatus.SEARCHBYNAME == _mContactSearchStatus
+					|| ContactSearchStatus.SEARCHBYCHINESENAME == _mContactSearchStatus) {
 				// get display name
 				SpannableString _displayName = new SpannableString(
 						_contact.getDisplayName());
@@ -545,7 +546,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 	// contact search status
 	enum ContactSearchStatus {
-		NONESEARCH, SEARCHBYNAME, SEARCHBYPHONE
+		NONESEARCH, SEARCHBYNAME, SEARCHBYCHINESENAME, SEARCHBYPHONE
 	}
 
 	// nav back button on click listener
@@ -611,6 +612,8 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				_mContactSearchStatus = ContactSearchStatus.NONESEARCH;
 			} else if (s.toString().matches("^[0-9]*$")) {
 				_mContactSearchStatus = ContactSearchStatus.SEARCHBYPHONE;
+			} else if (s.toString().matches(".*[\u4e00-\u9fa5].*")) {
+				_mContactSearchStatus = ContactSearchStatus.SEARCHBYCHINESENAME;
 			} else {
 				_mContactSearchStatus = ContactSearchStatus.SEARCHBYNAME;
 			}
@@ -620,6 +623,11 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			case SEARCHBYNAME:
 				_mPresentContactsInABInfoArray = AddressBookManager
 						.getInstance().getContactsByName(s.toString());
+				break;
+
+			case SEARCHBYCHINESENAME:
+				_mPresentContactsInABInfoArray = AddressBookManager
+						.getInstance().getContactsByChineseName(s.toString());
 				break;
 
 			case SEARCHBYPHONE:
