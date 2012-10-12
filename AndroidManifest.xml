@@ -28,79 +28,39 @@
             android:name=".account.AccountSettingActivity"
             android:label="@string/title_activity_account_setting"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".account.AccountRegisterActivity"
             android:label="@string/title_activity_account_register"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".talkinggroup.TalkingGroupHistoryListActivity"
             android:label="@string/title_activity_talking_group_history_list"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".assistant.SettingActivity"
             android:label="@string/title_activity_setting"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".contactselect.ContactSelectActivity"
             android:label="@string/title_activity_contact_select" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".talkinggroup.TalkingGroupActivity"
             android:label="@string/title_activity_talking_group"
             android:theme="@style/WithBgImg7NoTitleFullScreenActivityTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".assistant.SupportActivity"
             android:label="@string/title_activity_support" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".assistant.AboutActivity"
             android:label="@string/title_activity_about"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
