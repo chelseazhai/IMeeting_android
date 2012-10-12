@@ -43,11 +43,9 @@ public class InAB6In7PreinTalkingGroupContactAdapter extends CommonListAdapter {
 		// contact in talking group flag imageView or contact in address book
 		// selected/unselected flag imageView parent frameLayout
 		else if (view instanceof ImageView || view instanceof FrameLayout) {
-			// define item data boolean
-			Boolean _itemDataBoolean;
 			try {
-				// convert item data to boolean
-				_itemDataBoolean = (Boolean) _itemData;
+				// define item data boolean and convert item data to boolean
+				Boolean _itemDataBoolean = (Boolean) _itemData;
 
 				// check view type
 				if (view instanceof ImageView) {

@@ -60,11 +60,10 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 		}
 		// tableRow
 		else if (view instanceof TableRow) {
-			// define item data json array
-			JSONArray _itemDataJSONArray;
 			try {
-				// convert item data to json array
-				_itemDataJSONArray = (JSONArray) _itemData;
+				// define item data json array and convert item data to json
+				// array
+				JSONArray _itemDataJSONArray = (JSONArray) _itemData;
 
 				// process each table row item
 				for (int i = 0; i < ((TableRow) view).getVirtualChildCount(); i++) {
