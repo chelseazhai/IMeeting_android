@@ -137,7 +137,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 											R.string.bg_server_myTalkingGroupHistoryList_listStatus));
 
 			// define each talking group data map
-			HashMap<String, Object> _dataMap = new HashMap<String, Object>();
+			Map<String, Object> _dataMap = new HashMap<String, Object>();
 
 			// set data
 			_dataMap.put(

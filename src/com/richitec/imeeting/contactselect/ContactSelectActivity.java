@@ -239,7 +239,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 		for (ContactBean _contact : presentContactsInAB) {
 			// generate data
-			HashMap<String, Object> _dataMap = new HashMap<String, Object>();
+			Map<String, Object> _dataMap = new HashMap<String, Object>();
 
 			// get contact name and phone matching indexes
 			@SuppressWarnings("unchecked")
