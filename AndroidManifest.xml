@@ -46,7 +46,8 @@
         </activity>
         <activity
             android:name=".contactselect.ContactSelectActivity"
-            android:label="@string/title_activity_contact_select" >
+            android:label="@string/title_activity_contact_select"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".talkinggroup.TalkingGroupActivity"
