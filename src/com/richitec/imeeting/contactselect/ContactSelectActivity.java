@@ -78,8 +78,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 	private ListView _mABContactsListView;
 
 	// all address book name phonetic sorted contacts detail info list
-	private final List<ContactBean> allNamePhoneticSortedContactsInfoArray = AddressBookManager
-			.getInstance().getAllNamePhoneticSortedContactsInfoArray();
+	private static List<ContactBean> _mAllNamePhoneticSortedContactsInfoArray;
 	// present contacts in address book detail info list
 	private List<ContactBean> _mPresentContactsInABInfoArray;
 
@@ -104,6 +103,12 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 	// in and prein talking group contacts adapter data list
 	private final List<Map<String, ?>> _mIn7PreinTalkingGroupContactsAdapterDataList = new ArrayList<Map<String, ?>>();
+
+	// init all name phonetic sorted contacts info array
+	public static void initNamePhoneticSortedContactsInfoArray() {
+		_mAllNamePhoneticSortedContactsInfoArray = AddressBookManager
+				.getInstance().getAllNamePhoneticSortedContactsInfoArray();
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -160,7 +165,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 		}
 
 		// init present contacts in address book detail info array
-		_mPresentContactsInABInfoArray = allNamePhoneticSortedContactsInfoArray;
+		_mPresentContactsInABInfoArray = _mAllNamePhoneticSortedContactsInfoArray;
 
 		// add moderator to talking group attendees list as header
 		_mTalkingGroupContactsPhoneArray.add(0, UserManager.getInstance()
@@ -424,7 +429,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			_selectedContact = _mPresentContactsInABInfoArray
 					.get(contactPosition);
 		} else {
-			_selectedContact = allNamePhoneticSortedContactsInfoArray
+			_selectedContact = _mAllNamePhoneticSortedContactsInfoArray
 					.get(contactPosition);
 		}
 
@@ -637,7 +642,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 			case NONESEARCH:
 			default:
-				_mPresentContactsInABInfoArray = allNamePhoneticSortedContactsInfoArray;
+				_mPresentContactsInABInfoArray = _mAllNamePhoneticSortedContactsInfoArray;
 				break;
 			}
 
@@ -843,7 +848,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 						// mark contact selected
 						markContactSelected(
 								_addedManualInputContactPhoneNumber,
-								allNamePhoneticSortedContactsInfoArray
+								_mAllNamePhoneticSortedContactsInfoArray
 										.indexOf(_matchedContact), false);
 					}
 				}

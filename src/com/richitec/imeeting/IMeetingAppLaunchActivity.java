@@ -10,6 +10,7 @@ import com.richitec.commontoolkit.user.UserManager;
 import com.richitec.commontoolkit.utils.DataStorageUtils;
 import com.richitec.imeeting.account.AccountSettingActivity;
 import com.richitec.imeeting.account.AccountSettingActivity.AppAccountStatus;
+import com.richitec.imeeting.contactselect.ContactSelectActivity;
 import com.richitec.imeeting.talkinggroup.TalkingGroupHistoryListActivity;
 
 public class IMeetingAppLaunchActivity extends AppLaunchActivity {
@@ -57,6 +58,9 @@ public class IMeetingAppLaunchActivity extends AppLaunchActivity {
 	public void didFinishLaunching() {
 		// traversal address book
 		AddressBookManager.getInstance().traversalAddressBook();
+
+		// init all name phonetic sorted contacts info array
+		ContactSelectActivity.initNamePhoneticSortedContactsInfoArray();
 
 		// get login user info from storage and add to user manager
 		// save user bean and add to user manager
