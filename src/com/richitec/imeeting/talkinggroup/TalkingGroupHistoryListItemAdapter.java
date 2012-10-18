@@ -1,16 +1,23 @@
 package com.richitec.imeeting.talkinggroup;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -78,21 +85,61 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 						// check table row item type
 						// linearLayout
 						if (_tableRowItem instanceof RelativeLayout) {
+							// get address book manager reference
+							AddressBookManager _addressBookManager = AddressBookManager
+									.getInstance();
+
+							// get attendee phone
+							String _attendeePhone = JSONUtils
+									.getStringFromJSONArray(_itemDataJSONArray,
+											i);
+
 							// set attendee name
 							((TextView) ((RelativeLayout) _tableRowItem)
 									.findViewById(R.id.attendee_name_textView))
-									.setText(AddressBookManager
-											.getInstance()
+									.setText(_addressBookManager
 											.getContactsDisplayNamesByPhone(
-													JSONUtils
-															.getStringFromJSONArray(
-																	_itemDataJSONArray,
-																	i)).get(0));
-						}
-						// textView
-						else if (_tableRowItem instanceof TextView) {
-							// test by ares, ????
-							Log.d(LOG_TAG, "It's a TextView");
+													_attendeePhone).get(0));
+
+							// set attendee photo
+							// define contact photo bitmap
+							Bitmap _contactPhotoBitmap = ((BitmapDrawable) _mLayoutInflater
+									.getContext().getResources()
+									.getDrawable(R.drawable.img_default_avatar))
+									.getBitmap();
+
+							// get contact photo
+							byte[] _contactPhoto = _addressBookManager
+									.getContactsPhotosByPhone(_attendeePhone)
+									.get(0);
+
+							if (null != _contactPhoto) {
+								try {
+									// get photo data stream
+									InputStream _photoDataStream = new ByteArrayInputStream(
+											_contactPhoto);
+
+									// check photo data stream
+									if (null != _photoDataStream) {
+										_contactPhotoBitmap = BitmapFactory
+												.decodeStream(_photoDataStream);
+
+										// close photo data stream
+										_photoDataStream.close();
+									}
+								} catch (IOException e) {
+									e.printStackTrace();
+
+									Log.e(LOG_TAG,
+											"Get contact photo data stream error, error message = "
+													+ e.getMessage());
+								}
+							}
+
+							// set photo
+							((ImageView) ((RelativeLayout) _tableRowItem)
+									.findViewById(R.id.attendee_avatar_imageView))
+									.setImageBitmap(_contactPhotoBitmap);
 						}
 					} else {
 						// hide table row item

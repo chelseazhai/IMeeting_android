@@ -6,10 +6,11 @@
 
     <ImageView
         android:id="@+id/attendee_avatar_imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
         android:contentDescription="@string/attendee_avatar_content_description"
-        android:src="@drawable/img_default_avatar" />
+        android:scaleType="centerInside" />
 
     <TextView
         android:id="@+id/attendee_name_textView"
