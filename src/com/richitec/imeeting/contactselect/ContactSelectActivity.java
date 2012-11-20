@@ -440,8 +440,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					AddressBookManager.getInstance()
 							.getContactsDisplayNamesByPhone(selectedPhone)
 							.get(0)
-							+ ContactSelectActivity.this
-									.getResources()
+							+ getResources()
 									.getString(
 											R.string.toast_selectedContact_existedInTalkingGroup_attendees),
 					Toast.LENGTH_SHORT).show();
@@ -754,8 +753,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 										.getContactsDisplayNamesByPhone(
 												_addedManualInputContactPhoneNumber)
 										.get(0)
-										+ ContactSelectActivity.this
-												.getResources()
+										+ getResources()
 												.getString(
 														R.string.toast_selectedContact_existedInTalkingGroup_attendees),
 								Toast.LENGTH_SHORT).show();
@@ -772,8 +770,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 							Toast.makeText(
 									ContactSelectActivity.this,
 									_preinTalkingGroupContact.getDisplayName()
-											+ ContactSelectActivity.this
-													.getResources()
+											+ getResources()
 													.getString(
 															R.string.toast_selectedContact_useTheSelectedPhone_existedInPreinTalkingGroup_contacts),
 									Toast.LENGTH_SHORT).show();
@@ -822,8 +819,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 						Toast.makeText(
 								ContactSelectActivity.this,
 								_matchedContact.getDisplayName()
-										+ ContactSelectActivity.this
-												.getResources()
+										+ getResources()
 												.getString(
 														_addedManualInputContactPhoneNumber
 																.equalsIgnoreCase((String) _matchedContact
@@ -942,9 +938,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			// set contact phones select title textView text
 			((TextView) getContentView().findViewById(
 					R.id.contactPhones_select_titleTextView))
-					.setText(AppLaunchActivity
-							.getAppContext()
-							.getResources()
+					.setText(getResources()
 							.getString(
 									R.string.contactPhones_selectPopupWindow_titleTextView_text)
 							.replace("***", displayName));
