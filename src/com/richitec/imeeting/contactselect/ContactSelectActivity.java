@@ -884,7 +884,6 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 
 		@Override
 		protected void bindPopupWindowComponentsListener() {
-
 			// get contact phones select phone button parent linearLayout
 			LinearLayout _phoneBtnParentLinearLayout = (LinearLayout) getContentView()
 					.findViewById(
