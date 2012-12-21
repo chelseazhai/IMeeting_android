@@ -3,8 +3,8 @@ package com.richitec.imeeting.customcomponent;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import com.richitec.commontoolkit.activityextension.R;
 import com.richitec.commontoolkit.customcomponent.BarButtonItem;
+import com.richitec.imeeting.R;
 
 public class IMeetingBarButtonItem extends BarButtonItem {
 
