@@ -3,6 +3,7 @@ package com.richitec.imeeting.contactselect;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import android.app.AlertDialog;
@@ -14,7 +15,7 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.util.SparseArray;
+import android.util.SparseIntArray;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,7 +33,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.richitec.commontoolkit.activityextension.AppLaunchActivity;
+import com.richitec.commontoolkit.CommonToolkitApplication;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.addressbook.ContactBean;
 import com.richitec.commontoolkit.customadapter.CommonListAdapter;
@@ -247,8 +248,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 			Map<String, Object> _dataMap = new HashMap<String, Object>();
 
 			// get contact name and phone matching indexes
-			@SuppressWarnings("unchecked")
-			SparseArray<Integer> _nameMatchingIndexes = (SparseArray<Integer>) _contact
+			SparseIntArray _nameMatchingIndexes = (SparseIntArray) _contact
 					.getExtension().get(
 							AddressBookManager.NAME_MATCHING_INDEXES);
 			@SuppressWarnings("unchecked")
@@ -969,7 +969,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				// set phone list view adapter
 				_phoneListView
 						.setAdapter(new ArrayAdapter<String>(
-								AppLaunchActivity.getAppContext(),
+								CommonToolkitApplication.getContext(),
 								R.layout.contact_phonenumbers_select_phoneslist_item_layout,
 								phoneNumbers));
 
@@ -1115,7 +1115,8 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 					// check alphabet index
 					if (null == _alphabetIndex
 							|| _alphabetIndex.startsWith(String.valueOf(
-									alphabeticalCharacter).toLowerCase())) {
+									alphabeticalCharacter).toLowerCase(
+									Locale.getDefault()))) {
 						// set selection
 						dependentListView.setSelection(i);
 
