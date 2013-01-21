@@ -169,7 +169,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object result and userKey
-			String _result = JSONUtils.getStringFromJSONObject(StringUtils
+			String _result = JSONUtils.getStringFromJSONObject(JSONUtils
 					.toJSONObject(_respEntityString),
 					getResources()
 							.getString(R.string.bg_server_req_resp_result));
@@ -188,7 +188,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 							.isChecked();
 					String _responseLoginUserKey = JSONUtils
 							.getStringFromJSONObject(
-									StringUtils.toJSONObject(_respEntityString),
+									JSONUtils.toJSONObject(_respEntityString),
 									getResources()
 											.getString(
 													R.string.bg_server_loginReq_resp_userkey));

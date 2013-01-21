@@ -12,13 +12,14 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
     <application
-        android:name="com.richitec.commontoolkit.CommonToolkitApplication"
+        android:name="com.richitec.commontoolkit.CTApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".IMeetingAppLaunchActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppLaunchActivityTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,40 +30,48 @@
         <activity
             android:name=".account.AccountSettingActivity"
             android:label="@string/title_activity_account_setting"
+            android:screenOrientation="portrait"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
         </activity>
         <activity
             android:name=".account.AccountRegisterActivity"
             android:label="@string/title_activity_account_register"
+            android:screenOrientation="portrait"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
         </activity>
         <activity
             android:name=".talkinggroup.TalkingGroupHistoryListActivity"
             android:label="@string/title_activity_talking_group_history_list"
+            android:screenOrientation="portrait"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
         </activity>
         <activity
             android:name=".assistant.SettingActivity"
             android:label="@string/title_activity_setting"
+            android:screenOrientation="portrait"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
         </activity>
         <activity
             android:name=".contactselect.ContactSelectActivity"
             android:label="@string/title_activity_contact_select"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".talkinggroup.TalkingGroupActivity"
             android:label="@string/title_activity_talking_group"
+            android:screenOrientation="portrait"
             android:theme="@style/WithBgImg7NoTitleFullScreenActivityTheme" >
         </activity>
         <activity
             android:name=".assistant.SupportActivity"
-            android:label="@string/title_activity_support" >
+            android:label="@string/title_activity_support"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".assistant.AboutActivity"
             android:label="@string/title_activity_about"
+            android:screenOrientation="portrait"
             android:theme="@style/WithBgImg7NoTitleActivityTheme" >
         </activity>
     </application>

@@ -22,7 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.richitec.commontoolkit.CommonToolkitApplication;
+import com.richitec.commontoolkit.CTApplication;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.customadapter.CommonListAdapter;
 import com.richitec.commontoolkit.utils.JSONUtils;
@@ -55,12 +55,10 @@ public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
 			if (_itemData instanceof SpannableString) {
 				_viewNewText
 						.setSpan(
-								new ForegroundColorSpan(
-										CommonToolkitApplication
-												.getContext()
-												.getResources()
-												.getColor(R.color.dark_seagreen)),
-								0, _viewNewText.length(),
+								new ForegroundColorSpan(CTApplication
+										.getContext().getResources()
+										.getColor(R.color.dark_seagreen)), 0,
+								_viewNewText.length(),
 								Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 

@@ -20,7 +20,6 @@ import com.richitec.commontoolkit.utils.HttpUtils.HttpRequestType;
 import com.richitec.commontoolkit.utils.HttpUtils.OnHttpRequestListener;
 import com.richitec.commontoolkit.utils.HttpUtils.PostRequestFormat;
 import com.richitec.commontoolkit.utils.JSONUtils;
-import com.richitec.commontoolkit.utils.StringUtils;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.customcomponent.IMeetingNavigationActivity;
 
@@ -112,7 +111,7 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object result and userKey
-			String _result = JSONUtils.getStringFromJSONObject(StringUtils
+			String _result = JSONUtils.getStringFromJSONObject(JSONUtils
 					.toJSONObject(_respEntityString),
 					getResources()
 							.getString(R.string.bg_server_req_resp_result));
@@ -224,7 +223,7 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object result and userKey
-			String _result = JSONUtils.getStringFromJSONObject(StringUtils
+			String _result = JSONUtils.getStringFromJSONObject(JSONUtils
 					.toJSONObject(_respEntityString),
 					getResources()
 							.getString(R.string.bg_server_req_resp_result));
@@ -365,7 +364,7 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object result and userKey
-			String _result = JSONUtils.getStringFromJSONObject(StringUtils
+			String _result = JSONUtils.getStringFromJSONObject(JSONUtils
 					.toJSONObject(_respEntityString),
 					getResources()
 							.getString(R.string.bg_server_req_resp_result));

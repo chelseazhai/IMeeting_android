@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.http.HttpRequest;
@@ -28,7 +29,6 @@ import com.richitec.commontoolkit.utils.HttpUtils.HttpRequestType;
 import com.richitec.commontoolkit.utils.HttpUtils.OnHttpRequestListener;
 import com.richitec.commontoolkit.utils.HttpUtils.PostRequestFormat;
 import com.richitec.commontoolkit.utils.JSONUtils;
-import com.richitec.commontoolkit.utils.StringUtils;
 import com.richitec.imeeting.R;
 import com.richitec.imeeting.assistant.SettingActivity;
 import com.richitec.imeeting.contactselect.ContactSelectActivity;
@@ -111,7 +111,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 			JSONArray talkingGroupHistoryListInfo) {
 		// talking group created time data format, format unix timeStamp
 		final DateFormat _talkingGroupCreatedTimeDataFormat = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm");
+				"yyyy-MM-dd HH:mm", Locale.getDefault());
 
 		// my talking group history list view data list
 		List<Map<String, ?>> _dataList = new ArrayList<Map<String, ?>>();
@@ -220,7 +220,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 					.getHttpResponseEntityString(response);
 
 			// get http response entity string json object
-			JSONObject _respEntityStringJsonObject = StringUtils
+			JSONObject _respEntityStringJsonObject = JSONUtils
 					.toJSONObject(_respEntityString);
 
 			// get my talking group history list info

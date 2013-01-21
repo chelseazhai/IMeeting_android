@@ -33,7 +33,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.richitec.commontoolkit.CommonToolkitApplication;
+import com.richitec.commontoolkit.CTApplication;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
 import com.richitec.commontoolkit.addressbook.ContactBean;
 import com.richitec.commontoolkit.customadapter.CommonListAdapter;
@@ -969,7 +969,7 @@ public class ContactSelectActivity extends IMeetingNavigationActivity {
 				// set phone list view adapter
 				_phoneListView
 						.setAdapter(new ArrayAdapter<String>(
-								CommonToolkitApplication.getContext(),
+								CTApplication.getContext(),
 								R.layout.contact_phonenumbers_select_phoneslist_item_layout,
 								phoneNumbers));
 
