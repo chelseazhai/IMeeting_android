@@ -13,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.richitec.commontoolkit.customadapter.CommonListAdapter;
+import com.richitec.commontoolkit.customadapter.CTListAdapter;
 import com.richitec.imeeting.R;
 
-public class InAB6In7PreinTalkingGroupContactAdapter extends CommonListAdapter {
+public class InAB6In7PreinTalkingGroupContactAdapter extends CTListAdapter {
 
 	private static final String LOG_TAG = "InAB6In7PreinTalkingGroupContactAdapter";
 

@@ -24,11 +24,11 @@ import android.widget.TextView;
 
 import com.richitec.commontoolkit.CTApplication;
 import com.richitec.commontoolkit.addressbook.AddressBookManager;
-import com.richitec.commontoolkit.customadapter.CommonListAdapter;
+import com.richitec.commontoolkit.customadapter.CTListAdapter;
 import com.richitec.commontoolkit.utils.JSONUtils;
 import com.richitec.imeeting.R;
 
-public class TalkingGroupHistoryListItemAdapter extends CommonListAdapter {
+public class TalkingGroupHistoryListItemAdapter extends CTListAdapter {
 
 	private static final String LOG_TAG = "MyGroupHistoryListItemAdapter";
 
