@@ -29,7 +29,7 @@
         </menu>
     </item>
     <item
-        android:id="@+id/leaveTalkingGroupMenu"
+        android:id="@+id/leave_talkingGroup_menu"
         android:title="@string/menu_leave_talkingGroup"/>
 
 </menu>
