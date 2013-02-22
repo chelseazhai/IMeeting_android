@@ -4,8 +4,8 @@
     <string name="app_name">IMeeting</string>
 
     <!-- account setting activity -->
-    <string name="title_activity_account_setting">AccountSettingActivity</string>
-    <string name="normal_background_image_description">normal background image</string>
+    <string name="title_activity_account_setting" translatable="false">AccountSettingActivity</string>
+    <string name="normal_background_image_description" translatable="false">normal background image</string>
     <string name="account_setting_nav_title_text">Account Setting</string>
     <string name="register_nav_btn_title">Register</string>
     <string name="login_name_editText_hint">Please input your registered phone number</string>
@@ -16,7 +16,7 @@
     <string name="login_confirm_btn_title">Login</string>
 
     <!-- account register activity -->
-    <string name="title_activity_account_register">AccountRegisterActivity</string>
+    <string name="title_activity_account_register" translatable="false">AccountRegisterActivity</string>
     <string name="account_register_nav_title_text">Account Register</string>
     <!-- step 1 -->
     <string name="register_step1_textView_text">Step1</string>
@@ -37,7 +37,7 @@
     <string name="register_finish_btn_title">Finish Register</string>
 
     <!-- talking group history list activity -->
-    <string name="title_activity_talking_group_history_list">TalkingGroupHistoryListActivity</string>
+    <string name="title_activity_talking_group_history_list" translatable="false">TalkingGroupHistoryListActivity</string>
     <string name="menu_refresh_myTalkingGroupList">Refresh</string>
     <string name="myTalkingGroup_history_list_nav_title_text">My Talking Group</string>
     <string name="setting_nav_btn_title">Setting</string>
@@ -47,28 +47,28 @@
     <string name="groupId_textView_textHeader">Group ID:</string>
 
     <!-- talking group attendee -->
-    <string name="attendee_avatar_content_description">talking group attendee avatar</string>
+    <string name="attendee_avatar_content_description" translatable="false">talking group attendee avatar</string>
 
     <!-- setting activity -->
-    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_setting" translatable="false">SettingActivity</string>
     <string name="setting_nav_title_text">Setting</string>
     <string name="accountSetting_btn_title">Account Setting</string>
     <string name="support_btn_title">Support</string>
     <string name="about_btn_title">About</string>
 
     <!-- contact select activity -->
-    <string name="title_activity_contact_select">ContactSelectActivity</string>
+    <string name="title_activity_contact_select" translatable="false">ContactSelectActivity</string>
     <string name="contactSelect_nav_title_text">Add Attendee</string>
     <string name="back_nav_btn_title">Back</string>
     <string name="openTalkingGroup_nav_btn_title">Open</string>
     <string name="confirmAdd_nav_btn_title">OK</string>
-    <string name="contactSelect_header_imageView_content_description">contact select header image view</string>
+    <string name="contactSelect_header_imageView_content_description" translatable="false">contact select header image view</string>
     <string name="addressBook_textView_text">Address Book</string>
     <string name="in7preinTalkingGroup_textView_text">Attendees Existed</string>
     <string name="contact_search_editText_hint">Search contacts</string>
-    <string name="contactSelect_addressbookContact_unsel6sel_imageView_content_description">contact select address book contact unselected or selected image view</string>
-    <string name="contactSelect_in7preinTalkingGroupContact_sel_imageView_content_description">contact select in and prein talking group contact selected image view</string>
-    <string name="add_manualInputContact_popupWindow_dismiss_btn_title">×</string>
+    <string name="contactSelect_addressbookContact_unsel6sel_imageView_content_description" translatable="false">contact select address book contact unselected or selected image view</string>
+    <string name="contactSelect_in7preinTalkingGroupContact_sel_imageView_content_description" translatable="false">contact select in and prein talking group contact selected image view</string>
+    <string name="add_manualInputContact_popupWindow_dismiss_btn_title" translatable="false">×</string>
     <string name="add_manualInputContact_editText_hint">Please input phone number</string>
     <string name="add_manualInputContact_confirmBtn_title">Added</string>
     <string name="contact_hasNoPhone_alertDialog_title">Contact has no phone</string>
@@ -77,6 +77,7 @@
     <string name="contactPhones_selectPopupWindow_cancelBtn_title">Cancel</string>
 
     <!-- talking group activity -->
+    <string name="title_activity_talking_group" translatable="false">TalkingGroupActivity</string>
     <string name="menu_audio7video_operation">Audio&amp;Video Operation</string>
     <string name="menu_voice_callIn">Voice CallIn</string>
     <string name="menu_voice_hangup">Voice Hangup</string>
@@ -85,21 +86,20 @@
     <string name="menu_leave_talkingGroup">Leave Talking Group</string>
     <string name="menu_add_attendee">Add Attendee</string>
     <string name="menu_sms_invitation">SMS Invitation</string>
-    <string name="title_activity_talking_group">TalkingGroupActivity</string>
-    <string name="talkingGroup_bottomToolbarItem_separateLine_imageView_content_description">talking group bottom toolbar item separate line</string>
-    <string name="talkingGroup_fullScreenVideo_imageView_content_description">talking group fullScreen video image view</string>
-    <string name="talkingGroup_smallVideo_imageView_content_description">talking group small video image view</string>
+    <string name="talkingGroup_bottomToolbarItem_separateLine_imageView_content_description" translatable="false">talking group bottom toolbar item separate line</string>
+    <string name="talkingGroup_fullScreenVideo_imageView_content_description" translatable="false">talking group fullScreen video image view</string>
+    <string name="talkingGroup_smallVideo_imageView_content_description" translatable="false">talking group small video image view</string>
 
     <!-- support activity -->
-    <string name="title_activity_support">SupportActivity</string>
+    <string name="title_activity_support" translatable="false">SupportActivity</string>
     <string name="support_nav_title_text">Support</string>
     <string name="support_loading_textView_textHeader">Loading&#8230;</string>
-    <string name="support_loading_progressBar_max">100</string>
+    <string name="support_loading_progressBar_max" translatable="false">100</string>
 
     <!-- about activity -->
-    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_about" translatable="false">AboutActivity</string>
     <string name="about_nav_title_text">About</string>
-    <string name="product_small_icon_content_description">application small icon</string>
+    <string name="product_small_icon_content_description" translatable="false">application small icon</string>
 
     <!-- product -->
     <string name="product_name">ZhiHui</string>
@@ -111,7 +111,7 @@
     <string name="ui_design">UI Design</string>
     <string name="ui_designers">Li Xin</string>
     <!-- copyright -->
-    <string name="copyright">Copyright © 2012</string>
+    <string name="copyright" translatable="false">Copyright © 2012</string>
     <string name="copyright_ownership">Hefei Youyun Info Tech Ltd., All Rights Reserved</string>
     <!-- acknowledgement -->
     <string name="acknowledgement">Acknowledgement</string>

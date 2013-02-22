@@ -2,23 +2,23 @@
 <resources>
 
     <!-- iMeeting server url -->
-    <string name="server_url">http://www.wetalking.net/imeeting</string>
+    <string name="server_url" translatable="false">http://www.wetalking.net/imeeting</string>
 
     <!-- my talking group history list url -->
-    <string name="myTalkingGroup_historyList_url">/conference/list</string>
+    <string name="myTalkingGroup_historyList_url" translatable="false">/conference/list</string>
 
     <!-- talking group attendees list url -->
-    <string name="talkingGroup_attendeesList_url">/conference/attendeeList</string>
+    <string name="talkingGroup_attendeesList_url" translatable="false">/conference/attendeeList</string>
 
     <!-- user login & account setting url -->
-    <string name="user_login7account_setting_url">/user/login</string>
+    <string name="user_login7account_setting_url" translatable="false">/user/login</string>
 
     <!-- account register url -->
-    <string name="get_registerPhone_verification_code_url">/user/getPhoneCode</string>
-    <string name="verify_verificationCode_url">/user/checkPhoneCode</string>
-    <string name="account_register_url">/user/regUser</string>
+    <string name="get_registerPhone_verification_code_url" translatable="false">/user/getPhoneCode</string>
+    <string name="verify_verificationCode_url" translatable="false">/user/checkPhoneCode</string>
+    <string name="account_register_url" translatable="false">/user/regUser</string>
 
     <!-- support url -->
-    <string name="support_url">/help</string>
+    <string name="support_url" translatable="false">/help</string>
 
 </resources>

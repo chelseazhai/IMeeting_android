@@ -118,7 +118,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(
-				R.menu.talking_group_history_list_activity_layout, menu);
+				R.menu.talking_group_history_list_activity_menu, menu);
 		return true;
 	}
 

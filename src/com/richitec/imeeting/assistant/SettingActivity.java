@@ -38,7 +38,7 @@ public class SettingActivity extends IMeetingNavigationActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.setting_activity_layout, menu);
+		getMenuInflater().inflate(R.menu.setting_activity_menu, menu);
 		return true;
 	}
 

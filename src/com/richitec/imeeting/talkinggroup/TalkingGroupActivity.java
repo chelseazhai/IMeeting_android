@@ -44,7 +44,7 @@ public class TalkingGroupActivity extends IMeetingNavigationActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.talking_group_activity_layout, menu);
+		getMenuInflater().inflate(R.menu.talking_group_activity_menu, menu);
 		return true;
 	}
 

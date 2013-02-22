@@ -2,26 +2,26 @@
 <resources>
 
     <!-- common -->
-    <string name="bg_server_req_resp_result">result</string>
+    <string name="bg_server_req_resp_result" translatable="false">result</string>
 
     <!-- my talking group history list -->
-    <string name="bg_server_myTalkingGroupHistoryList_page">pager</string>
-    <string name="bg_server_myTalkingGroupHistoryList_list">list</string>
-    <string name="bg_server_myTalkingGroupHistoryList_listStatus">status</string>
-    <string name="bg_server_myTalkingGroupHistoryList_listStatus_open">OPEN</string>
-    <string name="bg_server_myTalkingGroupHistoryList_listConfId">conferenceId</string>
-    <string name="bg_server_myTalkingGroupHistoryList_listCreatedTime">created_time</string>
-    <string name="bg_server_myTalkingGroupHistoryList_listAttendees">attendees</string>
+    <string name="bg_server_myTalkingGroupHistoryList_page" translatable="false">pager</string>
+    <string name="bg_server_myTalkingGroupHistoryList_list" translatable="false">list</string>
+    <string name="bg_server_myTalkingGroupHistoryList_listStatus" translatable="false">status</string>
+    <string name="bg_server_myTalkingGroupHistoryList_listStatus_open" translatable="false">OPEN</string>
+    <string name="bg_server_myTalkingGroupHistoryList_listConfId" translatable="false">conferenceId</string>
+    <string name="bg_server_myTalkingGroupHistoryList_listCreatedTime" translatable="false">created_time</string>
+    <string name="bg_server_myTalkingGroupHistoryList_listAttendees" translatable="false">attendees</string>
 
     <!-- user login & account setting -->
-    <string name="bg_server_userLoginName">loginName</string>
-    <string name="bg_server_userLoginPwd">loginPwd</string>
-    <string name="bg_server_loginReq_resp_userkey">userkey</string>
+    <string name="bg_server_userLoginName" translatable="false">loginName</string>
+    <string name="bg_server_userLoginPwd" translatable="false">loginPwd</string>
+    <string name="bg_server_loginReq_resp_userkey" translatable="false">userkey</string>
 
     <!-- account register -->
-    <string name="bg_server_accountRegisterPhoneNumber">phone</string>
-    <string name="bg_server_verificationCode">code</string>
-    <string name="bg_server_userRegPassword">password</string>
-    <string name="bg_server_userRegConfirmationPwd">password1</string>
+    <string name="bg_server_accountRegisterPhoneNumber" translatable="false">phone</string>
+    <string name="bg_server_verificationCode" translatable="false">code</string>
+    <string name="bg_server_userRegPassword" translatable="false">password</string>
+    <string name="bg_server_userRegConfirmationPwd" translatable="false">password1</string>
 
 </resources>

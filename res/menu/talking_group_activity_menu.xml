@@ -1,35 +1,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_add_attendee"
+        android:id="@+id/addAttendeeMenu"
         android:title="@string/menu_add_attendee"/>
     <item
-        android:id="@+id/menu_sms_invitation"
+        android:id="@+id/smsInvitationMenu"
         android:title="@string/menu_sms_invitation"/>
     <item
-        android:id="@+id/menu_audio7video_operation"
+        android:id="@+id/audio7videoOperationMenu"
         android:title="@string/menu_audio7video_operation">
         <menu>
             <group android:checkableBehavior="all" >
                 <item
-                    android:id="@+id/menu_voice_callIn"
+                    android:id="@+id/voiceCallInMenu"
                     android:title="@string/menu_voice_callIn"/>
                 <item
-                    android:id="@+id/menu_voice_hangup"
+                    android:id="@+id/voiceHangupMenu"
                     android:title="@string/menu_voice_hangup"
                     android:visible="false"/>
                 <item
-                    android:id="@+id/menu_menu_open_camera"
+                    android:id="@+id/openCameraMenu"
                     android:title="@string/menu_open_camera"/>
                 <item
-                    android:id="@+id/menu_menu_close_camera"
+                    android:id="@+id/closeCameraMenu"
                     android:title="@string/menu_close_camera"
                     android:visible="false"/>
             </group>
         </menu>
     </item>
     <item
-        android:id="@+id/menu_leave_talkingGroup"
+        android:id="@+id/leaveTalkingGroupMenu"
         android:title="@string/menu_leave_talkingGroup"/>
 
 </menu>

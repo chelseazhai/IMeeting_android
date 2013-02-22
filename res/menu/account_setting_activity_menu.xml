@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_register"
+        android:id="@+id/registerMenu"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/register_nav_btn_title"/>
     <item
-        android:id="@+id/menu_login_confirm"
+        android:id="@+id/loginConfirmMenu"
         android:icon="@android:drawable/ic_menu_directions"
         android:title="@string/login_confirm_btn_title"/>
 
