@@ -23,7 +23,7 @@
             android:background="@android:color/transparent"
             android:text="@string/add_manualInputContact_popupWindow_dismiss_btn_title"
             android:textColor="@android:color/white"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/add_manualInputContact_editText"
