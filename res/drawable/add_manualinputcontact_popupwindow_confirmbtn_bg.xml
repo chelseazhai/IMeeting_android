@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/add_manualinputcontact_popupwindow_confirmbtn_touchdown_shapebg" android:state_pressed="true"/>
-    <item android:drawable="@drawable/add_manualinputcontact_popupwindow_confirmbtn_normal_shapebg"/>
+    <item android:state_pressed="true"><shape>
+            <corners android:radius="6dp" />
+
+            <size android:height="30dp" android:width="66dp" />
+
+            <solid android:color="@color/dodger_blue" />
+        </shape></item>
+    <item><shape>
+            <corners android:radius="6dp" />
+
+            <size android:height="30dp" android:width="66dp" />
+
+            <solid android:color="@android:color/white" />
+        </shape></item>
 
 </selector>
