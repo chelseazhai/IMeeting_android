@@ -55,7 +55,7 @@ public class IMeetingAppLaunchActivity extends AppLaunchActivity {
 	}
 
 	@Override
-	public void didFinishLaunching() {
+	public boolean didFinishLaunching() {
 		// traversal address book
 		AddressBookManager.getInstance().traversalAddressBook();
 
@@ -69,6 +69,8 @@ public class IMeetingAppLaunchActivity extends AppLaunchActivity {
 						.getString(LOGIN_USERNAME_STORAGE_KEY),
 						DataStorageUtils.getString(LOGIN_USERPWD_STORAGE_KEY),
 						DataStorageUtils.getString(LOGIN_USERKEY_STORAGE_KEY)));
+
+		return false;
 	}
 
 }
