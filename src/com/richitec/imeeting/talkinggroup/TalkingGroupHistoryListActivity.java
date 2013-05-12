@@ -144,13 +144,13 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 							_groupInfoJsonObject,
 							getResources()
 									.getString(
-											R.string.bg_server_myTalkingGroupHistoryList_listConfId));
+											R.string.rbgServer_myTalkingGroupHistoryList_listConfId));
 			String _talkingGroupStatus = JSONUtils
 					.getStringFromJSONObject(
 							_groupInfoJsonObject,
 							getResources()
 									.getString(
-											R.string.bg_server_myTalkingGroupHistoryList_listStatus));
+											R.string.rbgServer_myTalkingGroupHistoryList_listStatus));
 
 			// define each talking group data map
 			Map<String, Object> _dataMap = new HashMap<String, Object>();
@@ -160,7 +160,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 					GROUP_ID,
 					getResources()
 							.getString(
-									R.string.bg_server_myTalkingGroupHistoryList_listStatus_open)
+									R.string.rbgServer_myTalkingGroupHistoryList_listStatus_open)
 							.equalsIgnoreCase(_talkingGroupStatus) ? new SpannableString(
 							_talkingGroupId) : _talkingGroupId);
 			_dataMap.put(
@@ -170,7 +170,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 									_groupInfoJsonObject,
 									getResources()
 											.getString(
-													R.string.bg_server_myTalkingGroupHistoryList_listCreatedTime))));
+													R.string.rbgServer_myTalkingGroupHistoryList_listCreatedTime))));
 			_dataMap.put(
 					GROUP_ATTENDEESPHONES,
 					JSONUtils
@@ -178,7 +178,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 									_groupInfoJsonObject,
 									getResources()
 											.getString(
-													R.string.bg_server_myTalkingGroupHistoryList_listAttendees)));
+													R.string.rbgServer_myTalkingGroupHistoryList_listAttendees)));
 
 			// add to data list
 			_dataList.add(_dataMap);
@@ -383,7 +383,7 @@ public class TalkingGroupHistoryListActivity extends IMeetingNavigationActivity 
 							_respEntityStringJsonObject,
 							getResources()
 									.getString(
-											R.string.bg_server_myTalkingGroupHistoryList_list));
+											R.string.rbgServer_myTalkingGroupHistoryList_list));
 
 			// reset my group history listView adapter
 			((ListView) findViewById(R.id.myGroup_history_listView))

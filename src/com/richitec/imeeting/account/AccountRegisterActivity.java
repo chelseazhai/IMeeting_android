@@ -83,7 +83,7 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 			Map<String, String> _getRegVerificationCodeParam = new HashMap<String, String>();
 			_getRegVerificationCodeParam.put(
 					getResources().getString(
-							R.string.bg_server_accountRegisterPhoneNumber),
+							R.string.rbgServer_accountRegisterPhoneNumber),
 					_registerPhoneNumber);
 
 			// send get register phone verification code post http request
@@ -114,7 +114,7 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 			String _result = JSONUtils.getStringFromJSONObject(JSONUtils
 					.toJSONObject(_respEntityString),
 					getResources()
-							.getString(R.string.bg_server_req_resp_result));
+							.getString(R.string.rbgServer_req_resp_result));
 
 			// check result
 			if (null != _result) {
@@ -197,7 +197,7 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 			Map<String, String> _verifyVerificationCodeParam = new HashMap<String, String>();
 			_verifyVerificationCodeParam.put(
 					getResources().getString(
-							R.string.bg_server_verificationCode),
+							R.string.rbgServer_verificationCode),
 					_verificationCode);
 
 			// send verify verification code post http request
@@ -226,7 +226,7 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 			String _result = JSONUtils.getStringFromJSONObject(JSONUtils
 					.toJSONObject(_respEntityString),
 					getResources()
-							.getString(R.string.bg_server_req_resp_result));
+							.getString(R.string.rbgServer_req_resp_result));
 
 			// check result
 			if (null != _result) {
@@ -337,11 +337,11 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 			Map<String, String> _finishRegisterParam = new HashMap<String, String>();
 			_finishRegisterParam.put(
 					getResources()
-							.getString(R.string.bg_server_userRegPassword),
+							.getString(R.string.rbgServer_userRegPassword),
 					_password);
 			_finishRegisterParam.put(
 					getResources().getString(
-							R.string.bg_server_userRegConfirmationPwd),
+							R.string.rbgServer_userRegConfirmationPwd),
 					_confirmationPwd);
 
 			// send finish register post http request
@@ -367,7 +367,7 @@ public class AccountRegisterActivity extends IMeetingNavigationActivity {
 			String _result = JSONUtils.getStringFromJSONObject(JSONUtils
 					.toJSONObject(_respEntityString),
 					getResources()
-							.getString(R.string.bg_server_req_resp_result));
+							.getString(R.string.rbgServer_req_resp_result));
 
 			// check result
 			if (null != _result) {

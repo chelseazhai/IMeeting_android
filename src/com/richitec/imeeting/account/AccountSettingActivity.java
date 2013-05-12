@@ -141,10 +141,10 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 			// generate user login post request param
 			Map<String, String> _loginParam = new HashMap<String, String>();
 			_loginParam.put(
-					getResources().getString(R.string.bg_server_userLoginName),
+					getResources().getString(R.string.rbgServer_userLoginName),
 					_loginUserName);
 			_loginParam.put(
-					getResources().getString(R.string.bg_server_userLoginPwd),
+					getResources().getString(R.string.rbgServer_userLoginPwd),
 					StringUtils.md5(_loginPassword));
 
 			// send user login post http request
@@ -172,7 +172,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 			String _result = JSONUtils.getStringFromJSONObject(JSONUtils
 					.toJSONObject(_respEntityString),
 					getResources()
-							.getString(R.string.bg_server_req_resp_result));
+							.getString(R.string.rbgServer_req_resp_result));
 
 			// check result
 			if (null != _result) {
@@ -191,7 +191,7 @@ public class AccountSettingActivity extends IMeetingNavigationActivity {
 									JSONUtils.toJSONObject(_respEntityString),
 									getResources()
 											.getString(
-													R.string.bg_server_loginReq_resp_userkey));
+													R.string.rbgServer_loginReq_resp_userkey));
 
 					// save user bean and add to user manager
 					UserManager.getInstance().setUser(
